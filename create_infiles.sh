@@ -43,7 +43,7 @@ if (( $filesNumPerDir == 0 )); then
     filesNumPerDir=1
 fi
 
-echo "filesNumPerDir=$filesNumPerDir"
+# echo "filesNumPerDir=$filesNumPerDir"
 
 levelsNumTemp=0
 fileNamesIndex=1
@@ -59,20 +59,26 @@ do
     done
 
     curDirName="$dirName/$curDirName"
-    echo "$curDirName"
+    echo "Created directory $curDirName"
 
     mkdir -p $curDirName
 
-    for ((j=0; j<$filesNumPerDir; j++));
-    do
-        if (( $fileNamesIndex > $filesNum )); then
-            break
-        fi
+    # for ((j=0; j<$filesNumPerDir; j++));
+    # do
+    if (( $fileNamesIndex <= $filesNum )); then
+        curFileName="$curDirName/${fileNames[$fileNamesIndex]}"
+        touch "$curFileName"
+        echo "Created file $curFileName"
+        charsNum=$(shuf -i 1000-128000 -n 1)
+        curFileContents=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c $charsNum ; echo '')
 
-        touch "$curDirName/${fileNames[$fileNamesIndex]}"
+        echo "$curFileContents" > "$curFileName"
 
         ((fileNamesIndex ++))
-    done
+    fi
+
+    #     ((fileNamesIndex ++))
+    # done
 
     dirFullNames[i]=$curDirName
 
@@ -83,30 +89,33 @@ do
     fi
 done
 
-echo "filesIndex = $fileNamesIndex"
+# echo "filesIndex = $fileNamesIndex"
 
 # create remaining files
 while (( $fileNamesIndex <= $filesNum ));
 do
     for dirFullName in "${dirFullNames[@]}"
     do
-        for ((j=0; j<$filesNumPerDir; j++));
-        do
-            if (( $fileNamesIndex > $filesNum )); then
-                break
-            fi
+        # for ((j=0; j<$filesNumPerDir; j++));
+        # do
 
-            touch "$dirFullName/${fileNames[$fileNamesIndex]}"
+        # if (( $fileNamesIndex > $filesNum )); then
+        #     break
+        # fi
+        curFileName="$dirFullName/${fileNames[$fileNamesIndex]}"
+        touch "$curFileName"
+        echo "Created file $curFileName"
 
-            ((fileNamesIndex ++))
-        done
+        ((fileNamesIndex ++))
+        #     ((fileNamesIndex ++))
+        # done
 
         if (( $fileNamesIndex > $filesNum )); then
             break
         fi
     done
 
-    if ((  $fileNamesIndex > $filesNum )); then
-        break
-    fi
+    # if ((  $fileNamesIndex > $filesNum )); then
+    #     break
+    # fi
 done
