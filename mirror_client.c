@@ -1,8 +1,8 @@
 #include "utils/utils.h"
 
 int main(int argc, char** argv) {
-    int clientId, bufferSize;
-    char *commonDirName, *inputDirName, *mirrorDirName, *logFileName;
+    int clientId;
+    char *inputDirName, *logFileName;
 
     handleArgs(argc, argv, &clientId, &commonDirName, &inputDirName, &mirrorDirName, &bufferSize, &logFileName);
 
@@ -15,8 +15,7 @@ int main(int argc, char** argv) {
 
     FileList* inputFileList = initFileList();
     populateFileList(inputFileList, inputDirName, "", 0);
-
-
+    printf("ha\n");
     initialSync(commonDirName, mirrorDirName, bufferSize, inputFileList, clientId);
     startWatchingCommonDirectory(commonDirName, mirrorDirName, bufferSize, inputFileList, clientId);
 

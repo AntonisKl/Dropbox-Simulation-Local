@@ -13,6 +13,7 @@
 #include <sys/sem.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <sys/wait.h>
 #include <unistd.h>
 
 #include "../file_list/file_list.h"
@@ -32,6 +33,10 @@
 
 typedef struct FileList FileList;  // for forward declaration
 
+static char *commonDirName, *inputDirName, *mirrorDirName;
+static int bufferSize, clientIdFrom, clientIdTo;
+static FileList* inputFileList;
+
 union semun {
     int val;
     struct semid_ds* buf;
@@ -48,6 +53,8 @@ char dirExists(char* dirName);
 
 char fileExists(char* fileName);
 
+void createDir(char* dirPath);
+
 void buildIdFileName(char (*idFileFullName)[], char* commonDirName, int clientId);
 
 void createAndWriteToFile(char* fileName, char* contents);
@@ -55,6 +62,8 @@ void createAndWriteToFile(char* fileName, char* contents);
 void doClientInitialChecks(char* inputDirName, char* mirrorDirName, char* commonDirName, int clientId, char (*idFilePath)[]);
 
 char isIdFile(char* fileName);
+
+char isSameIdFile(char* fileName, int clientId);
 
 void buildFifoFileName(char (*fifoFileName)[], int clientIdFrom, int clientIdTo);
 

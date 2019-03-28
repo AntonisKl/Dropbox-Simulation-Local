@@ -17,4 +17,4 @@ utils.o:  utils/utils.c
 	$(CC) $(CFLAGS) -c utils/utils.c
 
 clean: 
-	$(RM) mirror_client *.o
+	$(RM) mirror_client *.o common/*
