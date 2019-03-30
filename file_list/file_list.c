@@ -18,6 +18,9 @@ void freeFile(File** file) {
     if ((*file) == NULL)
         return;
 
+    free((*file)->pathNoInputDir);
+    (*file)->pathNoInputDir = NULL;
+
     free((*file)->path);
     (*file)->path = NULL;
 

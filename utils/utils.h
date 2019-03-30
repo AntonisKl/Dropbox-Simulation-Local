@@ -59,6 +59,10 @@ void buildIdFileName(char (*idFileFullName)[], char* commonDirName, int clientId
 
 void createAndWriteToFile(char* fileName, char* contents);
 
+void tryWrite(int fd, const void* buffer, int bufferSize);
+
+int tryRead(int fd, void* buffer, int bufferSize);
+
 void doClientInitialChecks(char* inputDirName, char* mirrorDirName, char* commonDirName, int clientId, char (*idFilePath)[]);
 
 char isIdFile(char* fileName);
@@ -66,17 +70,5 @@ char isIdFile(char* fileName);
 char isSameIdFile(char* fileName, int clientId);
 
 void buildFifoFileName(char (*fifoFileName)[], int clientIdFrom, int clientIdTo);
-
-void readerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, char* mirrorDirName, int bufferSize);
-
-void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, int bufferSize);
-
-void createReaderAndWriter(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, char* mirrorDirName, int bufferSize);
-
-void initialSync(char* commonDirName, char* mirrorDirName, int bufferSize, FileList* inputFileList, int clientId);
-
-void populateFileList(FileList* fileList, char* inputDirName, char* pathWithoutParentName, int indent);
-
-void startWatchingCommonDirectory(char* commonDirName, char* mirrorDirName, int bufferSize, FileList* inputFileList, int clientId);
 
 #endif
