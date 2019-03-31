@@ -28,6 +28,7 @@
 
 #define MAX_STRING_INT_SIZE 12  // including end of string
 #define MAX_FIFO_FILE_NAME (MAX_STRING_INT_SIZE * 2 - 1) + 9
+#define MAX_FILE_LIST_NODE_STRING_SIZE MAX_STRING_INT_SIZE + 1 + (2 * PATH_MAX) + 1
 
 // static char* curName; /* curName is a global variable for it to be able to be freed by the signal handler */
 
@@ -70,5 +71,9 @@ char isIdFile(char* fileName);
 char isSameIdFile(char* fileName, int clientId);
 
 void buildFifoFileName(char (*fifoFileName)[], int clientIdFrom, int clientIdTo);
+
+char* fileListToString(FileList* fileList);
+
+FileList* stringToFileList(char* fileListS);
 
 #endif

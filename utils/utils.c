@@ -223,3 +223,52 @@ void buildFifoFileName(char (*fifoFileName)[], int clientIdFrom, int clientIdTo)
     strcat(*fifoFileName, clientIdToS);
     strcat(*fifoFileName, ".fifo");
 }
+
+char* fileListToString(FileList* fileList) {
+    char* fileListS = (char*) malloc(fileList->size * MAX_FILE_LIST_NODE_SIZE);
+    strcpy(fileListS, "");
+
+    File* curFile = fileList->firstFile;
+    while (curFile != NULL) {
+        // char* contentsSizeS, *typeS;
+        // sprintf(contentsSizeS, "%ld", curFile->contentsSize);
+        // sprintf(typeS, "%d", curFile->type);
+
+        sprintf(fileListS, "%s%s$%s$%ld$%d&", fileListS, curFile->pathNoInputDir, curFile->path, curFile->contentsSize, curFile->type);
+
+        curFile = curFile->nextFile;
+    }
+
+    return fileListS;
+}
+
+FileList* stringToFileList(char* fileListS) {
+    FileList* fileList = initFileList();
+
+    char* fileToken = strtok_r(fileListS, "&", &fileListS);
+    while (fileToken != NULL) {
+        char fileS[MAX_FILE_LIST_NODE_STRING_SIZE],* fieldToken, pathNoInputDir[PATH_MAX], path[PATH_MAX], *endPtr;
+        off_t contentsSize;
+        FileType type;
+
+        strcpy(fileS, fileToken);
+
+        fieldToken = strtok(fileS, "$");
+        strcpy(pathNoInputDir, fieldToken);
+
+        fieldToken = strtok(NULL, "$");
+        strcpy(path, fieldToken);
+
+        fieldToken = strtok(NULL, "$");
+        contentsSize = srtol(fieldToken, &endPtr, 10);
+
+        fieldToken = strtok(NULL, "$");
+        type = (FileType) atoi(fieldToken);
+
+        addFileToFileList(fileList, pathNoInputDir, path, contentsSize, type);
+
+        fileToken = strtok_r(fileListS, "&", &fileListS);
+    }
+
+    return fileList;
+}
