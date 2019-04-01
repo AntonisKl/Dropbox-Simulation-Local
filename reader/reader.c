@@ -2,6 +2,72 @@
 
 static char *filePath = NULL, *fileContents = NULL;
 
+void handleArgsReader(int argc, char** argv, FileList** fileList, int* clientIdFrom, int* clientIdTo, char** commonDirName, char** mirrorDirName, int* bufferSize, char** logFileName) {
+    // validate argument count
+    if (argc != 8) {
+        printErrorLnExit("Invalid arguments. Exiting...");
+    }
+
+    printf("handling args reader\n");
+
+    // validate input arguments one by one
+    // if (strcmp(argv[1], "-n") == 0) {
+    // (*clientId) = atoi(argv[2]);
+    // if ((*clientId) <= 0) {
+    //     printError("Invalid arguments\nExiting...\n");
+    //     raiseIntAndExit(1);
+    // }
+    // } else {
+    //     printErrorLnExit("Invalid arguments\nExiting...");
+    // }
+    if (!strcmp(argv[1], EMPTY_FILE_LIST_STRING)) {
+        (*fileList) = initFileList();
+    } else {
+        (*fileList) = stringToFileList(argv[1]);
+    }
+    (*clientIdFrom) = atoi(argv[2]);
+    (*clientIdTo) = atoi(argv[3]);
+    (*commonDirName) = argv[4];
+    (*mirrorDirName) = argv[5];
+    (*bufferSize) = atoi(argv[6]);
+    (*logFileName) = argv[7];
+
+    // if (strcmp(argv[3], "-c") == 0) {
+    //     (*commonDirName) = argv[4];
+    // } else {
+    //     printErrorLnExit("Invalid arguments\nExiting...");
+    // }
+
+    // if (strcmp(argv[5], "-i") == 0) {
+    //     (*inputDirName) = argv[6];
+    // } else {
+    //     printErrorLnExit("Invalid arguments\nExiting...");
+    // }
+
+    // if (strcmp(argv[7], "-m") == 0) {
+    //     (*mirrorDirName) = argv[8];
+    // } else {
+    //     printErrorLnExit("Invalid arguments\nExiting...");
+    // }
+
+    // if (strcmp(argv[9], "-b") == 0) {
+    //     (*bufferSize) = atoi(argv[10]);
+    //     if ((*bufferSize) <= 0) {
+    //         printErrorLnExit("Invalid arguments\nExiting...");
+    //     }
+    // } else {
+    //     printErrorLnExit("Invalid arguments\nExiting...");
+    // }
+
+    // if (strcmp(argv[11], "-l") == 0) {
+    //     (*logFileName) = argv[12];
+    // } else {
+    //     printErrorLnExit("Invalid arguments\nExiting...");
+    // }
+
+    return;
+}
+
 void handleSigAlarm(int signal) {
     if (signal != SIGALRM) {
         printErrorLn("Caught wrong signal instead of SIGALRM\n");
@@ -15,6 +81,12 @@ void handleSigAlarm(int signal) {
     if (fileContents != NULL) {
         free(fileContents);
         fileContents = NULL;
+    }
+
+    free(inputFileList);
+    if (fclose(logFileP) == EOF) {
+        perror("fclose failed");
+        exit(1);
     }
 
     kill(getppid(), SIGUSR1);
@@ -57,7 +129,7 @@ void handleSignalsReader(int signal) {
     return;
 }
 
-void readerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, char* mirrorDirName, int bufferSize) {
+void readerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, char* mirrorDirName, int bufferSize, char* logFileName) {
     printf("started readerJob with pid %d\n", getpid());
     struct sigaction sigAction;
 
@@ -103,6 +175,11 @@ void readerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
     int filePathSize = 0;
     int fileContentsSize = 0;
 
+    if ((logFileP = fopen(logFileName, "a")) == NULL) {
+        perror("fopen failed");
+        exit(1);
+    }
+
     alarm(30);
     int readReturnValue = tryRead(fifoFd, &filePathSize, 2);
     printf("-------->reader with pid %d read filePathSize: %d\n", getpid(), filePathSize);
@@ -129,6 +206,15 @@ void readerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
             printf("-------->reader with pid %d read fileContents: %s\n", getpid(), fileContents);
             alarm(0);
         }
+
+        if (fileContentsSize == -1) {
+            fprintf(logFileP, "Reader with pid %d received directory with path %s\n", getpid(), filePath);
+            printf("READER WITH PID %d wrote to log!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n", getpid());
+        } else {
+            fprintf(logFileP, "Reader with pid %d received file with path \"%s\" and contents \"%s\"\n", getpid(), filePath, fileContentsSize > 0 ? fileContents : "");
+            printf("READER WITH PID %d wrote to log!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n", getpid());
+        }
+        fflush(logFileP);
 
         char clientIdFromS[MAX_STRING_INT_SIZE];
         sprintf(clientIdFromS, "%d", clientIdFrom);
@@ -181,6 +267,23 @@ void readerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
         alarm(0);
     }
 
+    if (fclose(logFileP) == EOF) {
+        perror("fclose failed");
+        exit(1);
+    }
+
     freeFileList(&inputFileList);
     return;
+}
+
+int main(int argc, char** argv) {
+    printf("started reader!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+    int clientIdFrom, clientIdTo, bufferSize;
+    char *commonDirName, *mirrorDirName, *logFileName;
+
+    handleArgsReader(argc, argv, &inputFileList, &clientIdFrom, &clientIdTo, &commonDirName, &mirrorDirName, &bufferSize, &logFileName);
+
+    readerJob(inputFileList, clientIdFrom, clientIdTo, commonDirName, mirrorDirName, bufferSize, logFileName);
+
+    return 0;
 }

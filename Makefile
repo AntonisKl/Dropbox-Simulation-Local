@@ -2,10 +2,16 @@ CC = gcc
 CFLAGS  = -g -Wall
 RM = rm -rf
 
-default: mirror_client
+all: mirror_client reader writer
 
-mirror_client:  mirror_client.o reader.o writer.o file_list.o utils.o
-	$(CC) $(CFLAGS) -o mirror_client mirror_client.o reader.o writer.o file_list.o utils.o
+mirror_client:  mirror_client.o file_list.o utils.o
+	$(CC) $(CFLAGS) -o exe/mirror_client mirror_client.o file_list.o utils.o
+
+reader:  reader.o file_list.o utils.o
+	$(CC) $(CFLAGS) -o exe/reader reader.o file_list.o utils.o
+
+writer:  writer.o file_list.o utils.o
+	$(CC) $(CFLAGS) -o exe/writer writer.o file_list.o utils.o
 
 mirror_client.o:  mirror_client.c
 	$(CC) $(CFLAGS) -c mirror_client.c
@@ -21,8 +27,7 @@ file_list.o:  file_list/file_list.c
 
 utils.o:  utils/utils.c
 	$(CC) $(CFLAGS) -c utils/utils.c
-
-
+	
 
 clean: 
 	$(RM) mirror_client *.o common/* mirror

@@ -11,6 +11,8 @@ File* initFile(char* pathNoInputDir, char* path, off_t contentsSize, FileType ty
     file->contentsSize = contentsSize;
     file->type = type;
 
+    file->nextFile = NULL;
+
     return file;
 }
 

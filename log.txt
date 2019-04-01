@@ -1,0 +1,3 @@
+Reader with pid 13053 received directory with path /folder
+Reader with pid 13055 received file with path "/dummyFile2" and contents ""
+Reader with pid 13053 received file with path "/folder/dummyFile" and contents "a"

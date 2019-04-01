@@ -29,14 +29,16 @@
 #define MAX_STRING_INT_SIZE 12  // including end of string
 #define MAX_FIFO_FILE_NAME (MAX_STRING_INT_SIZE * 2 - 1) + 9
 #define MAX_FILE_LIST_NODE_STRING_SIZE MAX_STRING_INT_SIZE + 1 + (2 * PATH_MAX) + 1
+#define EMPTY_FILE_LIST_STRING "**"
 
 // static char* curName; /* curName is a global variable for it to be able to be freed by the signal handler */
 
 typedef struct FileList FileList;  // for forward declaration
 
-static char *commonDirName, *inputDirName, *mirrorDirName;
+static char *commonDirName, *inputDirName, *mirrorDirName, *logFileName;
 static int bufferSize, clientIdFrom, clientIdTo;
 static FileList* inputFileList;
+static FILE* logFileP;
 
 union semun {
     int val;
@@ -45,6 +47,8 @@ union semun {
 } SemAttributes;
 
 void printErrorLn(char* s);
+
+void printErrorLnExit(char* s);
 
 void raiseIntAndExit(int num);
 
@@ -55,6 +59,8 @@ char dirExists(char* dirName);
 char fileExists(char* fileName);
 
 void createDir(char* dirPath);
+
+void removeFileOrDir(char* path);
 
 void buildIdFileName(char (*idFileFullName)[], char* commonDirName, int clientId);
 
@@ -72,8 +78,12 @@ char isSameIdFile(char* fileName, int clientId);
 
 void buildFifoFileName(char (*fifoFileName)[], int clientIdFrom, int clientIdTo);
 
-char* fileListToString(FileList* fileList);
+void fileListToString(FileList* fileList, char (*fileListS)[]);
 
 FileList* stringToFileList(char* fileListS);
+
+void execReader(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, char* mirrorDirName, int bufferSize, char* logFileName);
+
+void execWriter(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, int bufferSize);
 
 #endif

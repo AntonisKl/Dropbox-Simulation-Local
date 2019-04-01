@@ -1,6 +1,4 @@
 #include "mirror_client.h"
-#include "reader/reader.h"
-#include "writer/writer.h"
 
 static int attemptsNum = 0;
 
@@ -54,6 +52,22 @@ void populateFileList(FileList* fileList, char* inputDirName, char* pathWithoutI
     closedir(dir);
 }
 
+void handleExit() {
+    freeFileList(&inputFileList);
+
+    char idFilePath[strlen(commonDirName) + 1 + MAX_STRING_INT_SIZE + 4];
+    buildIdFileName(&idFilePath, commonDirName, clientIdFrom);
+    removeFileOrDir(idFilePath);
+
+    char clientIdFromS[MAX_STRING_INT_SIZE];
+    sprintf(clientIdFromS, "%d", clientIdFrom);
+    char mirrorIdDirPath[strlen(mirrorDirName) + strlen(clientIdFromS) + 2];
+    strcpy(mirrorIdDirPath, mirrorDirName);
+    strcat(mirrorIdDirPath, "/");
+    strcat(mirrorIdDirPath, clientIdFromS);
+    removeFileOrDir(mirrorIdDirPath);
+}
+
 void handleSigUsr1(int signal);
 
 void handleSigInt(int signal) {
@@ -62,7 +76,7 @@ void handleSigInt(int signal) {
     }
     printf("Client process with id %d caught SIGINT\n", getpid());
 
-    freeFileList(&inputFileList);
+    handleExit();
 
     exit(0);
 }
@@ -82,7 +96,7 @@ void handleSignals(int signal) {
     return;
 }
 
-void createReaderAndWriter(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, char* mirrorDirName, int bufferSize) {
+void createReaderAndWriter(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, char* mirrorDirName, int bufferSize, char* logFileName) {
     struct sigaction sigAction;
 
     // Setup the sighub handler
@@ -104,18 +118,19 @@ void createReaderAndWriter(FileList* inputFileList, int clientIdFrom, int client
         perror("fork error");
         raiseIntAndExit(1);
     } else if (readerPid == 0) {
-        readerJob(inputFileList, clientIdFrom, clientIdTo, commonDirName, mirrorDirName, bufferSize);
-        exit(0);  // TODO: before exit raise signals to parent
+        execReader(inputFileList, clientIdFrom, clientIdTo, commonDirName, mirrorDirName, bufferSize, logFileName);
+        // exit(0);  // TODO: before exit raise signals to parent
     } else {
         int writerPid = fork();
         if (writerPid == -1) {
             perror("fork error");
             raiseIntAndExit(1);
         } else if (writerPid == 0) {
-            writerJob(inputFileList, clientIdFrom, clientIdTo, commonDirName, bufferSize);
-            exit(0);  // TODO: before exit raise signals to parent
+            execWriter(inputFileList, clientIdFrom, clientIdTo, commonDirName, bufferSize);
+            // exit(0);  // TODO: before exit raise signals to parent
         } else {
             int readerStatus, writerStatus;
+            printf("client %d waiting for children to exit\n", clientIdFrom);
             waitpid(readerPid, &readerStatus, 0);
             waitpid(writerPid, &writerStatus, 0);
             if (readerStatus == 0 && writerStatus == 0) {
@@ -132,12 +147,12 @@ void handleSigUsr1(int signal) {
     printf("Client process with id %d caught SIGUSR1\n", getpid());
 
     if (attemptsNum < 3) {
-        createReaderAndWriter(inputFileList, clientIdFrom, clientIdTo, commonDirName, mirrorDirName, bufferSize);
+        createReaderAndWriter(inputFileList, clientIdFrom, clientIdTo, commonDirName, mirrorDirName, bufferSize, logFileName);
         attemptsNum++;
     }
 }
 
-void initialSync(char* commonDirName, char* mirrorDirName, int bufferSize, FileList* inputFileList, int clientId) {
+void initialSync(char* commonDirName, char* mirrorDirName, int bufferSize, FileList* inputFileList, int clientId, char* logFileName) {
     DIR* dir;
     struct dirent* entry;
 
@@ -164,14 +179,14 @@ void initialSync(char* commonDirName, char* mirrorDirName, int bufferSize, FileL
 
             clientIdFrom = clientId;
             clientIdTo = atoi(strtok(entry->d_name, "."));
-            createReaderAndWriter(inputFileList, clientId, clientIdTo, commonDirName, mirrorDirName, bufferSize);
+            createReaderAndWriter(inputFileList, clientId, clientIdTo, commonDirName, mirrorDirName, bufferSize, logFileName);
         }
     }
     printf("end of initial sync\n");
     closedir(dir);
 }
 
-void startWatchingCommonDirectory(char* commonDirName, char* mirrorDirName, int bufferSize, FileList* inputFileList, int clientId) {
+void startWatchingCommonDirectory(char* commonDirName, char* mirrorDirName, int bufferSize, FileList* inputFileList, int clientId, char* logFileName) {
     struct inotify_event iNotifyEvent;
     int readRet, wd;
     uint32_t mask, nameLen;
@@ -227,24 +242,21 @@ void startWatchingCommonDirectory(char* commonDirName, char* mirrorDirName, int 
             }
             case IN_CLOSE_WRITE: {
                 printf("Close-write event\n");
-                clientIdFrom = clientId;
                 clientIdTo = atoi(strtok(curName, "."));
-                createReaderAndWriter(inputFileList, clientId, clientIdTo, commonDirName, mirrorDirName, bufferSize);
+                createReaderAndWriter(inputFileList, clientId, clientIdTo, commonDirName, mirrorDirName, bufferSize, logFileName);
 
                 break;
             }
             case IN_CLOSE_NOWRITE: {
                 printf("Close-nowrite event\n");
-                clientIdFrom = clientId;
                 clientIdTo = atoi(strtok(curName, "."));
-                createReaderAndWriter(inputFileList, clientId, clientIdTo, commonDirName, mirrorDirName, bufferSize);
+                createReaderAndWriter(inputFileList, clientId, clientIdTo, commonDirName, mirrorDirName, bufferSize, logFileName);
                 break;
             }
             case IN_CLOSE_WRITE | IN_CLOSE_NOWRITE: {
                 printf("Close event\n");
-                clientIdFrom = clientId;
                 clientIdTo = atoi(strtok(curName, "."));
-                createReaderAndWriter(inputFileList, clientId, clientIdTo, commonDirName, mirrorDirName, bufferSize);
+                createReaderAndWriter(inputFileList, clientId, clientIdTo, commonDirName, mirrorDirName, bufferSize, logFileName);
                 break;
             }
         }
@@ -264,6 +276,12 @@ void startWatchingCommonDirectory(char* commonDirName, char* mirrorDirName, int 
 }
 
 int main(int argc, char** argv) {
+    int clientId;
+    char *inputDirName;
+
+    handleArgs(argc, argv, &clientId, &commonDirName, &inputDirName, &mirrorDirName, &bufferSize, &logFileName);
+    clientIdFrom = clientId;
+
     struct sigaction sigAction;
 
     // Setup the sighub handler
@@ -280,11 +298,6 @@ int main(int argc, char** argv) {
         perror("Error: cannot handle SIGALRM");  // Should not happen
     }
 
-    int clientId;
-    char *inputDirName, *logFileName;
-
-    handleArgs(argc, argv, &clientId, &commonDirName, &inputDirName, &mirrorDirName, &bufferSize, &logFileName);
-
     char idFilePath[strlen(commonDirName) + 1 + MAX_STRING_INT_SIZE + 4];
     doClientInitialChecks(inputDirName, mirrorDirName, commonDirName, clientId, &idFilePath);
 
@@ -294,9 +307,11 @@ int main(int argc, char** argv) {
 
     inputFileList = initFileList();
     populateFileList(inputFileList, inputDirName, "", 0);
-    printf("ha\n");
-    initialSync(commonDirName, mirrorDirName, bufferSize, inputFileList, clientId);
-    startWatchingCommonDirectory(commonDirName, mirrorDirName, bufferSize, inputFileList, clientId);
+    printf("first filelist item: %s\n\n\n\n", inputFileList->firstFile->pathNoInputDir);
+    initialSync(commonDirName, mirrorDirName, bufferSize, inputFileList, clientId, logFileName);
+    startWatchingCommonDirectory(commonDirName, mirrorDirName, bufferSize, inputFileList, clientId, logFileName);
+
+    handleExit();
 
     return 0;
 }

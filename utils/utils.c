@@ -103,6 +103,25 @@ void createDir(char* dirPath) {
     } else {
         wait(NULL);
     }
+
+    return;
+}
+
+void removeFileOrDir(char* path) {
+    int pid = fork();
+    if (pid == 0) {
+        char* args[] = {"rm", "-rf", path, NULL};
+        if (execvp(args[0], args) == -1) {
+            perror("execvp failed");
+            exit(1);
+        }
+    } else if (pid == -1) {
+        perror("fork error");
+        exit(1);
+    } else {
+        wait(NULL);
+    }
+    return;
 }
 
 void buildIdFileName(char (*idFilePath)[], char* commonDirName, int clientId) {
@@ -224,22 +243,28 @@ void buildFifoFileName(char (*fifoFileName)[], int clientIdFrom, int clientIdTo)
     strcat(*fifoFileName, ".fifo");
 }
 
-char* fileListToString(FileList* fileList) {
-    char* fileListS = (char*) malloc(fileList->size * MAX_FILE_LIST_NODE_SIZE);
-    strcpy(fileListS, "");
+void fileListToString(FileList* fileList, char (*fileListS)[]) {
+    printf("heey\n\n");
+    // char* fileListS = (char*)malloc(fileList->size * MAX_FILE_LIST_NODE_STRING_SIZE);
+    strcpy(*fileListS, "");
 
     File* curFile = fileList->firstFile;
     while (curFile != NULL) {
         // char* contentsSizeS, *typeS;
         // sprintf(contentsSizeS, "%ld", curFile->contentsSize);
         // sprintf(typeS, "%d", curFile->type);
-
-        sprintf(fileListS, "%s%s$%s$%ld$%d&", fileListS, curFile->pathNoInputDir, curFile->path, curFile->contentsSize, curFile->type);
+        printf("in while\n");
+        sprintf(*fileListS, "%s%s$%s$%ld$%d&",* fileListS, curFile->pathNoInputDir, curFile->path, curFile->contentsSize, curFile->type);
 
         curFile = curFile->nextFile;
     }
 
-    return fileListS;
+    if (!strcmp(*fileListS, "")) {
+        // fileListS = (char*)malloc(3);
+        strcpy(*fileListS, EMPTY_FILE_LIST_STRING);
+    }
+
+    return;
 }
 
 FileList* stringToFileList(char* fileListS) {
@@ -247,7 +272,7 @@ FileList* stringToFileList(char* fileListS) {
 
     char* fileToken = strtok_r(fileListS, "&", &fileListS);
     while (fileToken != NULL) {
-        char fileS[MAX_FILE_LIST_NODE_STRING_SIZE],* fieldToken, pathNoInputDir[PATH_MAX], path[PATH_MAX], *endPtr;
+        char fileS[MAX_FILE_LIST_NODE_STRING_SIZE], *fieldToken, pathNoInputDir[PATH_MAX], path[PATH_MAX], *endPtr;
         off_t contentsSize;
         FileType type;
 
@@ -260,10 +285,10 @@ FileList* stringToFileList(char* fileListS) {
         strcpy(path, fieldToken);
 
         fieldToken = strtok(NULL, "$");
-        contentsSize = srtol(fieldToken, &endPtr, 10);
+        contentsSize = strtol(fieldToken, &endPtr, 10);
 
         fieldToken = strtok(NULL, "$");
-        type = (FileType) atoi(fieldToken);
+        type = (FileType)atoi(fieldToken);
 
         addFileToFileList(fileList, pathNoInputDir, path, contentsSize, type);
 
@@ -271,4 +296,37 @@ FileList* stringToFileList(char* fileListS) {
     }
 
     return fileList;
+}
+
+void execReader(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, char* mirrorDirName, int bufferSize, char* logFileName) {
+    char clientIdFromS[MAX_STRING_INT_SIZE], clientIdToS[MAX_STRING_INT_SIZE], bufferSizeS[MAX_STRING_INT_SIZE], fileListS[inputFileList->size * MAX_FILE_LIST_NODE_STRING_SIZE];
+    printf("---------------------------------------- %d\n", clientIdFrom);
+    sprintf(clientIdFromS, "%d", clientIdFrom);
+    sprintf(clientIdToS, "%d", clientIdTo);
+    sprintf(bufferSizeS, "%d", bufferSize);
+
+    fileListToString(inputFileList, &fileListS);
+
+    char* args[] = {"exe/reader", fileListS, clientIdFromS, clientIdToS, commonDirName, mirrorDirName, bufferSizeS, logFileName, NULL};
+    if (execvp(args[0], args) < 0) {
+        printf("Exec reader failed\n");
+    }
+
+    return;
+}
+
+void execWriter(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, int bufferSize) {
+    char clientIdFromS[MAX_STRING_INT_SIZE], clientIdToS[MAX_STRING_INT_SIZE], bufferSizeS[MAX_STRING_INT_SIZE], fileListS[inputFileList->size * MAX_FILE_LIST_NODE_STRING_SIZE];
+
+    sprintf(clientIdFromS, "%d", clientIdFrom);
+    sprintf(clientIdToS, "%d", clientIdTo);
+    sprintf(bufferSizeS, "%d", bufferSize);
+    fileListToString(inputFileList, &fileListS);
+
+    char* args[] = {"exe/writer", fileListS, clientIdFromS, clientIdToS, commonDirName, bufferSizeS, NULL};
+    if (execvp(args[0], args) < 0) {
+        printf("Exec writer failed\n");
+    }
+
+    return;
 }

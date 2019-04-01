@@ -1,5 +1,68 @@
 #include "writer.h"
 
+void handleArgsWriter(int argc, char** argv, FileList** fileList, int* clientIdFrom, int* clientIdTo, char** commonDirName, int* bufferSize) {
+    // validate argument count
+    if (argc != 6) {
+        printErrorLnExit("Invalid arguments. Exiting...");
+    }
+
+    // validate input arguments one by one
+    // if (strcmp(argv[1], "-n") == 0) {
+    // (*clientId) = atoi(argv[2]);
+    // if ((*clientId) <= 0) {
+    //     printError("Invalid arguments\nExiting...\n");
+    //     raiseIntAndExit(1);
+    // }
+    // } else {
+    //     printErrorLnExit("Invalid arguments\nExiting...");
+    // }
+
+    if (!strcmp(argv[1], EMPTY_FILE_LIST_STRING)) {
+        (*fileList) = initFileList();
+    } else {
+        (*fileList) = stringToFileList(argv[1]);
+    }
+    (*clientIdFrom) = atoi(argv[2]);
+    (*clientIdTo) = atoi(argv[3]);
+    (*commonDirName) = argv[4];
+    (*bufferSize) = atoi(argv[5]);
+
+    // if (strcmp(argv[3], "-c") == 0) {
+    //     (*commonDirName) = argv[4];
+    // } else {
+    //     printErrorLnExit("Invalid arguments\nExiting...");
+    // }
+
+    // if (strcmp(argv[5], "-i") == 0) {
+    //     (*inputDirName) = argv[6];
+    // } else {
+    //     printErrorLnExit("Invalid arguments\nExiting...");
+    // }
+
+    // if (strcmp(argv[7], "-m") == 0) {
+    //     (*mirrorDirName) = argv[8];
+    // } else {
+    //     printErrorLnExit("Invalid arguments\nExiting...");
+    // }
+
+    // if (strcmp(argv[9], "-b") == 0) {
+    //     (*bufferSize) = atoi(argv[10]);
+    //     if ((*bufferSize) <= 0) {
+    //         printErrorLnExit("Invalid arguments\nExiting...");
+    //     }
+    // } else {
+    //     printErrorLnExit("Invalid arguments\nExiting...");
+    // }
+
+    // if (strcmp(argv[11], "-l") == 0) {
+    //     (*logFileName) = argv[12];
+    // } else {
+    //     printErrorLnExit("Invalid arguments\nExiting...");
+    // }
+
+    return;
+}
+
 void handleSigIntWriter(int signal) {
     if (signal != SIGINT) {
         printErrorLn("Caught wrong signal instead of SIGINT\n");
@@ -87,4 +150,16 @@ void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
 
     freeFileList(&inputFileList);
     return;
+}
+
+int main(int argc, char** argv) {
+    FileList* inputFileList;
+    int clientIdFrom, clientIdTo, bufferSize;
+    char* commonDirName;
+
+    handleArgsWriter(argc, argv, &inputFileList, &clientIdFrom, &clientIdTo, &commonDirName, &bufferSize);
+
+    writerJob(inputFileList, clientIdFrom, clientIdTo, commonDirName, bufferSize);
+
+    return 0;
 }
