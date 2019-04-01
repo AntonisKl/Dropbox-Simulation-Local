@@ -3,6 +3,8 @@
 
 #include "../utils/utils.h"
 
+static FileList* inputFileList;
+
 void handleArgsWriter(int argc, char** argv, FileList** fileList, int* clientIdFrom, int* clientIdTo, char** commonDirName, int* bufferSize);
 
 void handleSigIntWriter(int signal);

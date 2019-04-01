@@ -1,3 +1,52 @@
-Reader with pid 13053 received directory with path /folder
-Reader with pid 13055 received file with path "/dummyFile2" and contents ""
-Reader with pid 13053 received file with path "/folder/dummyFile" and contents "a"
+Reader with pid 8331 received file with path "/folder/dummyFile" and contents "a"
+Reader with pid 8344 received file with path "/dummyFile2" and contents ""
+Reader with pid 13445 received file with path "/" and contents ""
+Reader with pid 13504 received file with path "" and contents ""
+Reader with pid 13983 received file with path "8" and contents ""
+Reader with pid 14306 received file with path "/dummyFi" and contents ""
+Reader with pid 14306 received file with path "/dummyFile2" and contents ""
+Reader with pid 14473 received file with path "/dummyFile2" and contents ""
+Reader with pid 14475 received file with path "/dummyFile2" and contents ""
+Reader with pid 14576 received file with path "/dummyFile2" and contents ""
+Reader with pid 14576 received file with path "/folder/dummyFile" and contents "a"
+Reader with pid 14662 received file with path "/dummyFile2" and contents ""
+Reader with pid 14660 received directory with path /folder
+Reader with pid 14778 received directory with path /folder
+Reader with pid 14778 received file with path "/dummyFile2" and contents ""
+Reader with pid 14932 received file with path "/dummyFile2" and contents ""
+Reader with pid 14934 received directory with path /folder
+Reader with pid 14932 received directory with path /folder
+Reader with pid 14932 received file with path "/folder/dummyFile" and contents "a"
+Reader with pid 14934 received file with path "/dummyFile2" and contents ""
+Reader with pid 15399 received directory with path /folder
+Reader with pid 15399 received file with path "/dummyFile2" and contents ""
+Reader with pid 2575 received directory with path /folder
+Reader with pid 2574 received file with path "/dummyFile2" and contents ""
+Reader with pid 2575 received file with path "/folder/dummyFile" and contents "a"
+Reader with pid 3482 received directory with path /folder
+Reader with pid 3481 received file with path "/dummyFile2" and contents ""
+Reader with pid 3482 received file with path "/folder/dummyFile" and contents "ggggggggg"
+Reader with pid 3774 received directory with path /folder
+Reader with pid 3772 received file with path "/" and contents ""
+Reader with pid 3774 received file with path "/‰K‹hU" and contents ""
+Reader with pid 3841 received directory with path /folder
+Reader with pid 3840 received file with path "/" and contents ""
+Reader with pid 3841 received file with path "/I	~åU" and contents ""
+Reader with pid 3984 received directory with path /folder
+Reader with pid 3983 received file with path "/dummyFile2" and contents ""
+Reader with pid 3984 received file with path "/folder/dummyFile" and contents "ggggggggg"
+Reader with pid 4064 received directory with path /folder
+Reader with pid 4063 received file with path "/dummyFile2" and contents ""
+Reader with pid 4064 received file with path "/folder/dummyFile" and contents "ggggggggg"
+Reader with pid 4210 received directory with path /folder
+Reader with pid 4209 received file with path "/dummyFile2" and contents ""
+Reader with pid 4210 received file with path "/folder/dummyFile" and contents "ggggggggg"
+Reader with pid 4294 received directory with path /folder
+Reader with pid 4293 received file with path "/dummyFile2" and contents ""
+Reader with pid 4294 received file with path "/folder/dummyFile" and contents "ggggggggg"
+Reader with pid 4385 received directory with path /folder
+Reader with pid 4384 received file with path "/dummyFile2" and contents ""
+Reader with pid 4385 received file with path "/folder/dummyFile" and contents "ggggggggg"
+Reader with pid 4510 received directory with path /folder
+Reader with pid 4509 received file with path "/dummyFile2" and contents ""
+Reader with pid 4510 received file with path "/folder/dummyFile" and contents "ggggggggg"

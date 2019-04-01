@@ -31,14 +31,11 @@
 #define MAX_FILE_LIST_NODE_STRING_SIZE MAX_STRING_INT_SIZE + 1 + (2 * PATH_MAX) + 1
 #define EMPTY_FILE_LIST_STRING "**"
 
+#define UNUSED(x) (void)(x)
+
 // static char* curName; /* curName is a global variable for it to be able to be freed by the signal handler */
 
 typedef struct FileList FileList;  // for forward declaration
-
-static char *commonDirName, *inputDirName, *mirrorDirName, *logFileName;
-static int bufferSize, clientIdFrom, clientIdTo;
-static FileList* inputFileList;
-static FILE* logFileP;
 
 union semun {
     int val;

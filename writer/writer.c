@@ -117,14 +117,18 @@ void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
     File* curFile = inputFileList->firstFile;
     while (curFile != NULL) {
         int filePathSize = strlen(curFile->pathNoInputDir) + 1;
-        tryWrite(fifoFd, &filePathSize, 2);
+        char filePathSizeS[3];
+        sprintf(filePathSizeS, "%d", filePathSize);
+        tryWrite(fifoFd, filePathSizeS, 2);
         char temp[PATH_MAX];
-        printf("-------->writer with pid %d wrote filePathSize: %d\n", getpid(), filePathSize);
+        printf("-------->writer with pid %d wrote filePathSize: %s\n", getpid(), filePathSizeS);
         memcpy(temp, curFile->pathNoInputDir, filePathSize + 1);
         printf("TEMP: %s\n\n", temp);
         tryWrite(fifoFd, curFile->pathNoInputDir, filePathSize);
         printf("-------->writer with pid %d wrote filePath: %s\n", getpid(), curFile->pathNoInputDir);
-        tryWrite(fifoFd, &curFile->contentsSize, 4);
+         char fileContentsSizeS[5];
+        sprintf(fileContentsSizeS, "%ld", curFile->contentsSize);
+        tryWrite(fifoFd, fileContentsSizeS, 4);
         printf("-------->writer with pid %d wrote fileContentsSize: %ld\n", getpid(), curFile->contentsSize);
 
         FILE* fp = fopen(curFile->path, "r");

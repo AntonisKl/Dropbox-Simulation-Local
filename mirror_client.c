@@ -133,8 +133,16 @@ void createReaderAndWriter(FileList* inputFileList, int clientIdFrom, int client
             printf("client %d waiting for children to exit\n", clientIdFrom);
             waitpid(readerPid, &readerStatus, 0);
             waitpid(writerPid, &writerStatus, 0);
-            if (readerStatus == 0 && writerStatus == 0) {
+            int readerExitStatus = WEXITSTATUS(readerStatus), writerExitStatus = WEXITSTATUS(writerStatus);
+            if (readerExitStatus == 0 && writerExitStatus == 0) {
                 printf(ANSI_COLOR_GREEN "Transfer completed successfully and both children with pids %d and %d have exited\n" ANSI_COLOR_RESET, readerPid, writerPid);
+            } else {
+                if (readerExitStatus == 1) {
+                    printf(ANSI_COLOR_RED "Reader with pid %d failed and exited\n" ANSI_COLOR_RESET, readerPid);
+                }
+                if (writerExitStatus == 1) {
+                    printf(ANSI_COLOR_RED "Writer with pid %d failed and exited\n" ANSI_COLOR_RESET, writerPid);
+                }
             }
         }
     }
@@ -276,8 +284,9 @@ void startWatchingCommonDirectory(char* commonDirName, char* mirrorDirName, int 
 }
 
 int main(int argc, char** argv) {
+
     int clientId;
-    char *inputDirName;
+    char* inputDirName;
 
     handleArgs(argc, argv, &clientId, &commonDirName, &inputDirName, &mirrorDirName, &bufferSize, &logFileName);
     clientIdFrom = clientId;

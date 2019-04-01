@@ -161,12 +161,23 @@ void tryWrite(int fd, const void* buffer, int bufferSize) {
 }
 
 int tryRead(int fd, void* buffer, int bufferSize) {
-    int returnValue = read(fd, buffer, bufferSize);
-    if (returnValue == -1) {
-        perror("read error");
-        kill(getppid(), SIGUSR1);
-        raiseIntAndExit(1);
+    int returnValue, tempBufferSize = bufferSize, progress = 0;
+
+    returnValue = read(fd, buffer, tempBufferSize);
+    while (returnValue < tempBufferSize && returnValue != 0) {
+        if (returnValue == -1) {
+            perror("read error");
+            kill(getppid(), SIGUSR1);
+            raiseIntAndExit(1);
+        }
+
+        printf("+++++++++++++++++++++++++++++++++++++++++++++ reader with pid %d read %d bytes from pipe\n", getpid(), returnValue);
+        tempBufferSize -= returnValue;
+        progress += returnValue;
+        returnValue = read(fd, buffer + progress, tempBufferSize);
     }
+        printf("======================================================== reader with pid %d read %d bytes from pipe\n", getpid(), returnValue);
+
     return returnValue;
 }
 
@@ -254,7 +265,7 @@ void fileListToString(FileList* fileList, char (*fileListS)[]) {
         // sprintf(contentsSizeS, "%ld", curFile->contentsSize);
         // sprintf(typeS, "%d", curFile->type);
         printf("in while\n");
-        sprintf(*fileListS, "%s%s$%s$%ld$%d&",* fileListS, curFile->pathNoInputDir, curFile->path, curFile->contentsSize, curFile->type);
+        sprintf(*fileListS, "%s%s$%s$%ld$%d&", *fileListS, curFile->pathNoInputDir, curFile->path, curFile->contentsSize, curFile->type);
 
         curFile = curFile->nextFile;
     }
