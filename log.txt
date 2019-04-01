@@ -50,3 +50,24 @@ Reader with pid 4385 received file with path "/folder/dummyFile" and contents "g
 Reader with pid 4510 received directory with path /folder
 Reader with pid 4509 received file with path "/dummyFile2" and contents ""
 Reader with pid 4510 received file with path "/folder/dummyFile" and contents "ggggggggg"
+Reader with pid 7055 received directory with path /folder
+Reader with pid 7054 received file with path "/dummyFile2" and contents ""
+Reader with pid 7055 received file with path "/folder/dummyFile" and contents "ggggggggg"
+Reader with pid 7420 received directory with path /folder
+Reader with pid 7419 received file with path "/dummyFile2" and contents ""
+Reader with pid 7420 received file with path "/folder/dummyFile" and contents "ggggggggg"
+Reader with pid 7520 received directory with path /folder
+Reader with pid 7519 received file with path "/dummyFile2" and contents ""
+Reader with pid 7520 received file with path "/folder/dummyFile" and contents "ggggggggg"
+Reader with pid 7577 received directory with path /folder
+Reader with pid 7576 received file with path "/dummyFile2" and contents ""
+Reader with pid 7577 received file with path "/folder/dummyFile" and contents "ggggggggg"
+Reader with pid 7721 received directory with path /folder
+Reader with pid 7720 received file with path "/dummyFile2" and contents ""
+Reader with pid 7721 received file with path "/folder/dummyFile" and contents "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"
+Reader with pid 7769 received directory with path /folder
+Reader with pid 7768 received file with path "/dummyFile2" and contents ""
+Reader with pid 7769 received file with path "/folder/dummyFile" and contents "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"
+Reader with pid 8056 received directory with path /folder
+Reader with pid 8055 received file with path "/dummyFile2" and contents ""
+Reader with pid 8056 received file with path "/folder/dummyFile" and contents "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"

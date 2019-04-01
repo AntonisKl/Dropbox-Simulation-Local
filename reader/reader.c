@@ -1,6 +1,6 @@
 #include "reader.h"
 
-static char *filePath = NULL, *fileContents = NULL, *filePathSizeS = NULL, *fileContentsSizeS = NULL;
+static char *filePath = NULL, *filePathSizeS = NULL, *fileContentsSizeS = NULL;
 
 void handleArgsReader(int argc, char** argv, FileList** fileList, int* clientIdFrom, int* clientIdTo, char** commonDirName, char** mirrorDirName, int* bufferSize, char** logFileName) {
     // validate argument count
@@ -78,12 +78,16 @@ void handleSigAlarm(int signal) {
         free(filePath);
         filePath = NULL;
     }
-    if (fileContents != NULL) {
-        free(fileContents);
-        fileContents = NULL;
+    if (filePathSizeS != NULL) {
+        free(filePathSizeS);
+        filePathSizeS = NULL;
+    }
+    if (fileContentsSizeS != NULL) {
+        free(fileContentsSizeS);
+        fileContentsSizeS = NULL;
     }
 
-    free(inputFileList);
+    freeFileList(&inputFileList);
     if (fclose(logFileP) == EOF) {
         perror("fclose failed");
         exit(1);
@@ -104,9 +108,13 @@ void handleSigIntReader(int signal) {
         free(filePath);
         filePath = NULL;
     }
-    if (fileContents != NULL) {
-        free(fileContents);
-        fileContents = NULL;
+    if (filePathSizeS != NULL) {
+        free(filePathSizeS);
+        filePathSizeS = NULL;
+    }
+    if (fileContentsSizeS != NULL) {
+        free(fileContentsSizeS);
+        fileContentsSizeS = NULL;
     }
 
     freeFileList(&inputFileList);
@@ -202,19 +210,21 @@ void readerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
         fileContentsSize = atoi(fileContentsSizeS);
         printf("-------->reader with pid %d read fileContentsSize: %d\n", getpid(), fileContentsSize);
 
+        char fileContents[fileContentsSize + 1];
         if (fileContentsSize > 0) {
-            fileContents = (char*)malloc(fileContentsSize + 1);
+            strcpy(fileContents, "");
+            char chunk[bufferSize];
             // alarm(30);
             // tryRead(fifoFd, fileContents, fileContentsSize);
             // printf("-------->reader with pid %d read fileContents: %s\n", getpid(), fileContents);
             // alarm(0);
-            int remainingContentsSize = fileContentsSize, progress = 0;
+            int remainingContentsSize = fileContentsSize;
             while (remainingContentsSize > 0) {
                 int returnValue, tempBufferSize = bufferSize, inProgress = 0;
-            printf("remaining contents size: %d\n", remainingContentsSize);
+                printf("remaining contents size: %d\n", remainingContentsSize);
 
-                returnValue = read(fifoFd, fileContents + progress, tempBufferSize);
-                while (returnValue < tempBufferSize && returnValue) {
+                returnValue = read(fifoFd, chunk, tempBufferSize);
+                while (returnValue < tempBufferSize && returnValue != 0) {
                     if (returnValue == -1) {
                         perror("read error");
                         kill(getppid(), SIGUSR1);
@@ -223,10 +233,13 @@ void readerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
                     printf("+++++++++++++++++++++++++++++++++++++++++++++ reader with pid %d read %d bytes from pipe\n", getpid(), returnValue);
                     tempBufferSize -= returnValue;
                     inProgress += returnValue;
-                    returnValue = read(fifoFd, fileContents + progress + inProgress, tempBufferSize);
+                    returnValue = read(fifoFd, chunk + inProgress, tempBufferSize);
                 }
 
-                progress += bufferSize;
+                if (returnValue == 0)
+                    break;
+
+                strcat(fileContents, chunk);
                 remainingContentsSize -= bufferSize;
             }
         }
@@ -280,10 +293,6 @@ void readerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
         if (filePath != NULL) {
             free(filePath);
             filePath = NULL;
-        }
-        if (fileContents != NULL) {
-            free(fileContents);
-            fileContents = NULL;
         }
         if (filePathSizeS != NULL) {
             free(filePathSizeS);

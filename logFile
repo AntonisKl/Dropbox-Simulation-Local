@@ -157,3 +157,6 @@ Reader with pid 15396 received file with path "8" and contents ""
 Reader with pid 3104 received file with path "/dummyFile2" and contents ""
 Reader with pid 3102 received directory with path /folder
 Reader with pid 3102 received file with path "/folder/dummyFile" and contents "a"
+Reader with pid 6945 received directory with path /folder
+Reader with pid 6947 received file with path "/dummyFile2" and contents ""
+Reader with pid 6945 received file with path "/folder/dummyFile" and contents "ggggggggg"
