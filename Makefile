@@ -30,4 +30,4 @@ utils.o:  utils/utils.c
 	
 
 clean: 
-	$(RM) mirror_client *.o common/* mirror
+	$(RM) mirror_client *.o common/* mirror exe/*
