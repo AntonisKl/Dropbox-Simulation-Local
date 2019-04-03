@@ -14,6 +14,10 @@ void handleSigIntReader(int signal);
 
 void handleSignalsReader(int signal);
 
+void trySelect(int fifoFd);
+
+int tryRead(int fd, void* buffer, int bufferSize);
+
 void readerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, char* mirrorDirName, int bufferSize, char* logFileName);
 
 #endif

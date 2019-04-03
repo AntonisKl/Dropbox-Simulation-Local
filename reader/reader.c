@@ -137,6 +137,53 @@ void handleSignalsReader(int signal) {
     return;
 }
 
+void trySelect(int fifoFd) {
+    struct timeval timeStruct;
+    timeStruct.tv_sec = 30;
+    timeStruct.tv_usec = 0;
+
+    fd_set readFdSet;
+    FD_ZERO(&readFdSet);
+    FD_SET(fifoFd, &readFdSet);
+
+printErrorLn("BEEEEEEEEEEEEEEEEEEEEEEEEEEEEEFORE SELECT");
+    int selectRetValue = select(FD_SETSIZE, &readFdSet, NULL, NULL, &timeStruct);
+printErrorLn("AAAAAAAAAAAAAAAAAAAAAAFTER SELECT");
+
+    if (selectRetValue == -1)
+        perror("select error");
+    else if (selectRetValue == 0)
+    {
+        printErrorLn("No data in fifo after 30 seconds.");
+        raise(SIGALRM);
+    }
+
+    return;  // reader can now read from fifo
+}
+
+int tryRead(int fd, void* buffer, int bufferSize) {
+    int returnValue, tempBufferSize = bufferSize, progress = 0;
+
+    trySelect(fd);
+    returnValue = read(fd, buffer, tempBufferSize);
+    while (returnValue < tempBufferSize && returnValue != 0) {
+        if (returnValue == -1) {
+            perror("read error");
+            kill(getppid(), SIGUSR1);
+            raiseIntAndExit(1);
+        }
+
+        printf("+++++++++++++++++++++++++++++++++++++++++++++ reader with pid %d read %d bytes from pipe\n", getpid(), returnValue);
+        tempBufferSize -= returnValue;
+        progress += returnValue;
+        trySelect(fd);
+        returnValue = read(fd, buffer + progress, tempBufferSize);
+    }
+    printf("======================================================== reader with pid %d read %d bytes from pipe\n", getpid(), returnValue);
+
+    return returnValue;
+}
+
 void readerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, char* mirrorDirName, int bufferSize, char* logFileName) {
     printf("started readerJob with pid %d\n", getpid());
     struct sigaction sigAction;
@@ -178,7 +225,7 @@ void readerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
         printf("pid %d, after fifo\n", getpid());
     }
 
-    fifoFd = open(fifo, O_RDONLY);
+    fifoFd = open(fifo, O_RDONLY | O_NONBLOCK);
 
     int filePathSize = 0, fileContentsSize = 0;
 
@@ -188,29 +235,31 @@ void readerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
     }
 
     filePathSizeS = malloc(3);
-    alarm(30);
+
+    // alarm(30);
     int readReturnValue = tryRead(fifoFd, filePathSizeS, 2);
-    alarm(0);
+    // alarm(0);
     filePathSize = atoi(filePathSizeS);
     printf("-------->reader with pid %d read filePathSize: %s\n", getpid(), filePathSizeS);
 
     while (readReturnValue > 0 && filePathSize != 0) {
         filePath = (char*)malloc(filePathSize + 1);
 
-        alarm(30);
+        // alarm(30);
         printf("-------->reader with pid %d BEFORE read filePath: %s\n", getpid(), filePath);
         tryRead(fifoFd, filePath, filePathSize);
         printf("-------->reader with pid %d read filePath: %s\n", getpid(), filePath);
-        alarm(0);
+        // alarm(0);
 
         fileContentsSizeS = malloc(5);
-        alarm(30);
+        // alarm(30);
         tryRead(fifoFd, fileContentsSizeS, 4);
-        alarm(0);
+        // alarm(0);
         fileContentsSize = atoi(fileContentsSizeS);
         printf("-------->reader with pid %d read fileContentsSize: %d\n", getpid(), fileContentsSize);
 
         char fileContents[fileContentsSize + 1];
+        int bytesRead = 0;
         if (fileContentsSize > 0) {
             strcpy(fileContents, "");
             char chunk[bufferSize];
@@ -239,18 +288,23 @@ void readerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
                 if (returnValue == 0)
                     break;
 
+                bytesRead += returnValue;
+
                 strcat(fileContents, chunk);
                 remainingContentsSize -= bufferSize;
             }
         }
 
-        if (fileContentsSize == -1) {
-            fprintf(logFileP, "Reader with pid %d received directory with path %s\n", getpid(), filePath);
-            printf("READER WITH PID %d wrote to log!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n", getpid());
-        } else {
-            fprintf(logFileP, "Reader with pid %d received file with path \"%s\" and contents \"%s\"\n", getpid(), filePath, fileContentsSize > 0 ? fileContents : "");
-            printf("READER WITH PID %d wrote to log!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n", getpid());
-        }
+        // if (fileContentsSize == -1) {
+        //     fprintf(logFileP, "Reader with pid %d received directory with path %s\n", getpid(), filePath);
+        //     printf("READER WITH PID %d wrote to log!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n", getpid());
+        // } else {
+        //     fprintf(logFileP, "Reader with pid %d received file with path \"%s\" and contents \"%s\"\n", getpid(), filePath, fileContentsSize > 0 ? fileContents : "");
+        //     printf("READER WITH PID %d wrote to log!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n", getpid());
+        // }
+
+        fprintf(logFileP, "Reader with pid %d received file with path \"%s\" and read %d bytes from fifo pipe\n", getpid(), filePath, bytesRead);
+        printf("READER WITH PID %d wrote to log!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n", getpid());
         fflush(logFileP);
 
         char clientIdFromS[MAX_STRING_INT_SIZE];
@@ -304,9 +358,9 @@ void readerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
         }
 
         filePathSizeS = malloc(3);
-        alarm(30);
+        // alarm(30);
         readReturnValue = tryRead(fifoFd, filePathSizeS, 2);
-        alarm(0);
+        // alarm(0);
         filePathSize = atoi(filePathSizeS);
         printf("-------->reader with pid %d read filePathSize: %d\n", getpid(), filePathSize);
     }

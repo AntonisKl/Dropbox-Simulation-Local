@@ -66,6 +66,20 @@ void handleExit() {
     strcat(mirrorIdDirPath, "/");
     strcat(mirrorIdDirPath, clientIdFromS);
     removeFileOrDir(mirrorIdDirPath);
+
+    FILE* file = fopen(logFileName, "a");
+    if (file == NULL) {
+        perror("fopen failed");
+        exit(1);
+    }
+
+    fprintf(file, "Client with pid %d exited succesfully\n", getpid());
+
+    fflush(file);
+    if (fclose(file) == EOF) {
+        perror("fclose failed");
+        exit(1);
+    }
 }
 
 void handleSigUsr1(int signal);
@@ -126,7 +140,7 @@ void createReaderAndWriter(FileList* inputFileList, int clientIdFrom, int client
             perror("fork error");
             raiseIntAndExit(1);
         } else if (writerPid == 0) {
-            execWriter(inputFileList, clientIdFrom, clientIdTo, commonDirName, bufferSize);
+            execWriter(inputFileList, clientIdFrom, clientIdTo, commonDirName, bufferSize, logFileName);
             // exit(0);  // TODO: before exit raise signals to parent
         } else {
             int readerStatus, writerStatus;
@@ -284,7 +298,6 @@ void startWatchingCommonDirectory(char* commonDirName, char* mirrorDirName, int 
 }
 
 int main(int argc, char** argv) {
-
     int clientId;
     char* inputDirName;
 
@@ -309,6 +322,20 @@ int main(int argc, char** argv) {
 
     char idFilePath[strlen(commonDirName) + 1 + MAX_STRING_INT_SIZE + 4];
     doClientInitialChecks(inputDirName, mirrorDirName, commonDirName, clientId, &idFilePath);
+
+    FILE* file = fopen(logFileName, "a");
+    if (file == NULL) {
+        perror("fopen failed");
+        exit(1);
+    }
+
+    fprintf(file, "Client with pid %d logged in succesfully\n", getpid());
+
+    fflush(file);
+    if (fclose(file) == EOF) {
+        perror("fclose failed");
+        exit(1);
+    }
 
     char pidS[MAX_STRING_INT_SIZE];
     sprintf(pidS, "%d", getpid());

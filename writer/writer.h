@@ -5,10 +5,12 @@
 
 static FileList* inputFileList;
 
-void handleArgsWriter(int argc, char** argv, FileList** fileList, int* clientIdFrom, int* clientIdTo, char** commonDirName, int* bufferSize);
+void handleArgsWriter(int argc, char** argv, FileList** fileList, int* clientIdFrom, int* clientIdTo, char** commonDirName, int* bufferSize, char** logFileName);
 
 void handleSigIntWriter(int signal);
 
-void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, int bufferSize);
+int tryWrite(int fd, const void* buffer, int bufferSize);
+
+void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, int bufferSize, char* logFileName);
 
 #endif

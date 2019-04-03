@@ -6,13 +6,13 @@ void raiseIntAndExit(int num) {
 }
 
 void printErrorLn(char* s) {
-    printf(ANSI_COLOR_RED "%s\n" ANSI_COLOR_RESET, s);
+    printf(ANSI_COLOR_RED "%s" ANSI_COLOR_RESET "\n", s);
 
     return;
 }
 
 void printErrorLnExit(char* s) {
-    printf(ANSI_COLOR_RED "%s\n" ANSI_COLOR_RESET, s);
+    printf(ANSI_COLOR_RED "%s" ANSI_COLOR_RESET "\n", s);
     raiseIntAndExit(1);
 }
 
@@ -149,36 +149,6 @@ void createAndWriteToFile(char* fileName, char* contents) {
         exit(1);
     }
     return;
-}
-
-void tryWrite(int fd, const void* buffer, int bufferSize) {
-    if (write(fd, buffer, bufferSize) == -1) {
-        perror("write error");
-        kill(getppid(), SIGUSR1);
-        raiseIntAndExit(1);
-    }
-    return;
-}
-
-int tryRead(int fd, void* buffer, int bufferSize) {
-    int returnValue, tempBufferSize = bufferSize, progress = 0;
-
-    returnValue = read(fd, buffer, tempBufferSize);
-    while (returnValue < tempBufferSize && returnValue != 0) {
-        if (returnValue == -1) {
-            perror("read error");
-            kill(getppid(), SIGUSR1);
-            raiseIntAndExit(1);
-        }
-
-        printf("+++++++++++++++++++++++++++++++++++++++++++++ reader with pid %d read %d bytes from pipe\n", getpid(), returnValue);
-        tempBufferSize -= returnValue;
-        progress += returnValue;
-        returnValue = read(fd, buffer + progress, tempBufferSize);
-    }
-        printf("======================================================== reader with pid %d read %d bytes from pipe\n", getpid(), returnValue);
-
-    return returnValue;
 }
 
 void doClientInitialChecks(char* inputDirName, char* mirrorDirName, char* commonDirName, int clientId, char (*idFilePath)[]) {
@@ -326,7 +296,7 @@ void execReader(FileList* inputFileList, int clientIdFrom, int clientIdTo, char*
     return;
 }
 
-void execWriter(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, int bufferSize) {
+void execWriter(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, int bufferSize, char* logFileName) {
     char clientIdFromS[MAX_STRING_INT_SIZE], clientIdToS[MAX_STRING_INT_SIZE], bufferSizeS[MAX_STRING_INT_SIZE], fileListS[inputFileList->size * MAX_FILE_LIST_NODE_STRING_SIZE];
 
     sprintf(clientIdFromS, "%d", clientIdFrom);
@@ -334,7 +304,7 @@ void execWriter(FileList* inputFileList, int clientIdFrom, int clientIdTo, char*
     sprintf(bufferSizeS, "%d", bufferSize);
     fileListToString(inputFileList, &fileListS);
 
-    char* args[] = {"exe/writer", fileListS, clientIdFromS, clientIdToS, commonDirName, bufferSizeS, NULL};
+    char* args[] = {"exe/writer", fileListS, clientIdFromS, clientIdToS, commonDirName, bufferSizeS, logFileName, NULL};
     if (execvp(args[0], args) < 0) {
         printf("Exec writer failed\n");
     }

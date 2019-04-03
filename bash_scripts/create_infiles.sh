@@ -31,7 +31,7 @@ dirNames=()
 dirFullNames=()
 fileNames=()
 
-for ((i=1; i<=$filesNum; i++));
+for ((i=0; i<$filesNum; i++));
 do
     charsNum=$(shuf -i 1-8 -n 1)
     fileNames[i]=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c $charsNum ; echo '')
@@ -46,8 +46,8 @@ fi
 # echo "filesNumPerDir=$filesNumPerDir"
 
 levelsNumTemp=0
-fileNamesIndex=1
-for ((i=1; i<=$dirsNum; i++));
+fileNamesIndex=0
+for ((i=0; i<$dirsNum; i++));
 do
     charsNum=$(shuf -i 1-8 -n 1)
     dirNames[i]=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c $charsNum ; echo '')
@@ -65,14 +65,14 @@ do
 
     # for ((j=0; j<$filesNumPerDir; j++));
     # do
-    if (( $fileNamesIndex <= $filesNum )); then
+    if (( $fileNamesIndex < $filesNum )); then
         curFileName="$curDirName/${fileNames[$fileNamesIndex]}"
         touch "$curFileName"
         echo "Created file $curFileName"
         charsNum=$(shuf -i 1000-128000 -n 1)
         curFileContents=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c $charsNum ; echo '')
 
-        echo "$curFileContents" > "$curFileName"
+        # echo "$curFileContents" > "$curFileName"
 
         ((fileNamesIndex ++))
     fi
@@ -92,7 +92,7 @@ done
 # echo "filesIndex = $fileNamesIndex"
 
 # create remaining files
-while (( $fileNamesIndex <= $filesNum ));
+while (( $fileNamesIndex < $filesNum ));
 do
     for dirFullName in "${dirFullNames[@]}"
     do
@@ -110,7 +110,7 @@ do
         #     ((fileNamesIndex ++))
         # done
 
-        if (( $fileNamesIndex > $filesNum )); then
+        if (( $fileNamesIndex >= $filesNum )); then
             break
         fi
     done

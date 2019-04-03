@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/inotify.h>
+#include <sys/select.h>
 #include <sys/sem.h>
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -63,10 +64,6 @@ void buildIdFileName(char (*idFileFullName)[], char* commonDirName, int clientId
 
 void createAndWriteToFile(char* fileName, char* contents);
 
-void tryWrite(int fd, const void* buffer, int bufferSize);
-
-int tryRead(int fd, void* buffer, int bufferSize);
-
 void doClientInitialChecks(char* inputDirName, char* mirrorDirName, char* commonDirName, int clientId, char (*idFilePath)[]);
 
 char isIdFile(char* fileName);
@@ -81,6 +78,6 @@ FileList* stringToFileList(char* fileListS);
 
 void execReader(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, char* mirrorDirName, int bufferSize, char* logFileName);
 
-void execWriter(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, int bufferSize);
+void execWriter(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, int bufferSize, char* logFileName);
 
 #endif

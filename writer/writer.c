@@ -1,8 +1,8 @@
 #include "writer.h"
 
-void handleArgsWriter(int argc, char** argv, FileList** fileList, int* clientIdFrom, int* clientIdTo, char** commonDirName, int* bufferSize) {
+void handleArgsWriter(int argc, char** argv, FileList** fileList, int* clientIdFrom, int* clientIdTo, char** commonDirName, int* bufferSize, char** logFileName) {
     // validate argument count
-    if (argc != 6) {
+    if (argc != 7) {
         printErrorLnExit("Invalid arguments. Exiting...");
     }
 
@@ -26,6 +26,7 @@ void handleArgsWriter(int argc, char** argv, FileList** fileList, int* clientIdF
     (*clientIdTo) = atoi(argv[3]);
     (*commonDirName) = argv[4];
     (*bufferSize) = atoi(argv[5]);
+    (*logFileName) = argv[6];
 
     // if (strcmp(argv[3], "-c") == 0) {
     //     (*commonDirName) = argv[4];
@@ -74,7 +75,17 @@ void handleSigIntWriter(int signal) {
     exit(0);
 }
 
-void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, int bufferSize) {
+int tryWrite(int fd, const void* buffer, int bufferSize) {
+    int returnValue;
+    if ((returnValue = write(fd, buffer, bufferSize)) == -1) {
+        perror("write error");
+        kill(getppid(), SIGUSR1);
+        raiseIntAndExit(1);
+    }
+    return returnValue;
+}
+
+void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, int bufferSize, char* logFileName) {
     printf("started writerJob with pid %d\n", getpid());
 
     struct sigaction sigAction;
@@ -114,6 +125,12 @@ void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
 
     fifoFd = open(fifo, O_WRONLY);
 
+    FILE* logFileP;
+    if ((logFileP = fopen(logFileName, "a")) == NULL) {
+        perror("fopen failed");
+        exit(1);
+    }
+
     File* curFile = inputFileList->firstFile;
     while (curFile != NULL) {
         int filePathSize = strlen(curFile->pathNoInputDir) + 1;
@@ -126,7 +143,7 @@ void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
         printf("TEMP: %s\n\n", temp);
         tryWrite(fifoFd, curFile->pathNoInputDir, filePathSize);
         printf("-------->writer with pid %d wrote filePath: %s\n", getpid(), curFile->pathNoInputDir);
-         char fileContentsSizeS[5];
+        char fileContentsSizeS[5];
         sprintf(fileContentsSizeS, "%ld", curFile->contentsSize);
         tryWrite(fifoFd, fileContentsSizeS, 4);
         printf("-------->writer with pid %d wrote fileContentsSize: %ld\n", getpid(), curFile->contentsSize);
@@ -136,10 +153,13 @@ void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
             perror("fopen failed");
             exit(1);
         }
+        int bytesWritten = 0;
         while (fgets(buffer, bufferSize, fp) != NULL) {
-            tryWrite(fifoFd, buffer, bufferSize);
+            bytesWritten += tryWrite(fifoFd, buffer, bufferSize);
             printf("-------->writer with pid %d wrote a chunk of file %s: %s\n", getpid(), curFile->pathNoInputDir, buffer);
         }
+
+        fprintf(logFileP, "Writer with pid %d sent file with path \"%s\" and wrote %d bytes to fifo pipe\n", getpid(), curFile->pathNoInputDir, bytesWritten);
         // write(fifoFd, buffer, bufferSize);
         // printf("-------->writer with pid %d wrote a chunk of file %s: %s\n", getpid(), curFile->path, buffer);
         if (fclose(fp) == EOF) {
@@ -152,6 +172,8 @@ void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
     int end = 0;
     tryWrite(fifoFd, &end, 2);
 
+    fclose(logFileP);
+
     freeFileList(&inputFileList);
     return;
 }
@@ -159,11 +181,11 @@ void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
 int main(int argc, char** argv) {
     FileList* inputFileList;
     int clientIdFrom, clientIdTo, bufferSize;
-    char* commonDirName;
+    char *commonDirName, *logFileName;
 
-    handleArgsWriter(argc, argv, &inputFileList, &clientIdFrom, &clientIdTo, &commonDirName, &bufferSize);
+    handleArgsWriter(argc, argv, &inputFileList, &clientIdFrom, &clientIdTo, &commonDirName, &bufferSize, &logFileName);
 
-    writerJob(inputFileList, clientIdFrom, clientIdTo, commonDirName, bufferSize);
+    writerJob(inputFileList, clientIdFrom, clientIdTo, commonDirName, bufferSize, logFileName);
 
     return 0;
 }
