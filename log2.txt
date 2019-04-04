@@ -1,0 +1,37 @@
+Client with pid 27977 and id 2 logged in succesfully
+Reader with pid 27981 received file with path "/F7" and read 0 bytes from fifo pipe
+Writer with pid 27982 sent file with path "/OOmEV" and wrote 0 bytes to fifo pipe
+Writer with pid 27982 sent file with path "/OOmEV/fP" and wrote 559 bytes to fifo pipe
+Writer with pid 27982 sent file with path "/OOmEV/nUSSk9wv" and wrote 1127 bytes to fifo pipe
+Writer with pid 27982 sent file with path "/OOmEV/srDuu" and wrote 0 bytes to fifo pipe
+Writer with pid 27982 sent file with path "/OOmEV/srDuu/DfmC" and wrote 816 bytes to fifo pipe
+Writer with pid 27982 sent file with path "/OOmEV/srDuu/KE01rFa2" and wrote 0 bytes to fifo pipe
+Writer with pid 27982 sent file with path "/OOmEV/srDuu/KE01rFa2/n4NO" and wrote 0 bytes to fifo pipe
+Writer with pid 27982 sent file with path "/OOmEV/srDuu/KE01rFa2/n4NO/3" and wrote 665 bytes to fifo pipe
+Writer with pid 27982 sent file with path "/OOmEV/srDuu/KE01rFa2/n4NO/e3Hns" and wrote 511 bytes to fifo pipe
+Writer with pid 27982 sent file with path "/OOmEV/srDuu/KE01rFa2/n4NO/l6n5z" and wrote 0 bytes to fifo pipe
+Writer with pid 27982 sent file with path "/OOmEV/srDuu/KE01rFa2/n4NO/l6n5z/Qz705O" and wrote 511 bytes to fifo pipe
+Writer with pid 27982 sent file with path "/OOmEV/srDuu/KE01rFa2/n4NO/l6n5z/rm1" and wrote 662 bytes to fifo pipe
+Writer with pid 27982 sent file with path "/OOmEV/srDuu/KE01rFa2/n6UESE" and wrote 370 bytes to fifo pipe
+Writer with pid 27982 sent file with path "/OOmEV/srDuu/KE01rFa2/p" and wrote 756 bytes to fifo pipe
+Writer with pid 27982 sent file with path "/OOmEV/srDuu/uDzK" and wrote 798 bytes to fifo pipe
+Reader with pid 27981 received file with path "/F7/AC72" and read 584 bytes from fifo pipe
+Reader with pid 27981 received file with path "/F7/l" and read 0 bytes from fifo pipe
+Reader with pid 27981 received file with path "/F7/l/G" and read 0 bytes from fifo pipe
+Reader with pid 27981 received file with path "/F7/l/G/kk" and read 0 bytes from fifo pipe
+Reader with pid 27981 received file with path "/F7/l/G/kk/9w" and read 0 bytes from fifo pipe
+Reader with pid 27981 received file with path "/F7/l/G/kk/9w/ovq" and read 486 bytes from fifo pipe
+Reader with pid 27981 received file with path "/F7/l/G/kk/xGmiFmSb" and read 622 bytes from fifo pipe
+Reader with pid 27981 received file with path "/F7/l/G/m3" and read 470 bytes from fifo pipe
+Reader with pid 27981 received file with path "/F7/l/N6USFT" and read 657 bytes from fifo pipe
+Reader with pid 27981 received file with path "/KtBoX" and read 0 bytes from fifo pipe
+Reader with pid 27981 received file with path "/KtBoX/Lkh" and read 0 bytes from fifo pipe
+Reader with pid 27981 received file with path "/KtBoX/Lkh/0Qmc" and read 0 bytes from fifo pipe
+Reader with pid 27981 received file with path "/KtBoX/Lkh/0Qmc/65AxjD" and read 0 bytes from fifo pipe
+Reader with pid 27981 received file with path "/KtBoX/Lkh/0Qmc/65AxjD/W1K6MA4F" and read 428 bytes from fifo pipe
+Reader with pid 27981 received file with path "/KtBoX/Lkh/0Qmc/65AxjD/p1" and read 0 bytes from fifo pipe
+Reader with pid 27981 received file with path "/KtBoX/Lkh/0Qmc/65AxjD/p1/46CxE3" and read 528 bytes from fifo pipe
+Reader with pid 27981 received file with path "/KtBoX/Lkh/0Qmc/ZRj" and read 537 bytes from fifo pipe
+Reader with pid 27981 received file with path "/KtBoX/Lkh/B918HZ" and read 1192 bytes from fifo pipe
+Reader with pid 27981 received file with path "/KtBoX/pfTLT" and read 886 bytes from fifo pipe
+Client with pid 27977 and id 2 exited succesfully

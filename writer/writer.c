@@ -85,7 +85,6 @@ void handleSigInt(int signal) {
     handleExit(1);
 }
 
-
 void handleSignals(int signal) {
     // Find out which signal we're handling
     switch (signal) {
@@ -103,8 +102,9 @@ int tryWrite(int fd, const void* buffer, int bufferSize) {
     if ((returnValue = write(fd, buffer, bufferSize)) == -1) {
         perror("write error");
         kill(getppid(), SIGUSR1);
-        raiseIntAndExit(1);
+        handleExit(1);
     }
+
     return returnValue;
 }
 
@@ -138,7 +138,7 @@ void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
 
     int fifoFd;
     char* fifo = fifoFilePath;
-    char buffer[bufferSize];
+    char buffer[bufferSize + 1];
 
     if (!fileExists(fifoFilePath)) {
         printf("pid %d, before fifo\n", getpid());
@@ -155,46 +155,66 @@ void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
 
     File* curFile = inputFileList->firstFile;
     while (curFile != NULL) {
-        int filePathSize = strlen(curFile->pathNoInputDir) + 1;
-        char filePathSizeS[3];
+        int filePathSize = strlen(curFile->pathNoInputDir);
+        char filePathSizeS[MAX_STRING_INT_SIZE];
         sprintf(filePathSizeS, "%d", filePathSize);
-        tryWrite(fifoFd, filePathSizeS, 2);
+        tryWrite(fifoFd, &filePathSize, 2);
         char temp[PATH_MAX];
         printf("-------->writer with pid %d wrote filePathSize: %s\n", getpid(), filePathSizeS);
         memcpy(temp, curFile->pathNoInputDir, filePathSize + 1);
         printf("TEMP: %s\n\n", temp);
         tryWrite(fifoFd, curFile->pathNoInputDir, filePathSize);
         printf("-------->writer with pid %d wrote filePath: %s\n", getpid(), curFile->pathNoInputDir);
-        char fileContentsSizeS[5];
+        char fileContentsSizeS[MAX_STRING_INT_SIZE];
         sprintf(fileContentsSizeS, "%ld", curFile->contentsSize);
-        tryWrite(fifoFd, fileContentsSizeS, 4);
-        printf("-------->writer with pid %d wrote fileContentsSize: %ld\n", getpid(), curFile->contentsSize);
+        tryWrite(fifoFd, &curFile->contentsSize, 4);
+        printf("-------->writer with pid %d wrote fileContentsSize: %s\n", getpid(), fileContentsSizeS);
 
-        FILE* fp = fopen(curFile->path, "r");
-        if (fp == NULL) {
+        int fd = open(curFile->path, O_RDONLY);
+        if (fd < 0) {
             perror("fopen failed");
             exit(1);
         }
-        int bytesWritten = 0;
-        while (fgets(buffer, bufferSize, fp) != NULL) {
-            bytesWritten += tryWrite(fifoFd, buffer, bufferSize);
-            printf("-------->writer with pid %d wrote a chunk of file %s: %s\n", getpid(), curFile->pathNoInputDir, buffer);
+
+        int bytesWritten = 0, remainingContentsSize = curFile->contentsSize, tempBufferSize = bufferSize;
+        memset(buffer, 0, bufferSize + 1);
+
+        while (read(fd, buffer, tempBufferSize) > 0) {
+            if (remainingContentsSize < bufferSize) {
+                tempBufferSize = remainingContentsSize;
+            } else {
+                tempBufferSize = bufferSize;
+            }
+
+            int size = tryWrite(fifoFd, buffer, tempBufferSize);
+            printf("-------->writer with pid %d wrote a chunk of size %d of file %s: %s\n", getpid(), size, curFile->pathNoInputDir, buffer);
+
+            memset(buffer, 0, bufferSize + 1);
+            bytesWritten += tempBufferSize;
+            remainingContentsSize -= tempBufferSize;
         }
 
         fprintf(logFileP, "Writer with pid %d sent file with path \"%s\" and wrote %d bytes to fifo pipe\n", getpid(), curFile->pathNoInputDir, bytesWritten);
         // write(fifoFd, buffer, bufferSize);
         // printf("-------->writer with pid %d wrote a chunk of file %s: %s\n", getpid(), curFile->path, buffer);
-        if (fclose(fp) == EOF) {
-            perror("fclose failed");
-            kill(getppid(), SIGUSR1);
-            exit(1);
-        }
+        // if (close(fd) == EOF) {
+        //     perror("fclose failed");
+        //     kill(getppid(), SIGUSR1);
+        //     exit(1);
+        // }
+        close(fd);
         curFile = curFile->nextFile;
     }
+
     int end = 0;
     tryWrite(fifoFd, &end, 2);
 
-    handleExit(0);
+    // handleExit(0);
+    freeFileList(&inputFileList);
+    if (fclose(logFileP) == EOF) {
+        perror("fclose failed");
+        exit(1);
+    }
 
     return;
 }

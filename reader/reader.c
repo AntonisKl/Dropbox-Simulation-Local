@@ -68,7 +68,7 @@ void handleArgs(int argc, char** argv, FileList** fileList, int* clientIdFrom, i
     return;
 }
 
-void handleExit(int exitValue) {
+void handleExit(int exitValue, int parentSignal) {
     if (filePath != NULL) {
         free(filePath);
         filePath = NULL;
@@ -88,7 +88,7 @@ void handleExit(int exitValue) {
         exit(1);
     }
 
-    kill(getppid(), SIGUSR1);
+    kill(getppid(), parentSignal);
 
     exit(exitValue);
 }
@@ -120,7 +120,7 @@ void handleSigAlarm(int signal) {
 
     // kill(getppid(), SIGUSR1);
 
-    handleExit(1);
+    handleExit(1, SIGUSR1);
 }
 
 void handleSigInt(int signal) {
@@ -129,7 +129,7 @@ void handleSigInt(int signal) {
     }
     printf("Reader process with id %d caught SIGINT\n", getpid());
 
-    handleExit(1);
+    handleExit(1, SIGUSR1);
 }
 
 void handleSignals(int signal) {
@@ -178,7 +178,7 @@ int tryRead(int fd, void* buffer, int bufferSize) {
     while (returnValue < tempBufferSize && returnValue != 0) {
         if (returnValue == -1) {
             perror("read error");
-            raiseIntAndExit(1);
+            raise(SIGINT);
         }
 
         printf("+++++++++++++++++++++++++++++++++++++++++++++ reader with pid %d read %d bytes from pipe\n", getpid(), returnValue);
@@ -239,19 +239,21 @@ void readerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
 
     if ((logFileP = fopen(logFileName, "a")) == NULL) {
         perror("fopen failed");
-        exit(1);
+        raise(SIGINT);
     }
 
-    filePathSizeS = malloc(3);
+    filePathSizeS = malloc(MAX_STRING_INT_SIZE);
+    memcpy(filePathSizeS, "\0", MAX_STRING_INT_SIZE);
 
     // alarm(30);
-    int readReturnValue = tryRead(fifoFd, filePathSizeS, 2);
+    int readReturnValue = tryRead(fifoFd, &filePathSize, 2);
     // alarm(0);
-    filePathSize = atoi(filePathSizeS);
-    printf("-------->reader with pid %d read filePathSize: %s\n", getpid(), filePathSizeS);
+    // filePathSize = atoi(filePathSizeS);
+    printf("-------->reader with pid %d read filePathSize: %d\n", getpid(), filePathSize);
 
     while (readReturnValue > 0 && filePathSize != 0) {
         filePath = (char*)malloc(filePathSize + 1);
+        memset(filePath, 0, filePathSize + 1);
 
         // alarm(30);
         printf("-------->reader with pid %d BEFORE read filePath: %s\n", getpid(), filePath);
@@ -259,11 +261,12 @@ void readerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
         printf("-------->reader with pid %d read filePath: %s\n", getpid(), filePath);
         // alarm(0);
 
-        fileContentsSizeS = malloc(5);
+        fileContentsSizeS = malloc(MAX_STRING_INT_SIZE);
+        memset(fileContentsSizeS, 0, MAX_STRING_INT_SIZE);
         // alarm(30);
-        tryRead(fifoFd, fileContentsSizeS, 4);
+        tryRead(fifoFd, &fileContentsSize, 4);
         // alarm(0);
-        fileContentsSize = atoi(fileContentsSizeS);
+        // fileContentsSize = atoi(fileContentsSizeS);
         printf("-------->reader with pid %d read fileContentsSize: %d\n", getpid(), fileContentsSize);
 
         char fileContents[fileContentsSize + 1];
@@ -277,26 +280,34 @@ void readerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
             // alarm(0);
             int remainingContentsSize = fileContentsSize;
             while (remainingContentsSize > 0) {
-                int returnValue, tempBufferSize = bufferSize, inProgress = 0;
+                int returnValue, tempBufferSize, inProgress = 0;
                 printf("remaining contents size: %d\n", remainingContentsSize);
+                if (remainingContentsSize < bufferSize) {
+                    tempBufferSize = remainingContentsSize;
+                } else {
+                    tempBufferSize = bufferSize;
+                }
 
+                memset(chunk, 0, bufferSize + 1);
                 returnValue = read(fifoFd, chunk, tempBufferSize);
+                printf("RETURN VALUE = %d", returnValue);
                 while (returnValue < tempBufferSize && returnValue != 0) {
                     if (returnValue == -1) {
                         perror("read error");
-                        raiseIntAndExit(1);
+                        raise(SIGINT);
                     }
-                    printf("+++++++++++++++++++++++++++++++++++++++++++++ reader with pid %d read %d bytes from pipe\n", getpid(), returnValue);
+                    printf("+++++++++++++++++++++++++++++++++++++++++++++ reader with pid %d read %d bytes from pipe: %s\n", getpid(), returnValue, chunk);
                     tempBufferSize -= returnValue;
                     inProgress += returnValue;
                     returnValue = read(fifoFd, chunk + inProgress, tempBufferSize);
                 }
 
+                printf("-------->reader with pid %d read a chunk of file %s: %s\n", getpid(), filePath, chunk);
+
                 if (returnValue == 0)
                     break;
 
                 bytesRead += returnValue;
-
                 strcat(fileContents, chunk);
                 remainingContentsSize -= bufferSize;
             }
@@ -314,12 +325,12 @@ void readerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
         printf("READER WITH PID %d wrote to log!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n", getpid());
         fflush(logFileP);
 
-        char clientIdFromS[MAX_STRING_INT_SIZE];
-        sprintf(clientIdFromS, "%d", clientIdFrom);
-        char mirrorFilePath[strlen(filePath) + strlen(mirrorDirName) + strlen(clientIdFromS) + 2], mirrorIdDirPath[strlen(mirrorDirName) + strlen(clientIdFromS) + 1];
+        char clientIdToS[MAX_STRING_INT_SIZE];
+        sprintf(clientIdToS, "%d", clientIdTo);
+        char mirrorFilePath[strlen(filePath) + strlen(mirrorDirName) + strlen(clientIdToS) + 2], mirrorIdDirPath[strlen(mirrorDirName) + strlen(clientIdToS) + 1];
         strcpy(mirrorFilePath, mirrorDirName);
         strcat(mirrorFilePath, "/");
-        strcat(mirrorFilePath, clientIdFromS);
+        strcat(mirrorFilePath, clientIdToS);
         strcpy(mirrorIdDirPath, mirrorFilePath);
         strcat(mirrorFilePath, "/");
         strcat(mirrorFilePath, filePath);
@@ -364,11 +375,12 @@ void readerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
             fileContentsSizeS = NULL;
         }
 
-        filePathSizeS = malloc(3);
+        filePathSizeS = malloc(MAX_STRING_INT_SIZE);
+        memcpy(filePathSizeS, "\0", MAX_STRING_INT_SIZE);
         // alarm(30);
-        readReturnValue = tryRead(fifoFd, filePathSizeS, 2);
+        readReturnValue = tryRead(fifoFd, &filePathSize, 2);
         // alarm(0);
-        filePathSize = atoi(filePathSizeS);
+        // filePathSize = atoi(filePathSizeS);
         printf("-------->reader with pid %d read filePathSize: %d\n", getpid(), filePathSize);
     }
 
@@ -378,6 +390,7 @@ void readerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
     }
 
     freeFileList(&inputFileList);
+
     return;
 }
 

@@ -8,6 +8,9 @@ static FILE* logFileP;
 
 void handleArgs(int argc, char** argv, FileList** fileList, int* clientIdFrom, int* clientIdTo, char** commonDirName, char** mirrorDirName, int* bufferSize, char** logFileName);
 
+
+void handleExit(int exitValue, int parentSignal);
+
 void handleSigAlarm(int signal);
 
 void handleSigInt(int signal);

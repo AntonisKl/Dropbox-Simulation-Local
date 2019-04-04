@@ -5,7 +5,8 @@ static int attemptsNum = 0;
 void handleArgs(int argc, char** argv, int* clientId, char** commonDirName, char** inputDirName, char** mirrorDirName, int* bufferSize, char** logFileName) {
     // validate argument count
     if (argc != 13) {
-        printErrorLnExit("Invalid arguments. Exiting...");
+        printErrorLn("Invalid arguments. Exiting...");
+        handleExit(1, 0, 0, 0);
     }
 
     // validate input arguments one by one
@@ -16,40 +17,47 @@ void handleArgs(int argc, char** argv, int* clientId, char** commonDirName, char
         //     raiseIntAndExit(1);
         // }
     } else {
-        printErrorLnExit("Invalid arguments\nExiting...");
+        printErrorLn("Invalid arguments\nExiting...");
+        handleExit(1, 0, 0, 0);
     }
 
     if (strcmp(argv[3], "-c") == 0) {
         (*commonDirName) = argv[4];
     } else {
-        printErrorLnExit("Invalid arguments\nExiting...");
+        printErrorLn("Invalid arguments\nExiting...");
+        handleExit(1, 0, 0, 0);
     }
 
     if (strcmp(argv[5], "-i") == 0) {
         (*inputDirName) = argv[6];
     } else {
-        printErrorLnExit("Invalid arguments\nExiting...");
+        printErrorLn("Invalid arguments\nExiting...");
+        handleExit(1, 0, 0, 0);
     }
 
     if (strcmp(argv[7], "-m") == 0) {
         (*mirrorDirName) = argv[8];
     } else {
-        printErrorLnExit("Invalid arguments\nExiting...");
+        printErrorLn("Invalid arguments\nExiting...");
+        handleExit(1, 0, 0, 0);
     }
 
     if (strcmp(argv[9], "-b") == 0) {
         (*bufferSize) = atoi(argv[10]);
         if ((*bufferSize) <= 0) {
-            printErrorLnExit("Invalid arguments\nExiting...");
+            printErrorLn("Invalid arguments\nExiting...");
+            handleExit(1, 0, 0, 0);
         }
     } else {
-        printErrorLnExit("Invalid arguments\nExiting...");
+        printErrorLn("Invalid arguments\nExiting...");
+        handleExit(1, 0, 0, 0);
     }
 
     if (strcmp(argv[11], "-l") == 0) {
         (*logFileName) = argv[12];
     } else {
-        printErrorLnExit("Invalid arguments\nExiting...");
+        printErrorLn("Invalid arguments\nExiting...");
+        handleExit(1, 0, 0, 0);
     }
 
     return;
@@ -57,13 +65,16 @@ void handleArgs(int argc, char** argv, int* clientId, char** commonDirName, char
 
 void doClientInitialChecks(char* inputDirName, char* mirrorDirName, char* commonDirName, int clientId, char (*idFilePath)[]) {
     if (!dirExists(inputDirName)) {
-        printErrorLnExit("Input directory does not exist");
+        printErrorLn("Input directory does not exist");
+        handleExit(1, 0, 0, 0);
     }
 
     if (dirExists(mirrorDirName)) {
-        printErrorLnExit("Mirror directory already exists");
+        printErrorLn("Mirror directory already exists");
+        handleExit(1, 0, 0, 0);
     }
     createDir(mirrorDirName);
+    printf("dir name: %s\n", mirrorDirName);
 
     if (!dirExists(commonDirName)) {
         createDir(commonDirName);
@@ -73,7 +84,8 @@ void doClientInitialChecks(char* inputDirName, char* mirrorDirName, char* common
     buildIdFileName(idFilePath, commonDirName, clientId);
 
     if (fileExists((char*)idFilePath)) {
-        printErrorLnExit("Id common file already exists");
+        printErrorLn("Id common file already exists");
+        handleExit(1, 0, 1, 0);
     }
 
     return;
@@ -129,12 +141,14 @@ void populateFileList(FileList* fileList, char* inputDirName, char* pathWithoutI
     closedir(dir);
 }
 
-void handleExit(int exitValue) {
+void handleExit(int exitValue, char removeIdFile, char removeMirrorDir, char writeToLogFile) {
     freeFileList(&inputFileList);
 
-    char idFilePath[strlen(commonDirName) + 1 + MAX_STRING_INT_SIZE + 4];
-    buildIdFileName(&idFilePath, commonDirName, clientIdFrom);
-    removeFileOrDir(idFilePath);
+    if (removeIdFile) {
+        char idFilePath[strlen(commonDirName) + 1 + MAX_STRING_INT_SIZE + 4];
+        buildIdFileName(&idFilePath, commonDirName, clientIdFrom);
+        removeFileOrDir(idFilePath);
+    }
 
     // char clientIdFromS[MAX_STRING_INT_SIZE];
     // sprintf(clientIdFromS, "%d", clientIdFrom);
@@ -144,20 +158,24 @@ void handleExit(int exitValue) {
     // strcat(mirrorIdDirPath, clientIdFromS);
     // removeFileOrDir(mirrorIdDirPath);
 
-    removeFileOrDir(mirrorDirName);
-
-    FILE* file = fopen(logFileName, "a");
-    if (file == NULL) {
-        perror("fopen failed");
-        exit(1);
+    if (removeMirrorDir) {
+        removeFileOrDir(mirrorDirName);
     }
 
-    fprintf(file, "Client with pid %d exited succesfully\n", getpid());
+    if (writeToLogFile) {
+        FILE* file = fopen(logFileName, "a");
+        if (file == NULL) {
+            perror("fopen failed");
+            exit(1);
+        }
 
-    fflush(file);
-    if (fclose(file) == EOF) {
-        perror("fclose failed");
-        exit(1);
+        fprintf(file, "Client with pid %d and id %d exited succesfully\n", getpid(), clientIdFrom);
+
+        fflush(file);
+        if (fclose(file) == EOF) {
+            perror("fclose failed");
+            exit(1);
+        }
     }
 
     exit(exitValue);
@@ -171,7 +189,7 @@ void handleSigInt(int signal) {
     }
     printf("Client process with id %d caught SIGINT\n", getpid());
 
-    handleExit(1);
+    handleExit(1, 1, 1, 1);
 }
 
 void handleSignals(int signal) {
@@ -249,12 +267,12 @@ void handleSigUsr1(int signal) {
     }
     printf("Client process with id %d caught SIGUSR1\n", getpid());
 
-    if (!kill(readerPid, 0)) {
-        kill(readerPid, SIGINT);
-    }
-    if (!kill(writerPid, 0)) {
-        kill(writerPid, SIGINT);
-    }
+    // if (!kill(readerPid, 0)) {
+    //     kill(readerPid, SIGINT);
+    // }
+    // if (!kill(writerPid, 0)) {
+    //     kill(writerPid, SIGINT);
+    // }
     if (attemptsNum < 3) {
         createReaderAndWriter(inputFileList, clientIdFrom, clientIdTo, commonDirName, mirrorDirName, bufferSize, logFileName);
         attemptsNum++;
@@ -306,7 +324,7 @@ void startWatchingCommonDirectory(char* commonDirName, char* mirrorDirName, int 
     strcpy(prevName, "");
 
     int iNotifyFd = inotify_init();
-    inotify_add_watch(iNotifyFd, commonDirName, IN_CREATE | IN_CLOSE_WRITE | IN_CLOSE_NOWRITE | IN_DELETE | IN_DELETE_SELF);
+    inotify_add_watch(iNotifyFd, commonDirName, IN_CREATE | IN_DELETE);
 
     while ((readRet = read(iNotifyFd, &iNotifyEvent, sizeof(struct inotify_event) + NAME_MAX + 1)) != -1) {
         wd = iNotifyEvent.wd;
@@ -314,15 +332,14 @@ void startWatchingCommonDirectory(char* commonDirName, char* mirrorDirName, int 
         nameLen = iNotifyEvent.len;
 
         if (nameLen > 0) {
-            // curName = (char*)malloc(nameLen);
-            if (strcmp(prevName, "") && !strcmp(iNotifyEvent.name, prevName))
-                continue;
+            // if (strcmp(prevName, "") && !strcmp(iNotifyEvent.name, prevName))
+            //     continue;
 
             strcpy(curName, iNotifyEvent.name);
 
-            if (mask == IN_CLOSE_WRITE || mask == IN_CLOSE_WRITE || (mask == (IN_CLOSE_WRITE | IN_CLOSE_NOWRITE))) {
-                strcpy(prevName, curName);
-            }
+            // if (mask == IN_CLOSE_WRITE || mask == IN_CLOSE_WRITE || (mask == (IN_CLOSE_WRITE | IN_CLOSE_NOWRITE))) {
+            //     strcpy(prevName, curName);
+            // }
 
             printf("New event->wd: %d, mask: %d, name: %s\n", wd, mask, iNotifyEvent.name);
         } else {
@@ -349,28 +366,42 @@ void startWatchingCommonDirectory(char* commonDirName, char* mirrorDirName, int 
                 // clientIdFrom = clientId;
                 // clientIdTo = atoi(strtok(curName, "."));
                 // createReaderAndWriter(inputFileList, clientId, clientIdTo, commonDirName, mirrorDirName, bufferSize);
+                clientIdTo = atoi(strtok(curName, "."));
+                createReaderAndWriter(inputFileList, clientId, clientIdTo, commonDirName, mirrorDirName, bufferSize, logFileName);
+                break;
+            }
+            case IN_DELETE: {
+                printf("DELETE event\n");
+                char* clientIdDeletedS = strtok(curName, ".");
+
+                char mirrorIdDirPath[strlen(mirrorDirName) + strlen(clientIdDeletedS) + 1];
+                strcpy(mirrorIdDirPath, mirrorDirName);
+                strcat(mirrorIdDirPath, "/");
+                strcat(mirrorIdDirPath, clientIdDeletedS);
+
+                removeFileOrDir(mirrorIdDirPath);
 
                 break;
             }
-            case IN_CLOSE_WRITE: {
-                printf("Close-write event\n");
-                clientIdTo = atoi(strtok(curName, "."));
-                createReaderAndWriter(inputFileList, clientId, clientIdTo, commonDirName, mirrorDirName, bufferSize, logFileName);
+                // case IN_CLOSE_WRITE: {
+                //     printf("Close-write event\n");
+                //     clientIdTo = atoi(strtok(curName, "."));
+                //     createReaderAndWriter(inputFileList, clientId, clientIdTo, commonDirName, mirrorDirName, bufferSize, logFileName);
 
-                break;
-            }
-            case IN_CLOSE_NOWRITE: {
-                printf("Close-nowrite event\n");
-                clientIdTo = atoi(strtok(curName, "."));
-                createReaderAndWriter(inputFileList, clientId, clientIdTo, commonDirName, mirrorDirName, bufferSize, logFileName);
-                break;
-            }
-            case IN_CLOSE_WRITE | IN_CLOSE_NOWRITE: {
-                printf("Close event\n");
-                clientIdTo = atoi(strtok(curName, "."));
-                createReaderAndWriter(inputFileList, clientId, clientIdTo, commonDirName, mirrorDirName, bufferSize, logFileName);
-                break;
-            }
+                //     break;
+                // }
+                // case IN_CLOSE_NOWRITE: {
+                //     printf("Close-nowrite event\n");
+                //     clientIdTo = atoi(strtok(curName, "."));
+                //     createReaderAndWriter(inputFileList, clientId, clientIdTo, commonDirName, mirrorDirName, bufferSize, logFileName);
+                //     break;
+                // }
+                // case IN_CLOSE_WRITE | IN_CLOSE_NOWRITE: {
+                //     printf("Close event\n");
+                //     clientIdTo = atoi(strtok(curName, "."));
+                //     createReaderAndWriter(inputFileList, clientId, clientIdTo, commonDirName, mirrorDirName, bufferSize, logFileName);
+                //     break;
+                // }
         }
 
         // free curName only if it was malloced
@@ -408,7 +439,7 @@ int main(int argc, char** argv) {
     sigaddset(&sigAction.sa_mask, SIGUSR1);
 
     if (sigaction(SIGINT, &sigAction, NULL) == -1) {
-        perror("Error: cannot handle SIGALRM");  // Should not happen
+        perror("Error: cannot handle SIGINT");  // Should not happen
     }
 
     if (sigaction(SIGUSR1, &sigAction, NULL) == -1) {
@@ -424,7 +455,7 @@ int main(int argc, char** argv) {
         exit(1);
     }
 
-    fprintf(file, "Client with pid %d logged in succesfully\n", getpid());
+    fprintf(file, "Client with pid %d and id %d logged in succesfully\n", getpid(), clientId);
 
     fflush(file);
     if (fclose(file) == EOF) {
@@ -442,5 +473,5 @@ int main(int argc, char** argv) {
     initialSync(commonDirName, mirrorDirName, bufferSize, inputFileList, clientId, logFileName);
     startWatchingCommonDirectory(commonDirName, mirrorDirName, bufferSize, inputFileList, clientId, logFileName);
 
-    handleExit(0);
+    handleExit(0, 1, 1, 1);
 }

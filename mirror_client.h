@@ -18,7 +18,7 @@ void populateFileList(FileList* fileList, char* inputDirName, char* pathWithoutI
 
 void createReaderAndWriter(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, char* mirrorDirName, int bufferSize, char* logFileName);
 
-void handleExit(int exitValue);
+void handleExit(int exitValue, char removeIdFile, char removeMirrorDir, char writeToLogFile);
 
 void handleSigUsr1(int signal);
 

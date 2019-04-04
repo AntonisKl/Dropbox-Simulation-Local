@@ -41,11 +41,11 @@ do
     fi
 
     if [[ ${line[0]} == "Client" ]] ; then
-        if [[ ${line[4]} == "exited" ]] ; then
+        if [[ ${line[7]} == "exited" ]] ; then
            ((clientsExited ++))
-        elif [[ ${line[4]} == "logged" ]] && ! arrayContains "${line[3]}" "${pids[@]}" ; then
+        elif [[ ${line[7]} == "logged" ]] && ! arrayContains "${line[6]}" "${pids[@]}" ; then
             # echo $pidsIndex
-            pids[pidsIndex]=${line[3]}
+            pids[pidsIndex]=${line[6]}
             # echo Added pid ${line[3]} to pid array
             ((pidsIndex ++))
         fi
@@ -54,17 +54,17 @@ done
 
 # print stats
 echo
-echo Pids:
+echo Client pids:
 printf '\t%s\n' "${pids[@]}"
 
 IFS=$'\n'
-pidsSorted=($(sort <<< "${pids[*]}"))
+pidsSorted=($(sort -n <<< "${pids[*]}"))
 unset IFS
 
 echo
-echo Total number of pids: ${#pidsSorted[@]}
-echo Max pid: ${pidsSorted[${#pidsSorted[@]}-1]}
-echo Min pid: ${pidsSorted[0]}
+echo Total number of client pids: ${#pidsSorted[@]}
+echo Max client pid: ${pidsSorted[${#pidsSorted[@]}-1]}
+echo Min client pid: ${pidsSorted[0]}
 echo
 echo Bytes written: $bytesWritten, Bytes read: $bytesRead
 echo Files written: $filesWritten, Files read: $filesRead

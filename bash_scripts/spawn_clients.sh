@@ -8,19 +8,13 @@ clientsNum=$1
 
 rm -rf mirror1 mirror2
 
-# while true
-# do
-    make clean && make
+make clean && make
 
-    sleep 2
+sleep 2
 
-    for ((i=1; i<=$clientsNum; i++));
-    do
-        ./exe/mirror_client -n $i -c common -i inputDir$(($i%2 + 1)) -m mirror$i -b 10 -l logFile &
-        sleep 3
-        # echo "${args[$i]}"
-    done
-
-#     sleep 4
-# done
-
+for ((i=1; i<=$clientsNum; i++));
+do
+    inputDirNum=$(($i%2 + 1))
+    gnome-terminal --working-directory=/home/antonis/Documents/syspro2 -e "./exe/mirror_client -n $i -c common -i inputDir$inputDirNum -m mirror$i -b 10 -l logFile"
+    sleep 3
+done

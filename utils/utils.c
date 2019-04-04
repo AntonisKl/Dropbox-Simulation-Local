@@ -13,7 +13,7 @@ void printErrorLn(char* s) {
 
 void printErrorLnExit(char* s) {
     printf(ANSI_COLOR_RED "%s" ANSI_COLOR_RESET "\n", s);
-    raiseIntAndExit(1);
+    raise(SIGINT);
 }
 
 char dirExists(char* dirName) {
