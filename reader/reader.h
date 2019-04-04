@@ -6,13 +6,13 @@
 static FileList* inputFileList;
 static FILE* logFileP;
 
-void handleArgsReader(int argc, char** argv, FileList** fileList, int* clientIdFrom, int* clientIdTo, char** commonDirName, char** mirrorDirName, int* bufferSize, char** logFileName);
+void handleArgs(int argc, char** argv, FileList** fileList, int* clientIdFrom, int* clientIdTo, char** commonDirName, char** mirrorDirName, int* bufferSize, char** logFileName);
 
 void handleSigAlarm(int signal);
 
-void handleSigIntReader(int signal);
+void handleSigInt(int signal);
 
-void handleSignalsReader(int signal);
+void handleSignals(int signal);
 
 void trySelect(int fifoFd);
 

@@ -2,6 +2,83 @@
 
 static int attemptsNum = 0;
 
+void handleArgs(int argc, char** argv, int* clientId, char** commonDirName, char** inputDirName, char** mirrorDirName, int* bufferSize, char** logFileName) {
+    // validate argument count
+    if (argc != 13) {
+        printErrorLnExit("Invalid arguments. Exiting...");
+    }
+
+    // validate input arguments one by one
+    if (strcmp(argv[1], "-n") == 0) {
+        (*clientId) = atoi(argv[2]);
+        // if ((*clientId) <= 0) {
+        //     printError("Invalid arguments\nExiting...\n");
+        //     raiseIntAndExit(1);
+        // }
+    } else {
+        printErrorLnExit("Invalid arguments\nExiting...");
+    }
+
+    if (strcmp(argv[3], "-c") == 0) {
+        (*commonDirName) = argv[4];
+    } else {
+        printErrorLnExit("Invalid arguments\nExiting...");
+    }
+
+    if (strcmp(argv[5], "-i") == 0) {
+        (*inputDirName) = argv[6];
+    } else {
+        printErrorLnExit("Invalid arguments\nExiting...");
+    }
+
+    if (strcmp(argv[7], "-m") == 0) {
+        (*mirrorDirName) = argv[8];
+    } else {
+        printErrorLnExit("Invalid arguments\nExiting...");
+    }
+
+    if (strcmp(argv[9], "-b") == 0) {
+        (*bufferSize) = atoi(argv[10]);
+        if ((*bufferSize) <= 0) {
+            printErrorLnExit("Invalid arguments\nExiting...");
+        }
+    } else {
+        printErrorLnExit("Invalid arguments\nExiting...");
+    }
+
+    if (strcmp(argv[11], "-l") == 0) {
+        (*logFileName) = argv[12];
+    } else {
+        printErrorLnExit("Invalid arguments\nExiting...");
+    }
+
+    return;
+}
+
+void doClientInitialChecks(char* inputDirName, char* mirrorDirName, char* commonDirName, int clientId, char (*idFilePath)[]) {
+    if (!dirExists(inputDirName)) {
+        printErrorLnExit("Input directory does not exist");
+    }
+
+    if (dirExists(mirrorDirName)) {
+        printErrorLnExit("Mirror directory already exists");
+    }
+    createDir(mirrorDirName);
+
+    if (!dirExists(commonDirName)) {
+        createDir(commonDirName);
+    }
+
+    // char idFilePath[strlen(commonDirName) + 1 + strlen(clientId) + 4];
+    buildIdFileName(idFilePath, commonDirName, clientId);
+
+    if (fileExists((char*)idFilePath)) {
+        printErrorLnExit("Id common file already exists");
+    }
+
+    return;
+}
+
 void populateFileList(FileList* fileList, char* inputDirName, char* pathWithoutInputDirName, int indent) {
     DIR* dir;
     struct dirent* entry;
@@ -52,20 +129,22 @@ void populateFileList(FileList* fileList, char* inputDirName, char* pathWithoutI
     closedir(dir);
 }
 
-void handleExit() {
+void handleExit(int exitValue) {
     freeFileList(&inputFileList);
 
     char idFilePath[strlen(commonDirName) + 1 + MAX_STRING_INT_SIZE + 4];
     buildIdFileName(&idFilePath, commonDirName, clientIdFrom);
     removeFileOrDir(idFilePath);
 
-    char clientIdFromS[MAX_STRING_INT_SIZE];
-    sprintf(clientIdFromS, "%d", clientIdFrom);
-    char mirrorIdDirPath[strlen(mirrorDirName) + strlen(clientIdFromS) + 2];
-    strcpy(mirrorIdDirPath, mirrorDirName);
-    strcat(mirrorIdDirPath, "/");
-    strcat(mirrorIdDirPath, clientIdFromS);
-    removeFileOrDir(mirrorIdDirPath);
+    // char clientIdFromS[MAX_STRING_INT_SIZE];
+    // sprintf(clientIdFromS, "%d", clientIdFrom);
+    // char mirrorIdDirPath[strlen(mirrorDirName) + strlen(clientIdFromS) + 2];
+    // strcpy(mirrorIdDirPath, mirrorDirName);
+    // strcat(mirrorIdDirPath, "/");
+    // strcat(mirrorIdDirPath, clientIdFromS);
+    // removeFileOrDir(mirrorIdDirPath);
+
+    removeFileOrDir(mirrorDirName);
 
     FILE* file = fopen(logFileName, "a");
     if (file == NULL) {
@@ -80,19 +159,19 @@ void handleExit() {
         perror("fclose failed");
         exit(1);
     }
+
+    exit(exitValue);
 }
 
 void handleSigUsr1(int signal);
 
 void handleSigInt(int signal) {
     if (signal != SIGINT) {
-        printErrorLn("Caught wrong signal instead of SIGINT\n");
+        printErrorLn("Client caught wrong signal instead of SIGINT\n");
     }
     printf("Client process with id %d caught SIGINT\n", getpid());
 
-    handleExit();
-
-    exit(0);
+    handleExit(1);
 }
 
 void handleSignals(int signal) {
@@ -111,23 +190,23 @@ void handleSignals(int signal) {
 }
 
 void createReaderAndWriter(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, char* mirrorDirName, int bufferSize, char* logFileName) {
-    struct sigaction sigAction;
+    // struct sigaction sigAction;
 
-    // Setup the sighub handler
-    sigAction.sa_handler = &handleSigUsr1;
+    // // Setup the sighub handler
+    // sigAction.sa_handler = &handleSigUsr1;
 
-    // Restart the system call, if at all possible
-    sigAction.sa_flags = SA_RESTART;
+    // // Restart the system call, if at all possible
+    // sigAction.sa_flags = SA_RESTART;
 
-    // Block every signal during the handler
-    sigemptyset(&sigAction.sa_mask);
-    sigaddset(&sigAction.sa_mask, SIGUSR1);
+    // // Block every signal during the handler
+    // sigemptyset(&sigAction.sa_mask);
+    // sigaddset(&sigAction.sa_mask, SIGUSR1);
 
-    if (sigaction(SIGUSR1, &sigAction, NULL) == -1) {
-        perror("Error: cannot handle SIGALRM");  // Should not happen
-    }
+    // if (sigaction(SIGUSR1, &sigAction, NULL) == -1) {
+    //     perror("Error: cannot handle SIGALRM");  // Should not happen
+    // }
 
-    pid_t readerPid = fork();
+    readerPid = fork();
     if (readerPid == -1) {
         perror("fork error");
         raiseIntAndExit(1);
@@ -135,7 +214,7 @@ void createReaderAndWriter(FileList* inputFileList, int clientIdFrom, int client
         execReader(inputFileList, clientIdFrom, clientIdTo, commonDirName, mirrorDirName, bufferSize, logFileName);
         // exit(0);  // TODO: before exit raise signals to parent
     } else {
-        int writerPid = fork();
+        writerPid = fork();
         if (writerPid == -1) {
             perror("fork error");
             raiseIntAndExit(1);
@@ -144,7 +223,7 @@ void createReaderAndWriter(FileList* inputFileList, int clientIdFrom, int client
             // exit(0);  // TODO: before exit raise signals to parent
         } else {
             int readerStatus, writerStatus;
-            printf("client %d waiting for children to exit\n", clientIdFrom);
+            printf("Client with id %d waiting for children to exit\n", clientIdFrom);
             waitpid(readerPid, &readerStatus, 0);
             waitpid(writerPid, &writerStatus, 0);
             int readerExitStatus = WEXITSTATUS(readerStatus), writerExitStatus = WEXITSTATUS(writerStatus);
@@ -158,19 +237,30 @@ void createReaderAndWriter(FileList* inputFileList, int clientIdFrom, int client
                     printf(ANSI_COLOR_RED "Writer with pid %d failed and exited\n" ANSI_COLOR_RESET, writerPid);
                 }
             }
+            readerPid = -1;
+            writerPid = -1;
         }
     }
 }
 
 void handleSigUsr1(int signal) {
     if (signal != SIGUSR1) {
-        printErrorLn("Caught wrong signal instead of SIGUSR1\n");
+        printErrorLn("Client caught wrong signal instead of SIGUSR1\n");
     }
     printf("Client process with id %d caught SIGUSR1\n", getpid());
 
+    if (!kill(readerPid, 0)) {
+        kill(readerPid, SIGINT);
+    }
+    if (!kill(writerPid, 0)) {
+        kill(writerPid, SIGINT);
+    }
     if (attemptsNum < 3) {
         createReaderAndWriter(inputFileList, clientIdFrom, clientIdTo, commonDirName, mirrorDirName, bufferSize, logFileName);
         attemptsNum++;
+    } else {
+        printf("Client with id %d exceeded the maximum restart attemts number, so it will exit\n", getpid());
+        raiseIntAndExit(1);
     }
 }
 
@@ -315,9 +405,14 @@ int main(int argc, char** argv) {
     // Block every signal during the handler
     sigemptyset(&sigAction.sa_mask);
     sigaddset(&sigAction.sa_mask, SIGINT);
+    sigaddset(&sigAction.sa_mask, SIGUSR1);
 
     if (sigaction(SIGINT, &sigAction, NULL) == -1) {
         perror("Error: cannot handle SIGALRM");  // Should not happen
+    }
+
+    if (sigaction(SIGUSR1, &sigAction, NULL) == -1) {
+        perror("Error: cannot handle SIGUSR1");  // Should not happen
     }
 
     char idFilePath[strlen(commonDirName) + 1 + MAX_STRING_INT_SIZE + 4];
@@ -347,7 +442,5 @@ int main(int argc, char** argv) {
     initialSync(commonDirName, mirrorDirName, bufferSize, inputFileList, clientId, logFileName);
     startWatchingCommonDirectory(commonDirName, mirrorDirName, bufferSize, inputFileList, clientId, logFileName);
 
-    handleExit();
-
-    return 0;
+    handleExit(0);
 }

@@ -1,6 +1,6 @@
 #include "writer.h"
 
-void handleArgsWriter(int argc, char** argv, FileList** fileList, int* clientIdFrom, int* clientIdTo, char** commonDirName, int* bufferSize, char** logFileName) {
+void handleArgs(int argc, char** argv, FileList** fileList, int* clientIdFrom, int* clientIdTo, char** commonDirName, int* bufferSize, char** logFileName) {
     // validate argument count
     if (argc != 7) {
         printErrorLnExit("Invalid arguments. Exiting...");
@@ -64,15 +64,38 @@ void handleArgsWriter(int argc, char** argv, FileList** fileList, int* clientIdF
     return;
 }
 
-void handleSigIntWriter(int signal) {
+void handleExit(int exitValue) {
+    freeFileList(&inputFileList);
+    if (fclose(logFileP) == EOF) {
+        perror("fclose failed");
+        exit(1);
+    }
+
+    kill(getppid(), SIGUSR1);
+
+    exit(exitValue);
+}
+
+void handleSigInt(int signal) {
     if (signal != SIGINT) {
         printErrorLn("Caught wrong signal instead of SIGINT\n");
     }
     printf("Writer process with id %d caught SIGINT\n", getpid());
 
-    freeFileList(&inputFileList);
+    handleExit(1);
+}
 
-    exit(0);
+
+void handleSignals(int signal) {
+    // Find out which signal we're handling
+    switch (signal) {
+        case SIGINT:
+            handleSigInt(signal);
+            break;
+        default:
+            printErrorLn("Caught wrong signal");
+    }
+    return;
 }
 
 int tryWrite(int fd, const void* buffer, int bufferSize) {
@@ -91,7 +114,7 @@ void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
     struct sigaction sigAction;
 
     // Setup the signal handler
-    sigAction.sa_handler = &handleSigIntWriter;
+    sigAction.sa_handler = &handleSignals;
 
     // Restart the system call, if at all possible
     sigAction.sa_flags = SA_RESTART;
@@ -125,7 +148,6 @@ void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
 
     fifoFd = open(fifo, O_WRONLY);
 
-    FILE* logFileP;
     if ((logFileP = fopen(logFileName, "a")) == NULL) {
         perror("fopen failed");
         exit(1);
@@ -172,9 +194,8 @@ void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
     int end = 0;
     tryWrite(fifoFd, &end, 2);
 
-    fclose(logFileP);
+    handleExit(0);
 
-    freeFileList(&inputFileList);
     return;
 }
 
@@ -183,7 +204,7 @@ int main(int argc, char** argv) {
     int clientIdFrom, clientIdTo, bufferSize;
     char *commonDirName, *logFileName;
 
-    handleArgsWriter(argc, argv, &inputFileList, &clientIdFrom, &clientIdTo, &commonDirName, &bufferSize, &logFileName);
+    handleArgs(argc, argv, &inputFileList, &clientIdFrom, &clientIdTo, &commonDirName, &bufferSize, &logFileName);
 
     writerJob(inputFileList, clientIdFrom, clientIdTo, commonDirName, bufferSize, logFileName);
 

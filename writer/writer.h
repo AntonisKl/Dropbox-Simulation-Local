@@ -4,10 +4,15 @@
 #include "../utils/utils.h"
 
 static FileList* inputFileList;
+static FILE* logFileP;
 
-void handleArgsWriter(int argc, char** argv, FileList** fileList, int* clientIdFrom, int* clientIdTo, char** commonDirName, int* bufferSize, char** logFileName);
+void handleArgs(int argc, char** argv, FileList** fileList, int* clientIdFrom, int* clientIdTo, char** commonDirName, int* bufferSize, char** logFileName);
 
-void handleSigIntWriter(int signal);
+void handleExit(int exitValue);
+
+void handleSigInt(int signal);
+
+void handleSignals(int signal);
 
 int tryWrite(int fd, const void* buffer, int bufferSize);
 

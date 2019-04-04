@@ -17,7 +17,7 @@ rm -rf mirror1 mirror2
     for ((i=1; i<=$clientsNum; i++));
     do
         ./exe/mirror_client -n $i -c common -i inputDir$(($i%2 + 1)) -m mirror$i -b 10 -l logFile &
-        sleep 2
+        sleep 3
         # echo "${args[$i]}"
     done
 

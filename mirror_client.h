@@ -8,12 +8,17 @@ typedef struct FileList FileList;
 static char *commonDirName, *mirrorDirName, *logFileName;
 static int bufferSize, clientIdFrom, clientIdTo;
 static FileList* inputFileList;
+pid_t readerPid = -1, writerPid = -1;
+
+void handleArgs(int argc, char** argv, int* clientId, char** commonDirName, char** inputDirName, char** mirrorDirName, int* bufferSize, char** logFileName);
+
+void doClientInitialChecks(char* inputDirName, char* mirrorDirName, char* commonDirName, int clientId, char (*idFilePath)[]);
 
 void populateFileList(FileList* fileList, char* inputDirName, char* pathWithoutInputDirName, int indent);
 
 void createReaderAndWriter(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, char* mirrorDirName, int bufferSize, char* logFileName);
 
-void handleExit();
+void handleExit(int exitValue);
 
 void handleSigUsr1(int signal);
 

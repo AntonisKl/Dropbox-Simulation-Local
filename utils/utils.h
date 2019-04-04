@@ -50,8 +50,6 @@ void printErrorLnExit(char* s);
 
 void raiseIntAndExit(int num);
 
-void handleArgs(int argc, char** argv, int* clientId, char** commonDirName, char** inputDirName, char** mirrorDirName, int* bufferSize, char** logFileName);
-
 char dirExists(char* dirName);
 
 char fileExists(char* fileName);
@@ -63,8 +61,6 @@ void removeFileOrDir(char* path);
 void buildIdFileName(char (*idFileFullName)[], char* commonDirName, int clientId);
 
 void createAndWriteToFile(char* fileName, char* contents);
-
-void doClientInitialChecks(char* inputDirName, char* mirrorDirName, char* commonDirName, int clientId, char (*idFilePath)[]);
 
 char isIdFile(char* fileName);
 

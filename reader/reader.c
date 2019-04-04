@@ -2,7 +2,7 @@
 
 static char *filePath = NULL, *filePathSizeS = NULL, *fileContentsSizeS = NULL;
 
-void handleArgsReader(int argc, char** argv, FileList** fileList, int* clientIdFrom, int* clientIdTo, char** commonDirName, char** mirrorDirName, int* bufferSize, char** logFileName) {
+void handleArgs(int argc, char** argv, FileList** fileList, int* clientIdFrom, int* clientIdTo, char** commonDirName, char** mirrorDirName, int* bufferSize, char** logFileName) {
     // validate argument count
     if (argc != 8) {
         printErrorLnExit("Invalid arguments. Exiting...");
@@ -68,12 +68,7 @@ void handleArgsReader(int argc, char** argv, FileList** fileList, int* clientIdF
     return;
 }
 
-void handleSigAlarm(int signal) {
-    if (signal != SIGALRM) {
-        printErrorLn("Caught wrong signal instead of SIGALRM\n");
-    }
-    printf("Reader process with id %d caught SIGALRM, waited more than 30 seconds to read from pipe", getpid());
-
+void handleExit(int exitValue) {
     if (filePath != NULL) {
         free(filePath);
         filePath = NULL;
@@ -95,41 +90,56 @@ void handleSigAlarm(int signal) {
 
     kill(getppid(), SIGUSR1);
 
-    exit(1);
+    exit(exitValue);
 }
 
-void handleSigIntReader(int signal) {
+void handleSigAlarm(int signal) {
     if (signal != SIGALRM) {
-        printErrorLn("Caught wrong signal instead of SIGINT\n");
+        printErrorLn("Reader caught wrong signal instead of SIGALRM");
     }
-    printf("Reader process with id %d caught SIGINT", getpid());
+    printf("Reader process with id %d caught SIGALRM, waited more than 30 seconds to read from pipe\n", getpid());
 
-    if (filePath != NULL) {
-        free(filePath);
-        filePath = NULL;
-    }
-    if (filePathSizeS != NULL) {
-        free(filePathSizeS);
-        filePathSizeS = NULL;
-    }
-    if (fileContentsSizeS != NULL) {
-        free(fileContentsSizeS);
-        fileContentsSizeS = NULL;
-    }
+    // if (filePath != NULL) {
+    //     free(filePath);
+    //     filePath = NULL;
+    // }
+    // if (filePathSizeS != NULL) {
+    //     free(filePathSizeS);
+    //     filePathSizeS = NULL;
+    // }
+    // if (fileContentsSizeS != NULL) {
+    //     free(fileContentsSizeS);
+    //     fileContentsSizeS = NULL;
+    // }
 
-    freeFileList(&inputFileList);
+    // freeFileList(&inputFileList);
+    // if (fclose(logFileP) == EOF) {
+    //     perror("fclose failed");
+    //     exit(1);
+    // }
 
-    exit(1);
+    // kill(getppid(), SIGUSR1);
+
+    handleExit(1);
 }
 
-void handleSignalsReader(int signal) {
+void handleSigInt(int signal) {
+    if (signal != SIGINT) {
+        printErrorLn("Reader caught wrong signal instead of SIGINT");
+    }
+    printf("Reader process with id %d caught SIGINT\n", getpid());
+
+    handleExit(1);
+}
+
+void handleSignals(int signal) {
     // Find out which signal we're handling
     switch (signal) {
         case SIGALRM:
             handleSigAlarm(signal);
             break;
         case SIGINT:
-            handleSigIntReader(signal);
+            handleSigInt(signal);
             break;
         default:
             printErrorLn("Caught wrong signal");
@@ -146,14 +156,13 @@ void trySelect(int fifoFd) {
     FD_ZERO(&readFdSet);
     FD_SET(fifoFd, &readFdSet);
 
-printErrorLn("BEEEEEEEEEEEEEEEEEEEEEEEEEEEEEFORE SELECT");
+    printErrorLn("BEEEEEEEEEEEEEEEEEEEEEEEEEEEEEFORE SELECT");
     int selectRetValue = select(FD_SETSIZE, &readFdSet, NULL, NULL, &timeStruct);
-printErrorLn("AAAAAAAAAAAAAAAAAAAAAAFTER SELECT");
+    printErrorLn("AAAAAAAAAAAAAAAAAAAAAAFTER SELECT");
 
     if (selectRetValue == -1)
         perror("select error");
-    else if (selectRetValue == 0)
-    {
+    else if (selectRetValue == 0) {
         printErrorLn("No data in fifo after 30 seconds.");
         raise(SIGALRM);
     }
@@ -169,7 +178,6 @@ int tryRead(int fd, void* buffer, int bufferSize) {
     while (returnValue < tempBufferSize && returnValue != 0) {
         if (returnValue == -1) {
             perror("read error");
-            kill(getppid(), SIGUSR1);
             raiseIntAndExit(1);
         }
 
@@ -189,7 +197,7 @@ void readerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
     struct sigaction sigAction;
 
     // Setup the signal handler
-    sigAction.sa_handler = &handleSignalsReader;
+    sigAction.sa_handler = &handleSignals;
 
     // Restart the system call, if at all possible
     sigAction.sa_flags = SA_RESTART;
@@ -276,7 +284,6 @@ void readerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
                 while (returnValue < tempBufferSize && returnValue != 0) {
                     if (returnValue == -1) {
                         perror("read error");
-                        kill(getppid(), SIGUSR1);
                         raiseIntAndExit(1);
                     }
                     printf("+++++++++++++++++++++++++++++++++++++++++++++ reader with pid %d read %d bytes from pipe\n", getpid(), returnValue);
@@ -379,7 +386,7 @@ int main(int argc, char** argv) {
     int clientIdFrom, clientIdTo, bufferSize;
     char *commonDirName, *mirrorDirName, *logFileName;
 
-    handleArgsReader(argc, argv, &inputFileList, &clientIdFrom, &clientIdTo, &commonDirName, &mirrorDirName, &bufferSize, &logFileName);
+    handleArgs(argc, argv, &inputFileList, &clientIdFrom, &clientIdTo, &commonDirName, &mirrorDirName, &bufferSize, &logFileName);
 
     readerJob(inputFileList, clientIdFrom, clientIdTo, commonDirName, mirrorDirName, bufferSize, logFileName);
 

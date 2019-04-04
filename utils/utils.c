@@ -16,59 +16,6 @@ void printErrorLnExit(char* s) {
     raiseIntAndExit(1);
 }
 
-void handleArgs(int argc, char** argv, int* clientId, char** commonDirName, char** inputDirName, char** mirrorDirName, int* bufferSize, char** logFileName) {
-    // validate argument count
-    if (argc != 13) {
-        printErrorLnExit("Invalid arguments. Exiting...");
-    }
-
-    // validate input arguments one by one
-    if (strcmp(argv[1], "-n") == 0) {
-        (*clientId) = atoi(argv[2]);
-        // if ((*clientId) <= 0) {
-        //     printError("Invalid arguments\nExiting...\n");
-        //     raiseIntAndExit(1);
-        // }
-    } else {
-        printErrorLnExit("Invalid arguments\nExiting...");
-    }
-
-    if (strcmp(argv[3], "-c") == 0) {
-        (*commonDirName) = argv[4];
-    } else {
-        printErrorLnExit("Invalid arguments\nExiting...");
-    }
-
-    if (strcmp(argv[5], "-i") == 0) {
-        (*inputDirName) = argv[6];
-    } else {
-        printErrorLnExit("Invalid arguments\nExiting...");
-    }
-
-    if (strcmp(argv[7], "-m") == 0) {
-        (*mirrorDirName) = argv[8];
-    } else {
-        printErrorLnExit("Invalid arguments\nExiting...");
-    }
-
-    if (strcmp(argv[9], "-b") == 0) {
-        (*bufferSize) = atoi(argv[10]);
-        if ((*bufferSize) <= 0) {
-            printErrorLnExit("Invalid arguments\nExiting...");
-        }
-    } else {
-        printErrorLnExit("Invalid arguments\nExiting...");
-    }
-
-    if (strcmp(argv[11], "-l") == 0) {
-        (*logFileName) = argv[12];
-    } else {
-        printErrorLnExit("Invalid arguments\nExiting...");
-    }
-
-    return;
-}
-
 char dirExists(char* dirName) {
     char returnValue = 0;
     DIR* dir = opendir(dirName);
@@ -148,25 +95,6 @@ void createAndWriteToFile(char* fileName, char* contents) {
         perror("fclose failed");
         exit(1);
     }
-    return;
-}
-
-void doClientInitialChecks(char* inputDirName, char* mirrorDirName, char* commonDirName, int clientId, char (*idFilePath)[]) {
-    if (!dirExists(inputDirName)) {
-        printErrorLnExit("Input directory does not exist");
-    }
-
-    if (dirExists(mirrorDirName)) {
-        printErrorLnExit("Mirror directory already exists");
-    }
-
-    // char idFilePath[strlen(commonDirName) + 1 + strlen(clientId) + 4];
-    buildIdFileName(idFilePath, commonDirName, clientId);
-
-    if (fileExists((char*)idFilePath)) {
-        printErrorLnExit("Id common file already exists");
-    }
-
     return;
 }
 
