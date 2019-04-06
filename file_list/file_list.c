@@ -85,7 +85,7 @@ File* addFileToFileList(FileList* fileList, char* pathNoInputDir, char* path, of
         fileList->firstFile = initFile(pathNoInputDir, path, contentsSize, type);
 
         fileList->size++;
-        printf(ANSI_COLOR_MAGENTA "Inserted file with path %s to FileList\n" ANSI_COLOR_RESET, path);
+        // printf(ANSI_COLOR_MAGENTA "Inserted file with path %s to FileList\n" ANSI_COLOR_RESET, path);
         return fileList->firstFile;
     } else {
         File* curFile = fileList->firstFile;
@@ -97,7 +97,7 @@ File* addFileToFileList(FileList* fileList, char* pathNoInputDir, char* path, of
 
             fileList->firstFile = fileToInsert;
             fileList->size++;
-            printf(ANSI_COLOR_MAGENTA "Inserted file with path %s to FileList\n" ANSI_COLOR_RESET, path);
+            // printf(ANSI_COLOR_MAGENTA "Inserted file with path %s to FileList\n" ANSI_COLOR_RESET, path);
             return fileList->firstFile;
         }
         while (curFile != NULL) {
@@ -108,7 +108,7 @@ File* addFileToFileList(FileList* fileList, char* pathNoInputDir, char* path, of
 
                     curFile->nextFile = fileToInsert;
                     fileList->size++;
-                    printf(ANSI_COLOR_MAGENTA "Inserted file with path %s to FileList\n" ANSI_COLOR_RESET, path);
+                    // printf(ANSI_COLOR_MAGENTA "Inserted file with path %s to FileList\n" ANSI_COLOR_RESET, path);
                     return curFile->nextFile;
                 }
             } else {
@@ -116,7 +116,7 @@ File* addFileToFileList(FileList* fileList, char* pathNoInputDir, char* path, of
                 curFile->nextFile = initFile(pathNoInputDir, path, contentsSize, type);
 
                 fileList->size++;
-                printf(ANSI_COLOR_MAGENTA "Inserted file with path %s to FileList\n" ANSI_COLOR_RESET, path);
+                // printf(ANSI_COLOR_MAGENTA "Inserted file with path %s to FileList\n" ANSI_COLOR_RESET, path);
                 return curFile->nextFile;
             }
 

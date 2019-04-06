@@ -2,7 +2,7 @@
 
 void handleArgs(int argc, char** argv, FileList** fileList, int* clientIdFrom, int* clientIdTo, char** commonDirName, int* bufferSize, char** logFileName) {
     // validate argument count
-    if (argc != 7) {
+    if (argc != 8) {
         printErrorLnExit("Invalid arguments. Exiting...");
     }
 
@@ -17,16 +17,34 @@ void handleArgs(int argc, char** argv, FileList** fileList, int* clientIdFrom, i
     //     printErrorLnExit("Invalid arguments\nExiting...");
     // }
 
-    if (!strcmp(argv[1], EMPTY_FILE_LIST_STRING)) {
+    FILE* fp = fopen(argv[1], "r");
+    char* endptr;
+    unsigned long fileBufferSize = strtol(argv[2], &endptr, 10) + 1;
+    tempFileContents = (char*)malloc(fileBufferSize);
+    fgets(tempFileContents, fileBufferSize, fp);
+    fclose(fp);
+
+    if (!strcmp(tempFileContents, EMPTY_FILE_LIST_STRING)) {
         (*fileList) = initFileList();
     } else {
-        (*fileList) = stringToFileList(argv[1]);
+        (*fileList) = stringToFileList(tempFileContents);
     }
-    (*clientIdFrom) = atoi(argv[2]);
-    (*clientIdTo) = atoi(argv[3]);
-    (*commonDirName) = argv[4];
-    (*bufferSize) = atoi(argv[5]);
-    (*logFileName) = argv[6];
+    free(tempFileContents);
+    tempFileContents = NULL;
+
+    // printf("---->Writer with pid %d got list with size: %u \n\n", getpid(), (*fileList)->size);
+    // File *tempFile = (*fileList)->firstFile;
+    // while (tempFile != NULL) {
+    //     printf("file path: %s\n", tempFile->pathNoInputDir);
+
+    //     tempFile = tempFile->nextFile;
+    // }
+
+    (*clientIdFrom) = atoi(argv[3]);
+    (*clientIdTo) = atoi(argv[4]);
+    (*commonDirName) = argv[5];
+    (*bufferSize) = atoi(argv[6]);
+    (*logFileName) = argv[7];
 
     // if (strcmp(argv[3], "-c") == 0) {
     //     (*commonDirName) = argv[4];
@@ -69,6 +87,11 @@ void handleExit(int exitValue) {
     if (fclose(logFileP) == EOF) {
         perror("fclose failed");
         exit(1);
+    }
+
+    if (tempFileContents != NULL) {
+        free(tempFileContents);
+        tempFileContents = NULL;
     }
 
     kill(getppid(), SIGUSR1);
@@ -155,54 +178,70 @@ void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
 
     File* curFile = inputFileList->firstFile;
     while (curFile != NULL) {
-        int filePathSize = strlen(curFile->pathNoInputDir);
-        char filePathSizeS[MAX_STRING_INT_SIZE];
-        sprintf(filePathSizeS, "%d", filePathSize);
+        short int filePathSize = strlen(curFile->pathNoInputDir);
+        // char filePathSizeS[3];
+        // sprintf(filePathSizeS, "%d", filePathSize);
         tryWrite(fifoFd, &filePathSize, 2);
         char temp[PATH_MAX];
-        printf("-------->writer with pid %d wrote filePathSize: %s\n", getpid(), filePathSizeS);
+        printf("-------->writer with pid %d wrote filePathSize: %d\n", getpid(), filePathSize);
         memcpy(temp, curFile->pathNoInputDir, filePathSize + 1);
-        printf("TEMP: %s\n\n", temp);
+        //printf("TEMP: %s\n\n", temp);
         tryWrite(fifoFd, curFile->pathNoInputDir, filePathSize);
         printf("-------->writer with pid %d wrote filePath: %s\n", getpid(), curFile->pathNoInputDir);
-        char fileContentsSizeS[MAX_STRING_INT_SIZE];
+        char fileContentsSizeS[5];
         sprintf(fileContentsSizeS, "%ld", curFile->contentsSize);
         tryWrite(fifoFd, &curFile->contentsSize, 4);
-        printf("-------->writer with pid %d wrote fileContentsSize: %s\n", getpid(), fileContentsSizeS);
+        //printf("-------->writer with pid %d wrote fileContentsSize: %ld\n", getpid(), curFile->contentsSize);
 
-        int fd = open(curFile->path, O_RDONLY);
-        if (fd < 0) {
-            perror("fopen failed");
-            exit(1);
-        }
-
-        int bytesWritten = 0, remainingContentsSize = curFile->contentsSize, tempBufferSize = bufferSize;
-        memset(buffer, 0, bufferSize + 1);
-
-        while (read(fd, buffer, tempBufferSize) > 0) {
-            if (remainingContentsSize < bufferSize) {
-                tempBufferSize = remainingContentsSize;
-            } else {
-                tempBufferSize = bufferSize;
+        if (curFile->type == REGULAR_FILE) {
+            int fd = open(curFile->path, O_RDONLY | O_NONBLOCK);
+            if (fd < 0) {
+                perror("open failed");
+                handleExit(1);
             }
 
-            int size = tryWrite(fifoFd, buffer, tempBufferSize);
-            printf("-------->writer with pid %d wrote a chunk of size %d of file %s: %s\n", getpid(), size, curFile->pathNoInputDir, buffer);
-
+            int bytesWritten = 0, remainingContentsSize = curFile->contentsSize, tempBufferSize = bufferSize;
             memset(buffer, 0, bufferSize + 1);
-            bytesWritten += tempBufferSize;
-            remainingContentsSize -= tempBufferSize;
-        }
 
-        fprintf(logFileP, "Writer with pid %d sent file with path \"%s\" and wrote %d bytes to fifo pipe\n", getpid(), curFile->pathNoInputDir, bytesWritten);
-        // write(fifoFd, buffer, bufferSize);
-        // printf("-------->writer with pid %d wrote a chunk of file %s: %s\n", getpid(), curFile->path, buffer);
-        // if (close(fd) == EOF) {
-        //     perror("fclose failed");
-        //     kill(getppid(), SIGUSR1);
-        //     exit(1);
-        // }
-        close(fd);
+            int readRetValue = read(fd, buffer, tempBufferSize);
+            while (readRetValue > 0) {
+                if (remainingContentsSize < bufferSize) {
+                    tempBufferSize = remainingContentsSize;
+                } else {
+                    tempBufferSize = bufferSize;
+                }
+
+                int size = tryWrite(fifoFd, buffer, tempBufferSize);
+                //printf("-------->writer with pid %d wrote a chunk of size %d of file %s: %s\n", getpid(), size, curFile->pathNoInputDir, buffer);
+
+                memset(buffer, 0, bufferSize + 1);
+                bytesWritten += tempBufferSize;
+                remainingContentsSize -= tempBufferSize;
+                readRetValue = read(fd, buffer, tempBufferSize);
+            }
+
+            // if (readRetValue == -1) {
+            //     perror("writer read failed");
+            //     handleExit(1);
+            // }
+
+            fprintf(logFileP, "Writer with pid %d sent file with path \"%s\" and wrote %d bytes to fifo pipe\n", getpid(), curFile->pathNoInputDir, bytesWritten);
+            fflush(logFileP);
+            // write(fifoFd, buffer, bufferSize);
+            // printf("-------->writer with pid %d wrote a chunk of file %s: %s\n", getpid(), curFile->path, buffer);
+            // if (close(fd) == EOF) {
+            //     perror("fclose failed");
+            //     kill(getppid(), SIGUSR1);
+            //     exit(1);
+            // }
+            if (close(fd) == -1) {
+                perror("close failed");
+                handleExit(1);
+            }
+        } else {
+            fprintf(logFileP, "Writer with pid %d sent file with path \"%s\" and wrote %d bytes to fifo pipe\n", getpid(), curFile->pathNoInputDir, 0);
+            fflush(logFileP);
+        }
         curFile = curFile->nextFile;
     }
 

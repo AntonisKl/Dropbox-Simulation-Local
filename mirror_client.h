@@ -5,8 +5,9 @@
 
 typedef struct FileList FileList;
 
-static char *commonDirName, *mirrorDirName, *logFileName;
+static char *commonDirName, *mirrorDirName, *logFileName, *tempFileListFileName;
 static int bufferSize, clientIdFrom, clientIdTo;
+static unsigned long tempFileListSize;
 static FileList* inputFileList;
 pid_t readerPid = -1, writerPid = -1;
 
@@ -18,7 +19,7 @@ void populateFileList(FileList* fileList, char* inputDirName, char* pathWithoutI
 
 void createReaderAndWriter(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, char* mirrorDirName, int bufferSize, char* logFileName);
 
-void handleExit(int exitValue, char removeIdFile, char removeMirrorDir, char writeToLogFile);
+void handleExit(int exitValue, char removeIdFile, char removeMirrorDir, char writeToLogFile, char removeTempFile);
 
 void handleSigUsr1(int signal);
 

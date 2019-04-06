@@ -3,6 +3,7 @@
         "stat.h": "c",
         "reader.h": "c",
         "utils.h": "c",
-        "file_list.h": "c"
+        "file_list.h": "c",
+        "writer.h": "c"
     }
 }

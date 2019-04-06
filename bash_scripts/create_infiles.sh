@@ -70,7 +70,8 @@ do
         touch "$curFileName"
         echo "Created file $curFileName"
         charsNum=$(shuf -i 1000-128000 -n 1)
-        curFileContents=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c $charsNum ; echo '')
+        curFileContents=$(cat /dev/urandom | tr -dc A-Za-z0-9 | head -c $charsNum)
+        
 
         echo "$curFileContents" > "$curFileName"
 
@@ -107,7 +108,7 @@ do
         echo "Created file $curFileName"
 
         charsNum=$(shuf -i 1000-128000 -n 1)
-        curFileContents=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c $charsNum ; echo '')
+        curFileContents=$(cat /dev/urandom | tr -dc A-Za-z0-9 | head -c $charsNum)
 
         echo "$curFileContents" > "$curFileName"
 

@@ -31,6 +31,7 @@
 #define MAX_FIFO_FILE_NAME (MAX_STRING_INT_SIZE * 2 - 1) + 9
 #define MAX_FILE_LIST_NODE_STRING_SIZE MAX_STRING_INT_SIZE + 1 + (2 * PATH_MAX) + 1
 #define EMPTY_FILE_LIST_STRING "**"
+#define MAX_TEMP_FILELIST_FILE_NAME_SIZE 12 + MAX_STRING_INT_SIZE + 1  // TempFileList + int
 
 #define UNUSED(x) (void)(x)
 
@@ -72,8 +73,10 @@ void fileListToString(FileList* fileList, char (*fileListS)[]);
 
 FileList* stringToFileList(char* fileListS);
 
-void execReader(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, char* mirrorDirName, int bufferSize, char* logFileName);
+void execReader(int clientIdFrom, int clientIdTo, char* commonDirName, char* mirrorDirName, int bufferSize, char* logFileName, char* tempFileListFileName,
+                unsigned long tempFileListSize);
 
-void execWriter(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, int bufferSize, char* logFileName);
+void execWriter(int clientIdFrom, int clientIdTo, char* commonDirName, int bufferSize, char* logFileName, char* tempFileListFileName,
+                unsigned long tempFileListSize);
 
 #endif

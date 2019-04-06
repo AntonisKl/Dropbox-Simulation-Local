@@ -5,6 +5,7 @@
 
 static FileList* inputFileList;
 static FILE* logFileP;
+static char* tempFileContents = NULL;
 
 void handleArgs(int argc, char** argv, FileList** fileList, int* clientIdFrom, int* clientIdTo, char** commonDirName, int* bufferSize, char** logFileName);
 
