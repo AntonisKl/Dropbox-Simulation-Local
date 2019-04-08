@@ -4,12 +4,14 @@
 #include "../utils/utils.h"
 
 static FileList* inputFileList;
-static FILE* logFileP;
+static FILE* logFileP = NULL;
 static char* tempFileContents = NULL;
+static int clientPid, fifoFd = -1;
 
-void handleArgs(int argc, char** argv, FileList** fileList, int* clientIdFrom, int* clientIdTo, char** commonDirName, int* bufferSize, char** logFileName);
+void handleArgs(int argc, char** argv, FileList** fileList, int* clientIdFrom, int* clientIdTo, char** commonDirName, int* bufferSize, char** logFileName,
+                int* clientPid);
 
-void handleExit(int exitValue);
+void handleExit(int exitValue, int parentSignal);
 
 void handleSigInt(int signal);
 

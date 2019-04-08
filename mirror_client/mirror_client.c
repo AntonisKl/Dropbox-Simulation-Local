@@ -1,6 +1,6 @@
 #include "mirror_client.h"
 
-static int attemptsNum = 0;
+static int attemptsNum = 0, updateAttemptsNum = 0, clientChildShouldExit = 0;
 
 void handleArgs(int argc, char** argv, int* clientId, char** commonDirName, char** inputDirName, char** mirrorDirName, int* bufferSize, char** logFileName) {
     // validate argument count
@@ -159,7 +159,7 @@ void handleExit(int exitValue, char removeIdFile, char removeMirrorDir, char wri
     // removeFileOrDir(mirrorIdDirPath);
 
     if (removeMirrorDir) {
-        printf("HAAY %s\n", mirrorDirName);
+        // printf("HAAY %s\n", mirrorDirName);
         removeFileOrDir(mirrorDirName);
     }
 
@@ -192,9 +192,7 @@ void handleExit(int exitValue, char removeIdFile, char removeMirrorDir, char wri
     exit(exitValue);
 }
 
-void handleSigUsr1(int signal);
-
-void handleSigInt(int signal) {
+void handleSigIntParentClient(int signal) {
     if (signal != SIGINT) {
         printErrorLn("Client caught wrong signal instead of SIGINT\n");
     }
@@ -203,11 +201,88 @@ void handleSigInt(int signal) {
     handleExit(1, 1, 1, 1, 1);
 }
 
+void createReader();
+
+void handleSigUsr1(int signal) {
+    if (signal != SIGUSR1) {
+        printErrorLn("Client caught wrong signal instead of SIGUSR1\n");
+    }
+    printf(ANSI_COLOR_BLUE "Client process with id %d caught SIGUSR1" ANSI_COLOR_RESET "\n", getpid());
+
+    // if (readerPid != -1 && !kill(readerPid, 0)) {
+    //     kill(readerPid, SIGINT);
+    // }
+    // if (writerPid != -1 && !kill(writerPid, 0)) {
+    //     kill(writerPid, SIGINT);
+    // }
+    if (attemptsNum < 3) {
+        // char otherClientIdFilePath[strlen(commonDirName) + 1 + MAX_STRING_INT_SIZE + 4];
+        // buildIdFileName(&otherClientIdFilePath, commonDirName, clientIdTo);
+
+        // FILE* fp = fopen(otherClientIdFilePath, "r");
+        // if (fp == NULL) {
+        //     perror("fopen failed");
+        //     exit(1);
+        // }
+
+        // char pidToS[MAX_STRING_INT_SIZE];
+        // fgets((char*)idS, MAX_STRING_INT_SIZE, fp);
+
+        // fflush(file);
+
+        // if (fclose(file) == EOF) {
+        //     perror("fclose failed");
+        //     exit(1);
+        // }
+
+        createReader();
+
+        attemptsNum++;
+    } else {
+        printf(ANSI_COLOR_RED "Client with id %d exceeded the maximum restart attemts number, so it will exit" ANSI_COLOR_RESET "\n", getpid());
+        raiseIntAndExit(1);
+    }
+}
+
+void handleSigUsr2(int signal) {
+    if (signal != SIGUSR2) {
+        printErrorLn("Client caught wrong signal instead of SIGUSR2\n");
+    }
+    printf(ANSI_COLOR_BLUE "Client process with id %d caught SIGUSR2" ANSI_COLOR_RESET "\n", getpid());
+
+    // if (readerPid != -1 && !kill(readerPid, 0)) {
+    //     kill(readerPid, SIGINT);
+    // }
+    // if (writerPid != -1 && !kill(writerPid, 0)) {
+    //     kill(writerPid, SIGINT);
+    // }
+    if (attemptsNum < 3) {
+        createWriter();
+
+        attemptsNum++;
+    } else {
+        printf(ANSI_COLOR_RED "Client with id %d exceeded the maximum restart attemts number, so it will exit" ANSI_COLOR_RESET "\n", getpid());
+        raiseIntAndExit(1);
+    }
+}
+
+void handleSigInt(int signal) {
+    if (signal != SIGINT) {
+        printErrorLn("Child of client caught wrong signal instead of SIGINT\n");
+    }
+    printf("Child of client process with id %d caught SIGINT\n", getpid());
+
+    handleExit(1, 1, 1, 1, 1);
+}
+
 void handleSignals(int signal) {
     // Find out which signal we're handling
     switch (signal) {
-        case SIGUSR1:
+        case SIGUSR1:  // reader
             handleSigUsr1(signal);
+            break;
+        case SIGUSR2:  // writer
+            handleSigUsr2(signal);
             break;
         case SIGINT:
             handleSigInt(signal);
@@ -218,7 +293,33 @@ void handleSignals(int signal) {
     return;
 }
 
-void createReaderAndWriter(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, char* mirrorDirName, int bufferSize, char* logFileName) {
+void createReader() {
+    readerPid = fork();
+    if (readerPid == -1) {
+        perror("fork error");
+        raiseIntAndExit(1);
+    } else if (readerPid == 0) {
+        execReader(clientIdFrom, clientIdTo, commonDirName, mirrorDirName, bufferSize, logFileName, tempFileListFileName, tempFileListSize, clientPid);
+        // exit(0);  // TODO: before exit raise signals to parent
+    }
+
+    return;
+}
+
+void createWriter() {
+    writerPid = fork();
+    if (writerPid == -1) {
+        perror("fork error");
+        raiseIntAndExit(1);
+    } else if (writerPid == 0) {
+        execWriter(clientIdFrom, clientIdTo, commonDirName, bufferSize, logFileName, tempFileListFileName, tempFileListSize, clientPid);
+        // exit(0);  // TODO: before exit raise signals to parent
+    }
+
+    return;
+}
+
+void createReaderAndWriter() {
     // struct sigaction sigAction;
 
     // // Setup the sighub handler
@@ -235,25 +336,42 @@ void createReaderAndWriter(FileList* inputFileList, int clientIdFrom, int client
     //     perror("Error: cannot handle SIGALRM");  // Should not happen
     // }
 
-    struct sigaction sigAction;
+    // struct sigaction sigAction;
 
-    // Setup the sighub handler
-    sigAction.sa_handler = &handleSignals;
+    // // Setup the sighub handler
+    // sigAction.sa_handler = &handleSignals;
 
-    // Restart the system call, if at all possible
-    sigAction.sa_flags = SA_RESTART;
+    // // Restart the system call, if at all possible
+    // sigAction.sa_flags = SA_RESTART;
 
-    // Block every signal during the handler
-    sigemptyset(&sigAction.sa_mask);
-    sigaddset(&sigAction.sa_mask, SIGINT);
-    sigaddset(&sigAction.sa_mask, SIGUSR1);
+    // // Block every signal during the handler
+    // sigemptyset(&sigAction.sa_mask);
+    // sigaddset(&sigAction.sa_mask, SIGINT);
+    // sigaddset(&sigAction.sa_mask, SIGUSR1);
 
-    if (sigaction(SIGINT, &sigAction, NULL) == -1) {
-        perror("Error: cannot handle SIGINT");  // Should not happen
-    }
+    // if (sigaction(SIGINT, &sigAction, NULL) == -1) {
+    //     perror("Error: cannot handle SIGINT");  // Should not happen
+    // }
 
-    if (sigaction(SIGUSR1, &sigAction, NULL) == -1) {
-        perror("Error: cannot handle SIGUSR1");  // Should not happen
+    // if (sigaction(SIGUSR1, &sigAction, NULL) == -1) {
+    //     perror("Error: cannot handle SIGUSR1");  // Should not happen
+    // }
+
+    if (getpid() != clientPid) {
+        sigAction.sa_handler = &handleSignals;
+
+        sigaddset(&sigAction.sa_mask, SIGUSR1);
+        sigaddset(&sigAction.sa_mask, SIGUSR2);
+
+        if (sigaction(SIGINT, &sigAction, NULL) == -1) {
+            perror("Error: cannot handle SIGINT");  // Should not happen
+        }
+        if (sigaction(SIGUSR1, &sigAction, NULL) == -1) {
+            perror("Error: cannot handle SIGUSR1");  // Should not happen
+        }
+        if (sigaction(SIGUSR2, &sigAction, NULL) == -1) {
+            perror("Error: cannot handle SIGUSR2");  // Should not happen
+        }
     }
 
     readerPid = fork();
@@ -261,7 +379,7 @@ void createReaderAndWriter(FileList* inputFileList, int clientIdFrom, int client
         perror("fork error");
         raiseIntAndExit(1);
     } else if (readerPid == 0) {
-        execReader(clientIdFrom, clientIdTo, commonDirName, mirrorDirName, bufferSize, logFileName, tempFileListFileName, tempFileListSize);
+        execReader(clientIdFrom, clientIdTo, commonDirName, mirrorDirName, bufferSize, logFileName, tempFileListFileName, tempFileListSize, clientPid);
         // exit(0);  // TODO: before exit raise signals to parent
     } else {
         writerPid = fork();
@@ -269,52 +387,38 @@ void createReaderAndWriter(FileList* inputFileList, int clientIdFrom, int client
             perror("fork error");
             raiseIntAndExit(1);
         } else if (writerPid == 0) {
-            execWriter(clientIdFrom, clientIdTo, commonDirName, bufferSize, logFileName, tempFileListFileName, tempFileListSize);
+            execWriter(clientIdFrom, clientIdTo, commonDirName, bufferSize, logFileName, tempFileListFileName, tempFileListSize, clientPid);
             // exit(0);  // TODO: before exit raise signals to parent
         } else {
-            int readerStatus, writerStatus;
-            printf("Client with id %d waiting for children to exit\n", clientIdFrom);
-            waitpid(readerPid, &readerStatus, 0);
-            waitpid(writerPid, &writerStatus, 0);
-            int readerExitStatus = WEXITSTATUS(readerStatus), writerExitStatus = WEXITSTATUS(writerStatus);
-            if (readerExitStatus == 0 && writerExitStatus == 0) {
-                printf(ANSI_COLOR_GREEN "Transfer completed successfully and both children with pids %d and %d have exited\n" ANSI_COLOR_RESET, readerPid, writerPid);
-            } else {
-                if (readerExitStatus == 1) {
-                    printf(ANSI_COLOR_RED "Reader with pid %d failed and exited\n" ANSI_COLOR_RESET, readerPid);
+            while (1) {
+                int readerStatus, writerStatus;
+                printf("Client with id %d waiting for children to exit\n", clientIdFrom);
+                while (readerPid == -1) {  // rare
+                    sleep(1);
                 }
-                if (writerExitStatus == 1) {
-                    printf(ANSI_COLOR_RED "Writer with pid %d failed and exited\n" ANSI_COLOR_RESET, writerPid);
+                waitpid(readerPid, &readerStatus, 0);
+                while (writerPid == -1) {  // rare
+                    sleep(1);
                 }
+                waitpid(writerPid, &writerStatus, 0);
+                int readerExitStatus = WEXITSTATUS(readerStatus), writerExitStatus = WEXITSTATUS(writerStatus);
+                if (readerExitStatus == 0 && writerExitStatus == 0) {
+                    printf(ANSI_COLOR_GREEN "Transfer completed successfully and both children with pids %d and %d have exited\n" ANSI_COLOR_RESET, readerPid, writerPid);
+                    exit(0);
+                } else {
+                    if (readerExitStatus == 1) {
+                        printf(ANSI_COLOR_RED "Reader with pid %d failed and exited\n" ANSI_COLOR_RESET, readerPid);
+                        readerPid = -1;
+                    }
+                    if (writerExitStatus == 1) {
+                        printf(ANSI_COLOR_RED "Writer with pid %d failed and exited\n" ANSI_COLOR_RESET, writerPid);
+                        writerPid = -1;
+                    }
+                }
+                // readerPid = -1;
+                // writerPid = -1;
             }
-            readerPid = -1;
-            writerPid = -1;
         }
-    }
-}
-
-void handleSigUsr1(int signal) {
-    if (signal != SIGUSR1) {
-        printErrorLn("Client caught wrong signal instead of SIGUSR1\n");
-    }
-    printf("Client process with id %d caught SIGUSR1\n", getpid());
-
-    // if (!kill(readerPid, 0)) {
-    //     kill(readerPid, SIGINT);
-    // }
-    // if (!kill(writerPid, 0)) {
-    //     kill(writerPid, SIGINT);
-    // }
-    if (attemptsNum < 3) {
-        int pid = fork();
-        if (pid == 0) {
-            createReaderAndWriter(inputFileList, clientIdFrom, clientIdTo, commonDirName, mirrorDirName, bufferSize, logFileName);
-            exit(0);
-        }
-        attemptsNum++;
-    } else {
-        printf("Client with id %d exceeded the maximum restart attemts number, so it will exit\n", getpid());
-        raiseIntAndExit(1);
     }
 }
 
@@ -348,7 +452,8 @@ void initialSync(char* commonDirName, char* mirrorDirName, int bufferSize, FileL
 
             int pid = fork();
             if (pid == 0) {
-                createReaderAndWriter(inputFileList, clientId, clientIdTo, commonDirName, mirrorDirName, bufferSize, logFileName);
+                createReaderAndWriter();
+                printf("child-client exitting\n");
                 exit(0);
             } else if (pid == -1) {
                 perror("fork error");
@@ -416,7 +521,7 @@ void startWatchingCommonDirectory(char* commonDirName, char* mirrorDirName, int 
                 clientIdTo = atoi(strtok(curName, "."));
                 int pid = fork();
                 if (pid == 0) {
-                    createReaderAndWriter(inputFileList, clientId, clientIdTo, commonDirName, mirrorDirName, bufferSize, logFileName);
+                    createReaderAndWriter();
                     exit(0);
                 } else if (pid == -1) {
                     perror("fork error");
@@ -479,11 +584,10 @@ int main(int argc, char** argv) {
 
     handleArgs(argc, argv, &clientId, &commonDirName, &inputDirName, &mirrorDirName, &bufferSize, &logFileName);
     clientIdFrom = clientId;
-
-    struct sigaction sigAction;
+    clientPid = getpid();
 
     // Setup the sighub handler
-    sigAction.sa_handler = &handleSignals;
+    sigAction.sa_handler = &handleSigIntParentClient;
 
     // Restart the system call, if at all possible
     sigAction.sa_flags = SA_RESTART;
@@ -491,15 +595,15 @@ int main(int argc, char** argv) {
     // Block every signal during the handler
     sigemptyset(&sigAction.sa_mask);
     sigaddset(&sigAction.sa_mask, SIGINT);
-    sigaddset(&sigAction.sa_mask, SIGUSR1);
+    // sigaddset(&sigAction.sa_mask, SIGUSR1);
 
     if (sigaction(SIGINT, &sigAction, NULL) == -1) {
         perror("Error: cannot handle SIGINT");  // Should not happen
     }
 
-    if (sigaction(SIGUSR1, &sigAction, NULL) == -1) {
-        perror("Error: cannot handle SIGUSR1");  // Should not happen
-    }
+    // if (sigaction(SIGUSR1, &sigAction, NULL) == -1) {
+    //     perror("Error: cannot handle SIGUSR1");  // Should not happen
+    // }
 
     char idFilePath[strlen(commonDirName) + 1 + MAX_STRING_INT_SIZE + 4];
     doClientInitialChecks(inputDirName, mirrorDirName, commonDirName, clientId, &idFilePath);

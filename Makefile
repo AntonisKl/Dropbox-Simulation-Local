@@ -13,8 +13,8 @@ reader:  reader.o file_list.o utils.o
 writer:  writer.o file_list.o utils.o
 	$(CC) $(CFLAGS) -o exe/writer writer.o file_list.o utils.o
 
-mirror_client.o:  mirror_client.c
-	$(CC) $(CFLAGS) -c mirror_client.c
+mirror_client.o:  mirror_client/mirror_client.c
+	$(CC) $(CFLAGS) -c mirror_client/mirror_client.c
 
 reader.o:  reader/reader.c
 	$(CC) $(CFLAGS) -c reader/reader.c
@@ -30,4 +30,4 @@ utils.o:  utils/utils.c
 	
 
 clean: 
-	$(RM) mirror_client *.o common/* mirror exe/*
+	$(RM) *.o common/* exe/*

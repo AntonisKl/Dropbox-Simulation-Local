@@ -18,8 +18,10 @@ arrayContains() {
 
 pids=()
 pidsIndex=0
-bytesWritten=0
-bytesRead=0
+dataBytesWritten=0
+dataBytesRead=0
+metadataBytesWritten=0
+metadataBytesRead=0
 filesWritten=0
 filesRead=0
 clientsExited=0
@@ -32,12 +34,16 @@ do
     # echo ${line[4]}
     if [[ ${line[4]} == "sent" ]] ; then
         # echo $pidsIndex
-        ((bytesWritten += ${line[11]}))
+        ((dataBytesWritten += ${line[11]}))
         ((filesWritten ++))
     elif [[ ${line[4]} == "received" ]] ; then
         # echo $pidsIndex
-        ((bytesRead += ${line[11]}))
+        ((dataBytesRead += ${line[11]}))
         ((filesRead ++))
+    elif [[ ${line[4]} == "read" ]] ; then
+        ((metadataBytesRead += ${line[5]}))
+    elif [[ ${line[4]} == "wrote" ]] ; then
+        ((metadataBytesWritten += ${line[5]}))
     fi
 
     if [[ ${line[0]} == "Client" ]] ; then
@@ -66,6 +72,7 @@ echo Total number of client pids: ${#pidsSorted[@]}
 echo Max client pid: ${pidsSorted[${#pidsSorted[@]}-1]}
 echo Min client pid: ${pidsSorted[0]}
 echo
-echo Bytes written: $bytesWritten, Bytes read: $bytesRead
+echo Metadata bytes written: $metadataBytesWritten, Metadata bytes read: $metadataBytesRead
+echo Data bytes written: $dataBytesWritten, Data bytes read: $dataBytesRead
 echo Files written: $filesWritten, Files read: $filesRead
 echo Clients exited: $clientsExited

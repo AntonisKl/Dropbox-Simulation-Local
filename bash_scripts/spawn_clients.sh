@@ -7,7 +7,9 @@ fi
 clientsNum=$1
 delay=$2
 
-rm -rf mirror1 mirror2 mirror3 mirror4
+pkill -f mirror_client
+
+rm -rf mirror1 mirror2 mirror3 mirror4 mirror5 mirror6 mirror7 mirror8 mirror9 mirror10 log*
 
 make clean && make
 
@@ -19,3 +21,7 @@ do
     gnome-terminal --window-with-profile=test --working-directory=/home/antonis/Documents/syspro2/ -e "./exe/mirror_client -n $i -c common -i input$inputDirNum -m mirror$i -b 1000 -l log$i.txt"
     sleep $delay
 done
+
+sleep $(($clientsNum*3))
+
+cat log* | ./bash_scripts/get_stats.sh

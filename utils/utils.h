@@ -74,9 +74,9 @@ void fileListToString(FileList* fileList, char (*fileListS)[]);
 FileList* stringToFileList(char* fileListS);
 
 void execReader(int clientIdFrom, int clientIdTo, char* commonDirName, char* mirrorDirName, int bufferSize, char* logFileName, char* tempFileListFileName,
-                unsigned long tempFileListSize);
+                unsigned long tempFileListSize, int clientPid);
 
 void execWriter(int clientIdFrom, int clientIdTo, char* commonDirName, int bufferSize, char* logFileName, char* tempFileListFileName,
-                unsigned long tempFileListSize);
+                unsigned long tempFileListSize, int clientPid);
 
 #endif

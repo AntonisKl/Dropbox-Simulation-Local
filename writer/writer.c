@@ -1,8 +1,9 @@
 #include "writer.h"
 
-void handleArgs(int argc, char** argv, FileList** fileList, int* clientIdFrom, int* clientIdTo, char** commonDirName, int* bufferSize, char** logFileName) {
+void handleArgs(int argc, char** argv, FileList** fileList, int* clientIdFrom, int* clientIdTo, char** commonDirName, int* bufferSize, char** logFileName,
+                int* clientPid) {
     // validate argument count
-    if (argc != 8) {
+    if (argc != 9) {
         printErrorLnExit("Invalid arguments. Exiting...");
     }
 
@@ -45,6 +46,7 @@ void handleArgs(int argc, char** argv, FileList** fileList, int* clientIdFrom, i
     (*commonDirName) = argv[5];
     (*bufferSize) = atoi(argv[6]);
     (*logFileName) = argv[7];
+    (*clientPid) = atoi(argv[8]);
 
     // if (strcmp(argv[3], "-c") == 0) {
     //     (*commonDirName) = argv[4];
@@ -82,9 +84,9 @@ void handleArgs(int argc, char** argv, FileList** fileList, int* clientIdFrom, i
     return;
 }
 
-void handleExit(int exitValue) {
+void handleExit(int exitValue, int parentSignal) {
     freeFileList(&inputFileList);
-    if (fclose(logFileP) == EOF) {
+    if (logFileP != NULL && fclose(logFileP) == EOF) {
         perror("fclose failed");
         exit(1);
     }
@@ -94,7 +96,14 @@ void handleExit(int exitValue) {
         tempFileContents = NULL;
     }
 
-    kill(getppid(), SIGUSR1);
+    if (fifoFd >= 0 && close(fifoFd) == -1) {
+        perror("close failed");
+        handleExit(1, SIGUSR2);
+    }
+
+    if (parentSignal != 0) {
+        kill(getppid(), parentSignal);
+    }
 
     exit(exitValue);
 }
@@ -105,7 +114,25 @@ void handleSigInt(int signal) {
     }
     printf("Writer process with id %d caught SIGINT\n", getpid());
 
-    handleExit(1);
+    handleExit(1, 0);
+}
+
+void handleSigAlarm(int signal) {
+    if (signal != SIGALRM) {
+        printErrorLn("Caught wrong signal instead of SIGALRM\n");
+    }
+    printf("Writer process with id %d caught SIGALRM\n", getpid());
+
+    handleExit(1, SIGUSR2);
+}
+
+void handleSigPipe(int signal) {
+    if (signal != SIGPIPE) {
+        printErrorLn("Caught wrong signal instead of SIGPIPE\n");
+    }
+    printf("Writer process with id %d caught SIGPIPE\n", getpid());
+
+    handleExit(1, SIGUSR2);
 }
 
 void handleSignals(int signal) {
@@ -113,6 +140,12 @@ void handleSignals(int signal) {
     switch (signal) {
         case SIGINT:
             handleSigInt(signal);
+            break;
+        case SIGALRM:
+            handleSigAlarm(signal);
+            break;
+        case SIGPIPE:
+            handleSigPipe(signal);
             break;
         default:
             printErrorLn("Caught wrong signal");
@@ -124,8 +157,7 @@ int tryWrite(int fd, const void* buffer, int bufferSize) {
     int returnValue;
     if ((returnValue = write(fd, buffer, bufferSize)) == -1) {
         perror("write error");
-        kill(getppid(), SIGUSR1);
-        handleExit(1);
+        handleExit(1, SIGUSR2);
     }
 
     return returnValue;
@@ -145,9 +177,18 @@ void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
     // Block every signal during the handler
     sigemptyset(&sigAction.sa_mask);
     sigaddset(&sigAction.sa_mask, SIGINT);
+    sigaddset(&sigAction.sa_mask, SIGALRM);
 
     if (sigaction(SIGINT, &sigAction, NULL) == -1) {
         perror("Error: cannot handle SIGINT");  // Should not happen
+    }
+
+    if (sigaction(SIGALRM, &sigAction, NULL) == -1) {
+        perror("Error: cannot handle SIGALRM");  // Should not happen
+    }
+
+    if (sigaction(SIGPIPE, &sigAction, NULL) == -1) {
+        perror("Error: cannot handle SIGPIPE");  // Should not happen
     }
 
     char fifoFileName[MAX_FIFO_FILE_NAME];
@@ -159,7 +200,6 @@ void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
     strcat(fifoFilePath, "/");
     strcat(fifoFilePath, fifoFileName);
 
-    int fifoFd;
     char* fifo = fifoFilePath;
     char buffer[bufferSize + 1];
 
@@ -169,7 +209,9 @@ void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
         printf("pid %d, after fifo\n", getpid());
     }
 
+    alarm(30);
     fifoFd = open(fifo, O_WRONLY);
+    alarm(0);
 
     if ((logFileP = fopen(logFileName, "a")) == NULL) {
         perror("fopen failed");
@@ -182,22 +224,27 @@ void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
         // char filePathSizeS[3];
         // sprintf(filePathSizeS, "%d", filePathSize);
         tryWrite(fifoFd, &filePathSize, 2);
+        fprintf(logFileP, "Writer with pid %d wrote 2 bytes of metadata to fifo pipe\n", getpid());
+
         char temp[PATH_MAX];
-        printf("-------->writer with pid %d wrote filePathSize: %d\n", getpid(), filePathSize);
+        // printf("-------->writer with pid %d wrote filePathSize: %d\n", getpid(), filePathSize);
         memcpy(temp, curFile->pathNoInputDir, filePathSize + 1);
         //printf("TEMP: %s\n\n", temp);
         tryWrite(fifoFd, curFile->pathNoInputDir, filePathSize);
-        printf("-------->writer with pid %d wrote filePath: %s\n", getpid(), curFile->pathNoInputDir);
+        fprintf(logFileP, "Writer with pid %d wrote %d bytes of metadata to fifo pipe\n", getpid(), filePathSize);
+
+        // printf("-------->writer with pid %d wrote filePath: %s\n", getpid(), curFile->pathNoInputDir);
         char fileContentsSizeS[5];
         sprintf(fileContentsSizeS, "%ld", curFile->contentsSize);
         tryWrite(fifoFd, &curFile->contentsSize, 4);
+        fprintf(logFileP, "Writer with pid %d wrote 4 bytes of metadata to fifo pipe\n", getpid());
         //printf("-------->writer with pid %d wrote fileContentsSize: %ld\n", getpid(), curFile->contentsSize);
 
         if (curFile->type == REGULAR_FILE) {
             int fd = open(curFile->path, O_RDONLY | O_NONBLOCK);
             if (fd < 0) {
                 perror("open failed");
-                handleExit(1);
+                handleExit(1, SIGUSR2);
             }
 
             int bytesWritten = 0, remainingContentsSize = curFile->contentsSize, tempBufferSize = bufferSize;
@@ -236,7 +283,7 @@ void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
             // }
             if (close(fd) == -1) {
                 perror("close failed");
-                handleExit(1);
+                handleExit(1, SIGUSR2);
             }
         } else {
             fprintf(logFileP, "Writer with pid %d sent file with path \"%s\" and wrote %d bytes to fifo pipe\n", getpid(), curFile->pathNoInputDir, 0);
@@ -247,6 +294,7 @@ void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
 
     int end = 0;
     tryWrite(fifoFd, &end, 2);
+    fprintf(logFileP, "Writer with pid %d wrote 2 bytes of metadata to fifo pipe\n", getpid());
 
     // handleExit(0);
     freeFileList(&inputFileList);
@@ -255,15 +303,21 @@ void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
         exit(1);
     }
 
+    if (close(fifoFd) == -1) {
+        perror("close failed");
+        handleExit(1, SIGUSR2);
+    }
+    fifoFd = -1;
+
     return;
 }
 
 int main(int argc, char** argv) {
     FileList* inputFileList;
-    int clientIdFrom, clientIdTo, bufferSize;
+    int clientIdFrom, clientIdTo, bufferSize, clientPid;
     char *commonDirName, *logFileName;
 
-    handleArgs(argc, argv, &inputFileList, &clientIdFrom, &clientIdTo, &commonDirName, &bufferSize, &logFileName);
+    handleArgs(argc, argv, &inputFileList, &clientIdFrom, &clientIdTo, &commonDirName, &bufferSize, &logFileName, &clientPid);
 
     writerJob(inputFileList, clientIdFrom, clientIdTo, commonDirName, bufferSize, logFileName);
 

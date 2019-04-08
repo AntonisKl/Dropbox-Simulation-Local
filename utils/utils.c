@@ -210,17 +210,18 @@ FileList* stringToFileList(char* fileListS) {
 }
 
 void execReader(int clientIdFrom, int clientIdTo, char* commonDirName, char* mirrorDirName, int bufferSize, char* logFileName, char* tempFileListFileName,
-                unsigned long tempFileListSize) {
-    char clientIdFromS[MAX_STRING_INT_SIZE], clientIdToS[MAX_STRING_INT_SIZE], bufferSizeS[MAX_STRING_INT_SIZE], tempFileListSizeS[MAX_STRING_INT_SIZE];
+                unsigned long tempFileListSize, int clientPid) {
+    char clientIdFromS[MAX_STRING_INT_SIZE], clientIdToS[MAX_STRING_INT_SIZE], bufferSizeS[MAX_STRING_INT_SIZE], tempFileListSizeS[MAX_STRING_INT_SIZE],
+        clientPidS[MAX_STRING_INT_SIZE];
 
     printf("---------------------------------------- %d\n", clientIdFrom);
     sprintf(clientIdFromS, "%d", clientIdFrom);
     sprintf(clientIdToS, "%d", clientIdTo);
     sprintf(bufferSizeS, "%d", bufferSize);
     sprintf(tempFileListSizeS, "%lu", tempFileListSize);
+    sprintf(clientPidS, "%d", clientPid);
 
-
-    char* args[] = {"exe/reader", tempFileListFileName, tempFileListSizeS, clientIdFromS, clientIdToS, commonDirName, mirrorDirName, bufferSizeS, logFileName, NULL};
+    char* args[] = {"exe/reader", tempFileListFileName, tempFileListSizeS, clientIdFromS, clientIdToS, commonDirName, mirrorDirName, bufferSizeS, logFileName, clientPidS, NULL};
     if (execvp(args[0], args) < 0) {
         printf("Exec reader failed\n");
     }
@@ -228,15 +229,18 @@ void execReader(int clientIdFrom, int clientIdTo, char* commonDirName, char* mir
     return;
 }
 
-void execWriter(int clientIdFrom, int clientIdTo, char* commonDirName, int bufferSize, char* logFileName, char* tempFileListFileName, unsigned long tempFileListSize) {
-    char clientIdFromS[MAX_STRING_INT_SIZE], clientIdToS[MAX_STRING_INT_SIZE], bufferSizeS[MAX_STRING_INT_SIZE], tempFileListSizeS[MAX_STRING_INT_SIZE];
+void execWriter(int clientIdFrom, int clientIdTo, char* commonDirName, int bufferSize, char* logFileName, char* tempFileListFileName,
+                unsigned long tempFileListSize, int clientPid) {
+    char clientIdFromS[MAX_STRING_INT_SIZE], clientIdToS[MAX_STRING_INT_SIZE], bufferSizeS[MAX_STRING_INT_SIZE], tempFileListSizeS[MAX_STRING_INT_SIZE],
+        clientPidS[MAX_STRING_INT_SIZE];
 
     sprintf(clientIdFromS, "%d", clientIdFrom);
     sprintf(clientIdToS, "%d", clientIdTo);
     sprintf(bufferSizeS, "%d", bufferSize);
     sprintf(tempFileListSizeS, "%lu", tempFileListSize);
+    sprintf(clientPidS, "%d", clientPid);
 
-    char* args[] = {"exe/writer", tempFileListFileName, tempFileListSizeS, clientIdFromS, clientIdToS, commonDirName, bufferSizeS, logFileName, NULL};
+    char* args[] = {"exe/writer", tempFileListFileName, tempFileListSizeS, clientIdFromS, clientIdToS, commonDirName, bufferSizeS, logFileName, clientPidS, NULL};
     if (execvp(args[0], args) < 0) {
         printf("Exec writer failed\n");
     }
