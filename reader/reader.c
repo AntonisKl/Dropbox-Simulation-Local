@@ -416,7 +416,7 @@ void readerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
             if (GPG_ENCRYPTION_ON) {
             char tempPath[strlen(mirrorFilePath) + 5];
             sprintf(tempPath, "%stemp", mirrorFilePath);
-            decryptFile(mirrorFilePath, tempPath);
+            decryptFile(mirrorFilePath, tempPath, clientIdFrom);
             removeFileOrDir(mirrorFilePath);
             renameFile(tempPath, mirrorFilePath);
         }

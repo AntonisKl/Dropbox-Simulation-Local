@@ -34,7 +34,7 @@
 #define MAX_FILE_LIST_NODE_STRING_SIZE MAX_STRING_INT_SIZE + 1 + (2 * PATH_MAX) + 1
 #define EMPTY_FILE_LIST_STRING "**"
 #define MAX_TEMP_FILELIST_FILE_NAME_SIZE 15 + MAX_STRING_INT_SIZE + 1  // "tmp/" + "TempFileList" + int
-#define MIN_KEY_DETAILS_FILE_SIZE 141
+#define MIN_KEY_DETAILS_FILE_SIZE 119
 #define MAX_TMP_ENCRYPTED_FILE_PATH_SIZE 8 + MAX_STRING_INT_SIZE
 
 #define UNUSED(x) (void)(x)
@@ -89,7 +89,7 @@ void exportGpgPublicKey(char* outputFilePath, int clientId);
 
 void encryptFile(char* filePath, int recipientClientId, char* outputFilePath);
 
-void decryptFile(char* filePath, char* outputFilePath);
+void decryptFile(char* filePath, char* outputFilePath, int clientId);
 
 void execReader(int clientIdFrom, int clientIdTo, char* commonDirName, char* mirrorDirName, int bufferSize, char* logFileName, char* tempFileListFileName,
                 unsigned long tempFileListSize, int clientPid);

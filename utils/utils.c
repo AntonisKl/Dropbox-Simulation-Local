@@ -230,7 +230,7 @@ void createGpgKeyDetailsFile(int clientId, char (*fileName)[]) {
     sprintf(*fileName, "%s%d", "KeyDetails", clientId);
 
     char contents[MIN_KEY_DETAILS_FILE_SIZE + (3 * MAX_STRING_INT_SIZE)];
-    sprintf(contents, "%s%d%s%d%s", "%no-protection\nKey-Type: default\nSubkey-Type: default\nName-Real: ", clientId, "\nName-Email: ", clientId, "@example.com\nExpire-Date: 0\n%commit\n%echo done");
+    sprintf(contents, "%s%d%s%d%s%d%s", "Key-Type: default\nSubkey-Type: default\nName-Real: ", clientId, "\nName-Email: ", clientId, "@example.com\nExpire-Date: 0\nPassphrase: ", clientId, "\n%commit\n%echo done");
 
     createAndWriteToFile(*fileName, contents);
 
@@ -322,11 +322,13 @@ void encryptFile(char* filePath, int recipientClientId, char* outputFilePath) {
     return;
 }
 
-void decryptFile(char* filePath, char* outputFilePath) {
+void decryptFile(char* filePath, char* outputFilePath, int clientId) {
+    char clientIdS[MAX_STRING_INT_SIZE];
+    sprintf(clientIdS, "%d", clientId);
     // printf("Decrypting file with path: %s and writing in file with path:%s\n", filePath, outputFilePath);
     int pid = fork();
     if (pid == 0) {
-        char* args[] = {"gpg", "--always-trust", "--yes", "--quiet", "--no-verbose", "--output", outputFilePath, "--armor", "--decrypt", filePath, NULL};
+        char* args[] = {"gpg", "--batch", "--always-trust", "--yes", "--quiet", "--no-verbose", "--passphrase", clientIdS, "--output", outputFilePath, "--armor", "--decrypt", filePath, NULL};
         if (execvp(args[0], args) == -1) {
             perror("execvp failed");
             exit(1);
