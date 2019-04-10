@@ -655,7 +655,7 @@ int main(int argc, char** argv) {
     populateFileList(inputFileList, inputDirName, "", 0);
 
     tempFileListFileName = (char*)malloc(MAX_TEMP_FILELIST_FILE_NAME_SIZE);
-    strcpy(tempFileListFileName, "TempFileList");
+    strcpy(tempFileListFileName, "tmp/TempFileList");
     char clientIdS[MAX_STRING_INT_SIZE];
     sprintf(clientIdS, "%d", clientId);
     strcat(tempFileListFileName, clientIdS);
