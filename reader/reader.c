@@ -388,7 +388,7 @@ void readerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
         strcat(mirrorFilePath, "/");
         strcat(mirrorFilePath, clientIdToS);
         strcpy(mirrorIdDirPath, mirrorFilePath);
-        strcat(mirrorFilePath, "/");
+        // strcat(mirrorFilePath, "/");
         strcat(mirrorFilePath, filePath);
         // printf("reader read filepath: %s\n", filePath);
         // char dirOfFilePath[strlen(filePath) + strlen(mirrorDirName) + strlen(clientIdFromS) + 2];
@@ -412,6 +412,14 @@ void readerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
         }
         if (fileContentsSize > 0) {
             createAndWriteToFile(mirrorFilePath, fileContents);
+
+            if (GPG_ENCRYPTION_ON) {
+            char tempPath[strlen(mirrorFilePath) + 5];
+            sprintf(tempPath, "%stemp", mirrorFilePath);
+            decryptFile(mirrorFilePath, tempPath);
+            removeFileOrDir(mirrorFilePath);
+            renameFile(tempPath, mirrorFilePath);
+        }
         } else if (fileContentsSize == 0) {
             createAndWriteToFile(mirrorFilePath, "");
         } else if (fileContentsSize == -1) {

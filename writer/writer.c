@@ -218,6 +218,11 @@ void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
         exit(1);
     }
 
+    char tmpEncryptedFilePath[MAX_TMP_ENCRYPTED_FILE_PATH_SIZE];
+    // if (GPG_ENCRYPTION_ON) {
+    // sprintf(tmpEncryptedFilePath, "%s%d", "tmp/enc", getpid());
+    // printf("teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeemp: %s\n", tmpEncryptedFilePath);
+    // }
     File* curFile = inputFileList->firstFile;
     while (curFile != NULL) {
         short int filePathSize = strlen(curFile->pathNoInputDir);
@@ -236,21 +241,60 @@ void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
         // printf("-------->writer with pid %d wrote filePath: %s\n", getpid(), curFile->pathNoInputDir);
         char fileContentsSizeS[5];
         sprintf(fileContentsSizeS, "%ld", curFile->contentsSize);
-        tryWrite(fifoFd, &curFile->contentsSize, 4);
-        fprintf(logFileP, "Writer with pid %d wrote 4 bytes of metadata to fifo pipe\n", getpid());
+        // tryWrite(fifoFd, &curFile->contentsSize, 4);
+        // fprintf(logFileP, "Writer with pid %d wrote 4 bytes of metadata to fifo pipe\n", getpid());
         //printf("-------->writer with pid %d wrote fileContentsSize: %ld\n", getpid(), curFile->contentsSize);
 
         if (curFile->type == REGULAR_FILE) {
-            int fd = open(curFile->path, O_RDONLY | O_NONBLOCK);
-            if (fd < 0) {
+            struct stat encryptedFileStat;
+            if (GPG_ENCRYPTION_ON) {
+            char recipientIdFilePath[strlen(commonDirName) + 1 + MAX_STRING_INT_SIZE + 4];
+
+            buildIdFileName(&recipientIdFilePath, commonDirName, clientIdTo);
+            importGpgPublicKey(recipientIdFilePath);
+            sprintf(tmpEncryptedFilePath, "%s%d", "tmp/enc", getpid());
+
+            encryptFile(curFile->path, clientIdTo, tmpEncryptedFilePath);
+            sprintf(tmpEncryptedFilePath, "%s%d", "tmp/enc", getpid());
+
+            // END OF GPG ENCRYPTION
+
+            stat(tmpEncryptedFilePath, &encryptedFileStat);
+
+            tryWrite(fifoFd, &encryptedFileStat.st_size, 4);
+            fprintf(logFileP, "Writer with pid %d wrote 4 bytes of metadata to fifo pipe\n", getpid());
+            fflush(logFileP);
+
+
+            curFd = open(tmpEncryptedFilePath, O_RDONLY | O_NONBLOCK);
+            if (curFd < 0) {
                 perror("open failed");
                 handleExit(1, SIGUSR2);
             }
+            } else {
+                 tryWrite(fifoFd, &curFile->contentsSize, 4);
+        fprintf(logFileP, "Writer with pid %d wrote 4 bytes of metadata to fifo pipe\n", getpid());
+        fflush(logFileP);
 
-            int bytesWritten = 0, remainingContentsSize = curFile->contentsSize, tempBufferSize = bufferSize;
+                curFd = open(curFile->path, O_RDONLY | O_NONBLOCK);
+            if (curFd < 0) {
+                perror("open failed");
+                handleExit(1, SIGUSR2);
+            }
+            }
+
+            
+
+            int bytesWritten = 0, remainingContentsSize, tempBufferSize = bufferSize;
             memset(buffer, 0, bufferSize + 1);
 
-            int readRetValue = read(fd, buffer, tempBufferSize);
+            if (GPG_ENCRYPTION_ON) {
+                remainingContentsSize = encryptedFileStat.st_size;
+            } else {
+                remainingContentsSize = curFile->contentsSize;
+            }
+
+            int readRetValue = read(curFd, buffer, tempBufferSize);
             while (readRetValue > 0) {
                 if (remainingContentsSize < bufferSize) {
                     tempBufferSize = remainingContentsSize;
@@ -264,13 +308,14 @@ void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
                 memset(buffer, 0, bufferSize + 1);
                 bytesWritten += tempBufferSize;
                 remainingContentsSize -= tempBufferSize;
-                readRetValue = read(fd, buffer, tempBufferSize);
+                readRetValue = read(curFd, buffer, tempBufferSize);
             }
 
             // if (readRetValue == -1) {
             //     perror("writer read failed");
             //     handleExit(1);
             // }
+
 
             fprintf(logFileP, "Writer with pid %d sent file with path \"%s\" and wrote %d bytes to fifo pipe\n", getpid(), curFile->pathNoInputDir, bytesWritten);
             fflush(logFileP);
@@ -281,16 +326,22 @@ void writerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
             //     kill(getppid(), SIGUSR1);
             //     exit(1);
             // }
-            if (close(fd) == -1) {
+            if (close(curFd) == -1) {
                 perror("close failed");
                 handleExit(1, SIGUSR2);
             }
         } else {
+tryWrite(fifoFd, &curFile->contentsSize, 4);
+        fprintf(logFileP, "Writer with pid %d wrote 4 bytes of metadata to fifo pipe\n", getpid());
+        fflush(logFileP);
+
             fprintf(logFileP, "Writer with pid %d sent file with path \"%s\" and wrote %d bytes to fifo pipe\n", getpid(), curFile->pathNoInputDir, 0);
             fflush(logFileP);
         }
         curFile = curFile->nextFile;
     }
+
+    removeFileOrDir(tmpEncryptedFilePath);
 
     int end = 0;
     tryWrite(fifoFd, &end, 2);

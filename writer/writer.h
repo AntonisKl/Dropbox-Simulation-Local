@@ -6,7 +6,7 @@
 static FileList* inputFileList;
 static FILE* logFileP = NULL;
 static char* tempFileContents = NULL;
-static int clientPid, fifoFd = -1;
+static int clientPid, fifoFd = -1, curFd = -1;
 
 void handleArgs(int argc, char** argv, FileList** fileList, int* clientIdFrom, int* clientIdTo, char** commonDirName, int* bufferSize, char** logFileName,
                 int* clientPid);

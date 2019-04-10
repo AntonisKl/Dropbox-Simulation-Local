@@ -19,6 +19,8 @@
 
 #include "../file_list/file_list.h"
 
+#define GPG_ENCRYPTION_ON 0
+
 #define ANSI_COLOR_RED "\x1b[31m"
 #define ANSI_COLOR_GREEN "\x1b[32m"
 #define ANSI_COLOR_YELLOW "\x1b[33m"
@@ -32,6 +34,8 @@
 #define MAX_FILE_LIST_NODE_STRING_SIZE MAX_STRING_INT_SIZE + 1 + (2 * PATH_MAX) + 1
 #define EMPTY_FILE_LIST_STRING "**"
 #define MAX_TEMP_FILELIST_FILE_NAME_SIZE 12 + MAX_STRING_INT_SIZE + 1  // TempFileList + int
+#define MIN_KEY_DETAILS_FILE_SIZE 141
+#define MAX_TMP_ENCRYPTED_FILE_PATH_SIZE 8 + MAX_STRING_INT_SIZE
 
 #define UNUSED(x) (void)(x)
 
@@ -59,6 +63,8 @@ void createDir(char* dirPath);
 
 void removeFileOrDir(char* path);
 
+void renameFile(char* pathFrom, char* pathTo);
+
 void buildIdFileName(char (*idFileFullName)[], char* commonDirName, int clientId);
 
 void createAndWriteToFile(char* fileName, char* contents);
@@ -72,6 +78,18 @@ void buildFifoFileName(char (*fifoFileName)[], int clientIdFrom, int clientIdTo)
 void fileListToString(FileList* fileList, char (*fileListS)[]);
 
 FileList* stringToFileList(char* fileListS);
+
+void createGpgKeyDetailsFile(int clientId, char (*fileName)[]);
+
+void generateGpgKey(char* keyDetailsPath);
+
+void importGpgPublicKey(char* filePath);
+
+void exportGpgPublicKey(char* outputFilePath, int clientId);
+
+void encryptFile(char* filePath, int recipientClientId, char* outputFilePath);
+
+void decryptFile(char* filePath, char* outputFilePath);
 
 void execReader(int clientIdFrom, int clientIdTo, char* commonDirName, char* mirrorDirName, int bufferSize, char* logFileName, char* tempFileListFileName,
                 unsigned long tempFileListSize, int clientPid);

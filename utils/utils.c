@@ -71,6 +71,23 @@ void removeFileOrDir(char* path) {
     return;
 }
 
+void renameFile(char* pathFrom, char* pathTo) {
+    int pid = fork();
+    if (pid == 0) {
+        char* args[] = {"mv", pathFrom, pathTo, NULL};
+        if (execvp(args[0], args) == -1) {
+            perror("execvp failed");
+            exit(1);
+        }
+    } else if (pid == -1) {
+        perror("fork error");
+        exit(1);
+    } else {
+        wait(NULL);
+    }
+    return;
+}
+
 void buildIdFileName(char (*idFilePath)[], char* commonDirName, int clientId) {
     // char idFilePath[strlen(commonDirName) + 1 + strlen(clientId) + 4];
     strcpy(*idFilePath, commonDirName);
@@ -207,6 +224,121 @@ FileList* stringToFileList(char* fileListS) {
     }
 
     return fileList;
+}
+
+void createGpgKeyDetailsFile(int clientId, char (*fileName)[]) {
+    sprintf(*fileName, "%s%d", "KeyDetails", clientId);
+
+    char contents[MIN_KEY_DETAILS_FILE_SIZE + (3 * MAX_STRING_INT_SIZE)];
+    sprintf(contents, "%s%d%s%d%s", "%no-protection\nKey-Type: default\nSubkey-Type: default\nName-Real: ", clientId, "\nName-Email: ", clientId, "@example.com\nExpire-Date: 0\n%commit\n%echo done");
+
+    createAndWriteToFile(*fileName, contents);
+
+    return;
+}
+
+void generateGpgKey(char* keyDetailsPath) {
+    printf("Generating gpg key-pair with details file with path: %s\n", keyDetailsPath);
+    int pid = fork();
+    if (pid == 0) {
+        char* args[] = {"gpg", "--always-trust", "--batch", "--generate-key", keyDetailsPath, NULL};
+        if (execvp(args[0], args) == -1) {
+            perror("execvp failed");
+            exit(1);
+        }
+    } else if (pid == -1) {
+        perror("fork error");
+        exit(1);
+    } else {
+        wait(NULL);
+    }
+
+    return;
+}
+
+void importGpgPublicKey(char* filePath) {
+    int pid = fork();
+    if (pid == 0) {
+        char* args[] = {"gpg", "--always-trust", "--quiet", "--no-verbose", "--import", filePath, NULL};
+        if (execvp(args[0], args) == -1) {
+            perror("execvp failed");
+            exit(1);
+        }
+    } else if (pid == -1) {
+        perror("fork error");
+        exit(1);
+    } else {
+        wait(NULL);
+    }
+
+    return;
+}
+
+void exportGpgPublicKey(char* outputFilePath, int clientId) {
+    char clientIdS[MAX_STRING_INT_SIZE];
+    sprintf(clientIdS, "%d", clientId);
+    char nameRealS[strlen(clientIdS) + 3];
+    sprintf(nameRealS, "%s", clientIdS);
+
+    printf("Exporting public key of name-real: %s in file with path: %s\n", nameRealS, outputFilePath);
+    int pid = fork();
+    if (pid == 0) {
+        char* args[] = {"gpg", "--always-trust", "--quiet", "--no-verbose", "--armor", "--output", outputFilePath, "--export", nameRealS, NULL};
+        if (execvp(args[0], args) == -1) {
+            perror("execvp failed");
+            exit(1);
+        }
+    } else if (pid == -1) {
+        perror("fork error");
+        exit(1);
+    } else {
+        wait(NULL);
+    }
+
+    return;
+}
+
+void encryptFile(char* filePath, int recipientClientId, char* outputFilePath) {
+    char clientIdS[MAX_STRING_INT_SIZE];
+    sprintf(clientIdS, "%d", recipientClientId);
+    char recipientNameRealS[strlen(clientIdS) + 3];
+    sprintf(recipientNameRealS, "%s", clientIdS);
+
+    // printf("Encrypting file with path: %s for recipient with id: %s and writing in file with path:%s\n", filePath, recipientNameRealS, outputFilePath);
+    int pid = fork();
+    if (pid == 0) {
+        char* args[] = {"gpg", "--always-trust", "--yes", "--quiet", "--no-verbose", "--output", outputFilePath, "--recipient", recipientNameRealS, "--armor", "--encrypt", filePath, NULL};
+        if (execvp(args[0], args) == -1) {
+            perror("execvp failed");
+            exit(1);
+        }
+    } else if (pid == -1) {
+        perror("fork error");
+        exit(1);
+    } else {
+        wait(NULL);
+    }
+
+    return;
+}
+
+void decryptFile(char* filePath, char* outputFilePath) {
+    // printf("Decrypting file with path: %s and writing in file with path:%s\n", filePath, outputFilePath);
+    int pid = fork();
+    if (pid == 0) {
+        char* args[] = {"gpg", "--always-trust", "--yes", "--quiet", "--no-verbose", "--output", outputFilePath, "--armor", "--decrypt", filePath, NULL};
+        if (execvp(args[0], args) == -1) {
+            perror("execvp failed");
+            exit(1);
+        }
+    } else if (pid == -1) {
+        perror("fork error");
+        exit(1);
+    } else {
+        wait(NULL);
+    }
+
+    return;
 }
 
 void execReader(int clientIdFrom, int clientIdTo, char* commonDirName, char* mirrorDirName, int bufferSize, char* logFileName, char* tempFileListFileName,

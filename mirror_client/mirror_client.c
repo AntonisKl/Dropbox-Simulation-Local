@@ -624,7 +624,33 @@ int main(int argc, char** argv) {
 
     char pidS[MAX_STRING_INT_SIZE];
     sprintf(pidS, "%d", getpid());
-    createAndWriteToFile(idFilePath, pidS);
+
+    if (GPG_ENCRYPTION_ON) {
+         // GPG INITIALIZATION START
+        char keyDetailsFileName[MAX_STRING_INT_SIZE + 10];
+        createGpgKeyDetailsFile(clientId, &keyDetailsFileName);
+        generateGpgKey(keyDetailsFileName);
+        exportGpgPublicKey(idFilePath, clientId);
+        removeFileOrDir(keyDetailsFileName);
+        // GPG INITIALIZATION END
+
+        file = fopen(idFilePath, "a");
+        if (file == NULL) {
+            perror("fopen failed");
+            exit(1);
+        }
+
+        fprintf(file, "\n%s", pidS);
+        fflush(file);
+
+        if (fclose(file) == EOF) {
+            perror("fclose failed");
+            exit(1);
+        }
+    } else {
+        createAndWriteToFile(idFilePath, pidS);
+    }
+    
     inputFileList = initFileList();
     populateFileList(inputFileList, inputDirName, "", 0);
 
