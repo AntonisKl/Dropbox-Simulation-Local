@@ -1,0 +1,1344 @@
+Client with pid 30261 and id 2 logged in succesfully
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 6 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 11 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 13 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/f" and wrote 6443 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 17 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 19 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 22 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/7n" and wrote 56958 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 28 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 37 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/HyW" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 12 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/HyW/BAhKrWs" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 21 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/HyW/BAhKrWs/ZwOCMmxV" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 25 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/HyW/BAhKrWs/ZwOCMmxV/9GH" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 31 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/HyW/BAhKrWs/ZwOCMmxV/9GH/HsRV7" and read 114665 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 31 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/HyW/BAhKrWs/ZwOCMmxV/9GH/aKJMz" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 34 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/HyW/BAhKrWs/ZwOCMmxV/9GH/aKJMz/PQ" and read 0 bytes from fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/0zU8eQF2" and wrote 33210 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 31 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 33 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 41 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/4v8rkow" and wrote 12817 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 42 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 51 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 37 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/HyW/BAhKrWs/ZwOCMmxV/9GH/aKJMz/PQ/24" and read 52489 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 37 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/HyW/BAhKrWs/ZwOCMmxV/9GH/aKJMz/PQ/Sm" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 40 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/HyW/BAhKrWs/ZwOCMmxV/9GH/aKJMz/PQ/Sm/mO" and read 98938 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 39 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/HyW/BAhKrWs/ZwOCMmxV/9GH/aKJMz/PQ/Sm/w" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 43 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/HyW/BAhKrWs/ZwOCMmxV/9GH/aKJMz/PQ/Sm/w/2nn" and read 85214 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 44 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/HyW/BAhKrWs/ZwOCMmxV/9GH/aKJMz/PQ/Sm/w/IDwl" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 52 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/HyW/BAhKrWs/ZwOCMmxV/9GH/aKJMz/PQ/Sm/w/IDwl/muKgRgT" and read 11647 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 53 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/HyW/BAhKrWs/ZwOCMmxV/9GH/aKJMz/PQ/Sm/w/IDwl/uVRhKnUk" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 62 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/HyW/BAhKrWs/ZwOCMmxV/9GH/aKJMz/PQ/Sm/w/IDwl/uVRhKnUk/YH5Vz0xO" and read 45600 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 61 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/HyW/BAhKrWs/ZwOCMmxV/9GH/aKJMz/PQ/Sm/w/IDwl/uVRhKnUk/YSOe9RY" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 67 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/HyW/BAhKrWs/ZwOCMmxV/9GH/aKJMz/PQ/Sm/w/IDwl/uVRhKnUk/YSOe9RY/53XEl" and read 0 bytes from fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/obmo7Bd4" and wrote 122051 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 44 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 47 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 54 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 61 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 66 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 73 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 71 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/HyW/BAhKrWs/ZwOCMmxV/9GH/aKJMz/PQ/Sm/w/IDwl/uVRhKnUk/YSOe9RY/53XEl/u0u" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 73 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/HyW/BAhKrWs/ZwOCMmxV/9GH/aKJMz/PQ/Sm/w/IDwl/uVRhKnUk/YSOe9RY/53XEl/u0u/n" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 75 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/HyW/BAhKrWs/ZwOCMmxV/9GH/aKJMz/PQ/Sm/w/IDwl/uVRhKnUk/YSOe9RY/53XEl/u0u/n/p" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 33 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/8LVUFn" and wrote 62971 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 68 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 72 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/6UA" and wrote 84382 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 73 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 79 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 received file with path "/HyW/BAhKrWs/ZwOCMmxV/9GH/aKJMz/w" and read 114810 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 23 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/0zzkI" and wrote 123281 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 75 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 77 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 received file with path "/HyW/BAhKrWs/ZwOCMmxV/f" and read 113938 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 20 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/HyW/BAhKrWs/i93AbtM" and read 39731 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 11 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/HyW/aWOZxK" and read 26477 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 5 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2" and read 0 bytes from fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/9" and wrote 58549 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 84 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 87 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 89 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 95 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 7 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/NUa8D" and wrote 8006 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 98 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 104 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/DMBc5" and wrote 47219 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 106 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 110 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 received file with path "/YXY2/a" and read 117855 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 11 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 18 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/FvpqQ4" and read 49982 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 18 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 22 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 28 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 32 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 35 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2" and read 0 bytes from fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/BGQ" and wrote 122252 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 110 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 112 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 120 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/GqA5RRQ" and wrote 19651 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 119 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE" and wrote 0 bytes to fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 121 bytes of metadata to fifo pipe
+Reader with pid 30267 read 38 bytes of metadata from fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 47 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 49 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5" and read 0 bytes from fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/J" and wrote 45337 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 122 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 125 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 128 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 54 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/2uES" and read 68843 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 53 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h" and read 0 bytes from fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/Tu" and wrote 25576 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 133 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 142 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 151 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 62 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/eHcToGNk" and read 81604 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 60 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 68 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Rw6GX18" and read 54559 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 68 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 75 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/56NzLG" and read 49492 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 74 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG" and read 0 bytes from fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/H3xvWCWt" and wrote 80044 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 148 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 155 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/0IjDpx" and wrote 26640 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 152 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 158 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 83 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/O7P8doxr" and read 16869 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 82 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 86 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 94 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/Bwg0p" and wrote 76516 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 161 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/P2v4PBhi" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 163 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/L0UwJNv" and read 124394 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 95 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/k3iPF9Qh" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 101 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/k3iPF9Qh/FqlF9" and read 8611 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 103 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/k3iPF9Qh/HpZWn4U" and read 0 bytes from fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/P2v4PBhi/4" and wrote 113947 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 164 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/P2v4PBhi/tj" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 167 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 109 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/k3iPF9Qh/HpZWn4U/Gy5Pn" and read 0 bytes from fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/P2v4PBhi/tj/Iy" and wrote 78447 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 173 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/P2v4PBhi/tj/zSXsPaGX" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 177 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 116 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/k3iPF9Qh/HpZWn4U/Gy5Pn/F45GeI" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 125 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/k3iPF9Qh/HpZWn4U/Gy5Pn/F45GeI/40YL7MRR" and read 0 bytes from fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/P2v4PBhi/tj/zSXsPaGX/ew8" and wrote 100169 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 182 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/P2v4PBhi/tj/zSXsPaGX/rHFVyowm" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 188 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/P2v4PBhi/tj/zSXsPaGX/rHFVyowm/IW0co" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 196 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/P2v4PBhi/tj/zSXsPaGX/rHFVyowm/IW0co/TpjqA9Z" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 199 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 131 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/k3iPF9Qh/HpZWn4U/Gy5Pn/F45GeI/40YL7MRR/PF1yR" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 134 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/P2v4PBhi/tj/zSXsPaGX/rHFVyowm/IW0co/TpjqA9Z/1T" and wrote 105267 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 205 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/P2v4PBhi/tj/zSXsPaGX/rHFVyowm/IW0co/TpjqA9Z/eP7mSAfu" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 214 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/P2v4PBhi/tj/zSXsPaGX/rHFVyowm/IW0co/TpjqA9Z/eP7mSAfu/AYfIVbvd" and wrote 49752 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 214 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/P2v4PBhi/tj/zSXsPaGX/rHFVyowm/IW0co/TpjqA9Z/eP7mSAfu/KiGNriLL" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 216 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/k3iPF9Qh/HpZWn4U/Gy5Pn/F45GeI/40YL7MRR/PF1yR/Xl" and read 109049 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 134 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/k3iPF9Qh/HpZWn4U/Gy5Pn/F45GeI/40YL7MRR/PF1yR/br" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 137 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/k3iPF9Qh/HpZWn4U/Gy5Pn/F45GeI/40YL7MRR/PF1yR/br/bA" and read 0 bytes from fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/P2v4PBhi/tj/zSXsPaGX/rHFVyowm/IW0co/TpjqA9Z/eP7mSAfu/KiGNriLL/k" and wrote 59317 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 223 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/P2v4PBhi/tj/zSXsPaGX/rHFVyowm/IW0co/TpjqA9Z/eP7mSAfu/KiGNriLL/n8Yr2aiS" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 231 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/P2v4PBhi/tj/zSXsPaGX/rHFVyowm/IW0co/TpjqA9Z/eP7mSAfu/KiGNriLL/n8Yr2aiS/ePqiar4" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 238 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/P2v4PBhi/tj/zSXsPaGX/rHFVyowm/IW0co/TpjqA9Z/eP7mSAfu/KiGNriLL/n8Yr2aiS/ePqiar4/dA0iNd" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 246 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/P2v4PBhi/tj/zSXsPaGX/rHFVyowm/IW0co/TpjqA9Z/eP7mSAfu/KiGNriLL/n8Yr2aiS/ePqiar4/dA0iNd/ETW2nz0" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 250 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/P2v4PBhi/tj/zSXsPaGX/rHFVyowm/IW0co/TpjqA9Z/eP7mSAfu/KiGNriLL/n8Yr2aiS/ePqiar4/dA0iNd/ETW2nz0/WvE" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 257 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/P2v4PBhi/tj/zSXsPaGX/rHFVyowm/IW0co/TpjqA9Z/eP7mSAfu/KiGNriLL/n8Yr2aiS/ePqiar4/dA0iNd/ETW2nz0/WvE/fVAjUa" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 259 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/P2v4PBhi/tj/zSXsPaGX/rHFVyowm/IW0co/TpjqA9Z/eP7mSAfu/KiGNriLL/n8Yr2aiS/ePqiar4/dA0iNd/ETW2nz0/WvE/fVAjUa/z" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 267 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/P2v4PBhi/tj/zSXsPaGX/rHFVyowm/IW0co/TpjqA9Z/eP7mSAfu/KiGNriLL/n8Yr2aiS/ePqiar4/dA0iNd/ETW2nz0/WvE/fVAjUa/z/kaSfUzi" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 269 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/P2v4PBhi/tj/zSXsPaGX/rHFVyowm/IW0co/TpjqA9Z/eP7mSAfu/KiGNriLL/n8Yr2aiS/ePqiar4/dA0iNd/ETW2nz0/WvE/fVAjUa/z/kaSfUzi/I" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 277 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/P2v4PBhi/tj/zSXsPaGX/rHFVyowm/IW0co/TpjqA9Z/eP7mSAfu/KiGNriLL/n8Yr2aiS/ePqiar4/dA0iNd/ETW2nz0/WvE/fVAjUa/z/kaSfUzi/I/zVPqQE9" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 282 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/P2v4PBhi/tj/zSXsPaGX/rHFVyowm/IW0co/TpjqA9Z/eP7mSAfu/KiGNriLL/n8Yr2aiS/ePqiar4/dA0iNd/ETW2nz0/WvE/fVAjUa/z/kaSfUzi/I/zVPqQE9/oEJy" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 228 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/P2v4PBhi/tj/zSXsPaGX/rHFVyowm/IW0co/TpjqA9Z/eP7mSAfu/KiGNriLL/n8Yr2aiS/mryz" and wrote 45053 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 194 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 141 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/k3iPF9Qh/HpZWn4U/Gy5Pn/F45GeI/40YL7MRR/PF1yR/br/bA/KEI" and read 87896 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 144 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/k3iPF9Qh/HpZWn4U/Gy5Pn/F45GeI/40YL7MRR/PF1yR/br/bA/VuDK4O" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 150 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/k3iPF9Qh/HpZWn4U/Gy5Pn/F45GeI/40YL7MRR/PF1yR/br/bA/VuDK4O/RfYfV" and read 57627 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 153 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/k3iPF9Qh/HpZWn4U/Gy5Pn/F45GeI/40YL7MRR/PF1yR/br/bA/VuDK4O/W90N6STH" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 159 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/k3iPF9Qh/HpZWn4U/Gy5Pn/F45GeI/40YL7MRR/PF1yR/br/bA/VuDK4O/W90N6STH/YeafD" and read 19115 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 156 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/k3iPF9Qh/HpZWn4U/Gy5Pn/F45GeI/40YL7MRR/PF1yR/br/bA/VuDK4O/W90N6STH/ar" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 163 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/k3iPF9Qh/HpZWn4U/Gy5Pn/F45GeI/40YL7MRR/PF1yR/br/bA/VuDK4O/W90N6STH/ar/LlGzjb" and read 15351 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 159 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/k3iPF9Qh/HpZWn4U/Gy5Pn/F45GeI/40YL7MRR/PF1yR/br/bA/VuDK4O/W90N6STH/ar/mz" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 166 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/k3iPF9Qh/HpZWn4U/Gy5Pn/F45GeI/40YL7MRR/PF1yR/br/bA/VuDK4O/W90N6STH/ar/mz/2VAHzv" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 171 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/k3iPF9Qh/HpZWn4U/Gy5Pn/F45GeI/40YL7MRR/PF1yR/br/bA/VuDK4O/W90N6STH/ar/mz/2VAHzv/69mG" and read 4964 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 175 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/k3iPF9Qh/HpZWn4U/Gy5Pn/F45GeI/40YL7MRR/PF1yR/br/bA/VuDK4O/W90N6STH/ar/mz/2VAHzv/p7hbjV9j" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 179 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/k3iPF9Qh/HpZWn4U/Gy5Pn/F45GeI/40YL7MRR/PF1yR/br/bA/VuDK4O/W90N6STH/ar/mz/2VAHzv/p7hbjV9j/dG0" and read 51041 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 164 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/k3iPF9Qh/HpZWn4U/Gy5Pn/F45GeI/40YL7MRR/PF1yR/br/bA/VuDK4O/W90N6STH/ar/mz/RCk7" and read 42837 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 140 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/k3iPF9Qh/HpZWn4U/Gy5Pn/F45GeI/40YL7MRR/PF1yR/br/meTYN" and read 69507 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 129 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/k3iPF9Qh/HpZWn4U/Gy5Pn/F45GeI/40YL7MRR/vTU" and read 92708 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 122 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/k3iPF9Qh/HpZWn4U/Gy5Pn/F45GeI/vFZbJ" and read 35471 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 117 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/k3iPF9Qh/HpZWn4U/Gy5Pn/vwRdGzo" and read 84040 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 108 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/Esx/k3iPF9Qh/HpZWn4U/YOVl" and read 23732 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 90 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/5/C7h/ytXEvk/Y9PS5iN/bTUhG/RlsZ70h/KvlCytv" and read 55782 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 56 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/3yyQwuwz/NwqcgCty" and read 46521 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 45 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/6C/Lzn9AR" and read 78063 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 38 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/P2v4PBhi/tj/zSXsPaGX/rHFVyowm/IW0co/ajd43" and wrote 87848 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 190 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/N2/9e" and read 87551 bytes from fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/mtQdVjUW/Ihvtd/oUT/P2v4PBhi/tj/zSXsPaGX/rHFVyowm/eQYEBoD" and wrote 35412 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 140 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 34 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/AQ/tujysf0/wSoueI" and wrote 15180 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 125 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/FRV/P" and read 47127 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 37 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/WE4KX/xehuTstE" and read 17597 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 27 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/8/J4EZZE/f2/wa" and wrote 101300 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 115 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/E4C/a4lp" and read 66348 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 27 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/J/l5Ivvane/OZGeCDv/kWM/Wawk" and wrote 81977 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 93 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/Wc/WR3EO" and wrote 17322 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 88 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 received file with path "/YXY2/uxssF/WXJnDY/WgzgcPBy" and read 115567 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 3 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3" and read 0 bytes from fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/IHZm/B/z6kD/v/fPUtC7Ew/uw7" and wrote 52419 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 65 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/HTTMcM/YDt" and wrote 82972 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 58 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 9 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ" and read 0 bytes from fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/DYRVWr/Mw9" and wrote 101279 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 55 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/0k/cMaRrPp" and wrote 24471 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 52 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/Y/EQ0kMpk3/q/uyZ4OJn" and wrote 85147 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 33 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 17 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA" and read 0 bytes from fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/S/tsMQIwpB/1T/j" and wrote 63748 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 26 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/EGZ0/shzij/d3DN5WEe" and wrote 124728 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 10 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 26 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr" and read 0 bytes from fifo pipe
+Writer with pid 30268 sent file with path "/7/jyj/uun" and wrote 45613 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 8 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/7/nm0P4" and wrote 20011 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 6 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 11 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 19 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 25 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 29 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 32 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/8Q" and read 9880 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 32 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 38 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/TnexM" and read 97689 bytes from fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/TJGmo" and wrote 78047 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Writer with pid 30268 wrote 27 bytes of metadata to fifo pipe
+Reader with pid 30267 read 34 bytes of metadata from fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs" and wrote 0 bytes to fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r" and read 0 bytes from fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 34 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 43 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/6FPPwnmT" and read 84611 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 43 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk" and read 0 bytes from fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/3xJZtA" and wrote 114094 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 29 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 31 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 39 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/0EAld2W" and wrote 38129 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 38 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 40 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 43 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 51 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 47 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 55 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/6091JSt" and read 12837 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 55 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 64 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/FkinBo11" and read 48309 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 60 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 69 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/8cMc72zM" and read 68301 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 69 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 78 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr" and read 0 bytes from fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/1BXOEjW" and wrote 75009 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 51 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 60 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 66 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 73 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 77 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 85 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 80 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 84 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/eod" and read 103548 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 88 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 94 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 96 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/Z" and read 82704 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 98 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/ejm" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 102 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/5w4V96k" and wrote 87026 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 79 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 82 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 91 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 100 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 107 bytes of metadata to fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/ejm/R3V" and read 26157 bytes from fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 109 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 117 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 119 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 104 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/ejm/y6cyN" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 109 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/ejm/y6cyN/5AtD" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 118 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/ejm/y6cyN/5AtD/EhyXogTG" and read 53517 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 114 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/ejm/y6cyN/5AtD/Qytt" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 120 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/ejm/y6cyN/5AtD/Qytt/VNbxC" and read 84137 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 117 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/ejm/y6cyN/5AtD/Qytt/pL" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 126 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/ejm/y6cyN/5AtD/Qytt/pL/SDOaIuZc" and read 112596 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 119 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/ejm/y6cyN/5AtD/Qytt/pL/Y" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 127 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/ejm/y6cyN/5AtD/Qytt/pL/Y/RlYiXgG" and read 0 bytes from fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/k" and wrote 111782 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 121 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 130 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 133 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 136 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/ejm/y6cyN/5AtD/Qytt/pL/Y/RlYiXgG/7RvK9Icy" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 144 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/ejm/y6cyN/5AtD/Qytt/pL/Y/RlYiXgG/7RvK9Icy/24gLLYO" and read 38254 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 141 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/ejm/y6cyN/5AtD/Qytt/pL/Y/RlYiXgG/7RvK9Icy/lUDK" and read 0 bytes from fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/s5" and wrote 68532 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 135 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 139 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 141 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 143 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 151 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1" and wrote 0 bytes to fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 153 bytes of metadata to fifo pipe
+Reader with pid 30267 read 147 bytes of metadata from fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k" and wrote 0 bytes to fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/ejm/y6cyN/5AtD/Qytt/pL/Y/RlYiXgG/7RvK9Icy/lUDK/2Ccxf" and read 0 bytes from fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 160 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 153 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/ejm/y6cyN/5AtD/Qytt/pL/Y/RlYiXgG/7RvK9Icy/lUDK/2Ccxf/DjfE6" and read 64941 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 153 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/ejm/y6cyN/5AtD/Qytt/pL/Y/RlYiXgG/7RvK9Icy/lUDK/2Ccxf/Sil9T" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 158 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/ejm/y6cyN/5AtD/Qytt/pL/Y/RlYiXgG/7RvK9Icy/lUDK/2Ccxf/Sil9T/3kEi" and read 2386 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 157 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/ejm/y6cyN/5AtD/Qytt/pL/Y/RlYiXgG/7RvK9Icy/lUDK/2Ccxf/Sil9T/D7x" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 163 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/ejm/y6cyN/5AtD/Qytt/pL/Y/RlYiXgG/7RvK9Icy/lUDK/2Ccxf/Sil9T/D7x/DhCWC" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 168 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/ejm/y6cyN/5AtD/Qytt/pL/Y/RlYiXgG/7RvK9Icy/lUDK/2Ccxf/Sil9T/D7x/DhCWC/QK6T" and read 34470 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 165 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/ejm/y6cyN/5AtD/Qytt/pL/Y/RlYiXgG/7RvK9Icy/lUDK/2Ccxf/Sil9T/D7x/DhCWC/W" and read 0 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 169 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/2Ugup0" and wrote 117787 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 155 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 158 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 165 bytes of metadata to fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/ejm/y6cyN/5AtD/Qytt/pL/Y/RlYiXgG/7RvK9Icy/lUDK/2Ccxf/Sil9T/D7x/DhCWC/W/uHB" and read 37755 bytes from fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 168 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 175 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 181 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 160 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/ejm/y6cyN/5AtD/Qytt/pL/Y/RlYiXgG/7RvK9Icy/lUDK/2Ccxf/Sil9T/D7x/LP" and read 77868 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 143 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/ejm/y6cyN/5AtD/Qytt/pL/Y/RlYiXgG/7RvK9Icy/lUDK/3" and read 74140 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 132 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/ejm/y6cyN/5AtD/Qytt/pL/Y/RlYiXgG/qi6h" and read 46271 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 125 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/ejm/y6cyN/5AtD/Qytt/pL/Y/ijlea" and read 122343 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 109 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/DpPCV/ejm/y6cyN/Y2BC" and read 32159 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 96 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/7/i2pzUXu/vEwvohY" and read 96915 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 84 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/bMzLUFvr/DS15s" and read 84226 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 75 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/6Lx/Z3sanpx/OTnj/iwNm69uG/oJD1D" and read 90937 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 46 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/G4/x7/r/o59gSugk/hx" and read 60169 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 31 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/55ULp0zr/Gotz" and read 60105 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 25 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/59uo1jA/ZbxvcYD" and read 32194 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 11 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/DuSuJ/h" and read 10044 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Reader with pid 30267 read 6 bytes of metadata from fifo pipe
+Reader with pid 30267 read 4 bytes of metadata from fifo pipe
+Reader with pid 30267 received file with path "/h3/Nl" and read 44555 bytes from fifo pipe
+Reader with pid 30267 read 2 bytes of metadata from fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/E8l72" and wrote 68807 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 177 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 185 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 187 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/C" and wrote 86892 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 189 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/cPc" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 192 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/cPc/E9" and wrote 24938 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 194 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/cPc/oGfe" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 196 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/cPc/oGfe/9" and wrote 3799 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 199 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/cPc/oGfe/gyC2" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 206 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/cPc/oGfe/gyC2/Bbcy5U" and wrote 127485 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 208 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/cPc/oGfe/gyC2/o7yDIPZ6" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 211 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/cPc/oGfe/gyC2/o7yDIPZ6/8b" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 213 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/cPc/oGfe/gyC2/o7yDIPZ6/8b/F" and wrote 52113 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 217 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/cPc/oGfe/gyC2/o7yDIPZ6/8b/iULCb" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 220 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/cPc/oGfe/gyC2/o7yDIPZ6/8b/iULCb/K4" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 223 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/cPc/oGfe/gyC2/o7yDIPZ6/8b/iULCb/K4/AM" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 227 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/cPc/oGfe/gyC2/o7yDIPZ6/8b/iULCb/K4/AM/TvX" and wrote 24223 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 226 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/cPc/oGfe/gyC2/o7yDIPZ6/8b/iULCb/K4/AM/kT" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 235 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/cPc/oGfe/gyC2/o7yDIPZ6/8b/iULCb/K4/AM/kT/AlZCYfrF" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 241 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/cPc/oGfe/gyC2/o7yDIPZ6/8b/iULCb/K4/AM/kT/AlZCYfrF/dNVbK" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 246 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/cPc/oGfe/gyC2/o7yDIPZ6/8b/iULCb/K4/AM/kT/AlZCYfrF/dNVbK/CC8J" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 254 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/cPc/oGfe/gyC2/o7yDIPZ6/8b/iULCb/K4/AM/kT/AlZCYfrF/dNVbK/CC8J/6uZFxCN" and wrote 27047 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 248 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/cPc/oGfe/gyC2/o7yDIPZ6/8b/iULCb/K4/AM/kT/AlZCYfrF/dNVbK/CC8J/m" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 253 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/cPc/oGfe/gyC2/o7yDIPZ6/8b/iULCb/K4/AM/kT/AlZCYfrF/dNVbK/CC8J/m/rfy5" and wrote 54096 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 256 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/cPc/oGfe/gyC2/o7yDIPZ6/8b/iULCb/K4/AM/kT/AlZCYfrF/dNVbK/CC8J/m/uXZYukG" and wrote 0 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 264 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/cPc/oGfe/gyC2/o7yDIPZ6/8b/iULCb/K4/AM/kT/AlZCYfrF/dNVbK/CC8J/m/uXZYukG/90v0ilJ" and wrote 125396 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 248 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/cPc/oGfe/gyC2/o7yDIPZ6/8b/iULCb/K4/AM/kT/AlZCYfrF/dNVbK/iprVMn" and wrote 49435 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 239 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/cPc/oGfe/gyC2/o7yDIPZ6/8b/iULCb/K4/AM/kT/AlZCYfrF/rY4" and wrote 94376 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 229 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/cPc/oGfe/gyC2/o7yDIPZ6/8b/iULCb/K4/AM/kT/Mm" and wrote 60641 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 227 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/cPc/oGfe/gyC2/o7yDIPZ6/8b/iULCb/K4/l15CpO" and wrote 56215 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 221 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/cPc/oGfe/gyC2/o7yDIPZ6/8b/iULCb/KSq" and wrote 113144 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 217 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/5vFOzMN/cPc/oGfe/gyC2/o7yDIPZ6/VASt0hYv" and wrote 110035 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 181 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/QBeq21/L/8VC" and wrote 10732 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 174 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/Fj/SJY5W" and wrote 29831 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 167 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/1Bn5PL/e" and wrote 10359 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 167 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Za/qvDUsj18" and wrote 45217 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 159 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/k/5/Zef" and wrote 36351 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 158 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/Seu63L1/paWUFK" and wrote 100963 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 145 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/p/h" and wrote 97308 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 143 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/P/q" and wrote 5320 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 141 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/Avd/h" and wrote 91102 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 138 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/QzfQ2LVg/vWkW/bz" and wrote 35607 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 125 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/1FF0OJo/xrv/gpA" and wrote 15928 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 112 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/l/HQ" and wrote 112252 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 114 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/310g8t/zNuRJB" and wrote 67759 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 103 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/5Q9XheGC/p8" and wrote 54511 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 97 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/LYcmUgJr/JGsm8" and wrote 83927 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 90 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/id/cjUNMEc" and wrote 13924 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 81 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/cps/j/x" and wrote 51516 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 82 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/91GKH3/psCt3h6n" and wrote 64503 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 70 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/aoWJP/fdy" and wrote 78607 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 68 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/AtVxaqiV/nJr76pU" and wrote 114663 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 56 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/HJ/eS2Fdwj/kuaN" and wrote 123582 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 42 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/q/N" and wrote 47806 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 45 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/Z/zEnb5d/rFqDPl" and wrote 49889 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 37 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/YnEP6AM/g3im8Cs/n/kjXSnye" and wrote 89342 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 14 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/LYw8/Zf" and wrote 76118 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 12 bytes of metadata to fifo pipe
+Writer with pid 30268 wrote 4 bytes of metadata to fifo pipe
+Writer with pid 30268 sent file with path "/UOS3O/ph0NH" and wrote 119731 bytes to fifo pipe
+Writer with pid 30268 wrote 2 bytes of metadata to fifo pipe
+Client with pid 30261 and id 2 exited succesfully

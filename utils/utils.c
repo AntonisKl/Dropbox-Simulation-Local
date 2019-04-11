@@ -1,10 +1,5 @@
 #include "utils.h"
 
-void raiseIntAndExit(int num) {
-    raise(SIGINT);
-    exit(num);
-}
-
 void printErrorLn(char* s) {
     printf(ANSI_COLOR_RED "%s" ANSI_COLOR_RESET "\n", s);
 
@@ -14,32 +9,37 @@ void printErrorLn(char* s) {
 void printErrorLnExit(char* s) {
     printf(ANSI_COLOR_RED "%s" ANSI_COLOR_RESET "\n", s);
     raise(SIGINT);
+
+    return;
 }
 
 char dirExists(char* dirName) {
     char returnValue = 0;
     DIR* dir = opendir(dirName);
     if (dir) {
+        // directory exists
         returnValue = 1;
-        /* Directory exists. */
         closedir(dir);
     }
 
+    // directory does not exist
     return returnValue;
 }
 
 char fileExists(char* fileName) {
     if (access(fileName, F_OK) != -1) {
+        // file exists
         return 1;
     }
 
+    // file does not exist
     return 0;
 }
 
 void createDir(char* dirPath) {
     int pid = fork();
     if (pid == 0) {
-        char* args[] = {"mkdir", "-p", dirPath, NULL};
+        char* args[] = {"mkdir", "-p", dirPath, NULL};  // -p parameter is used to create the whole directory structure if it does not exist
         if (execvp(args[0], args) == -1) {
             perror("execvp failed");
             exit(1);
@@ -89,17 +89,18 @@ void renameFile(char* pathFrom, char* pathTo) {
 }
 
 void buildIdFileName(char (*idFilePath)[], char* commonDirName, int clientId) {
-    // char idFilePath[strlen(commonDirName) + 1 + strlen(clientId) + 4];
     strcpy(*idFilePath, commonDirName);
     strcat(*idFilePath, "/");
     char clientIdS[MAX_STRING_INT_SIZE];
     sprintf(clientIdS, "%d", clientId);
     strcat(*idFilePath, clientIdS);
     strcat(*idFilePath, ".id");
+
+    return;
 }
 
 void createAndWriteToFile(char* fileName, char* contents) {
-    FILE* file = fopen(fileName, "w");
+    FILE* file = fopen(fileName, "w");  // overwrite if file exists
     if (file == NULL) {
         perror("fopen failed");
         exit(1);
@@ -117,7 +118,8 @@ void createAndWriteToFile(char* fileName, char* contents) {
 
 char isIdFile(char* fileName) {
     char curNameCopy[NAME_MAX];
-    strcpy(curNameCopy, fileName);
+    strcpy(curNameCopy, fileName);  // make a copy of fileName to manipulate it with strtok
+
     char* token = strtok(curNameCopy, ".");
     if (token == NULL)
         return 0;
@@ -129,9 +131,8 @@ char isIdFile(char* fileName) {
 
     if (strcmp(token, "id"))  // not a .id file
         return 0;
-    printf("last token1: %s\n", token);
 
-    return 1;  // is an .id file
+    return 1;  // is a .id file
 }
 
 char isSameIdFile(char* fileName, int clientId) {
@@ -152,43 +153,31 @@ char isSameIdFile(char* fileName, int clientId) {
     if (strcmp(token2, "id"))  // not a .id file
         return 0;
 
-    if (strcmp(token1, clientIdS))
+    if (strcmp(token1, clientIdS))  // not the id file of client with id clientId
         return 0;
 
-    return 1;
+    return 1;  // is the id file of client with id clientId
 }
 
 void buildFifoFileName(char (*fifoFileName)[], int clientIdFrom, int clientIdTo) {
-    char clientIdFromS[MAX_STRING_INT_SIZE], clientIdToS[MAX_STRING_INT_SIZE];
-    sprintf(clientIdFromS, "%d", clientIdFrom);
-    sprintf(clientIdToS, "%d", clientIdTo);
+    sprintf(*fifoFileName, "%d_to_%d.fifo", clientIdFrom, clientIdTo);
 
-    strcpy(*fifoFileName, clientIdFromS);
-    strcat(*fifoFileName, "_to_");
-    strcat(*fifoFileName, clientIdToS);
-    strcat(*fifoFileName, ".fifo");
+    return;
 }
 
 void fileListToString(FileList* fileList, char (*fileListS)[]) {
-    printf("heey\n\n");
-    // char* fileListS = (char*)malloc(fileList->size * MAX_FILE_LIST_NODE_STRING_SIZE);
     strcpy(*fileListS, "");
 
     File* curFile = fileList->firstFile;
     while (curFile != NULL) {
-        // char* contentsSizeS, *typeS;
-        // sprintf(contentsSizeS, "%ld", curFile->contentsSize);
-        // sprintf(typeS, "%d", curFile->type);
-        // printf("in while\n");
-        printf("curFile full path: %s\n", curFile->path);
+        // convert fileList's node to string and concatenate it to fileListS
         sprintf(*fileListS, "%s%s$%s$%ld$%d&", *fileListS, curFile->pathNoInputDir, curFile->path, curFile->contentsSize, curFile->type);
 
         curFile = curFile->nextFile;
     }
-    printf("hello\n");
 
     if (!strcmp(*fileListS, "")) {
-        // fileListS = (char*)malloc(3);
+        // if file list is empty add the symbol that represents an empty file list string
         strcpy(*fileListS, EMPTY_FILE_LIST_STRING);
     }
 
@@ -227,9 +216,10 @@ FileList* stringToFileList(char* fileListS) {
 }
 
 void createGpgKeyDetailsFile(int clientId, char (*fileName)[]) {
-    sprintf(*fileName, "%s%d", "KeyDetails", clientId);
+    sprintf(*fileName, "%s%d", "tmp/KeyDetails", clientId);
 
     char contents[MIN_KEY_DETAILS_FILE_SIZE + (3 * MAX_STRING_INT_SIZE)];
+    // use clientId as name, email and passphrase
     sprintf(contents, "%s%d%s%d%s%d%s", "Key-Type: default\nSubkey-Type: default\nName-Real: ", clientId, "\nName-Email: ", clientId, "@example.com\nExpire-Date: 0\nPassphrase: ", clientId, "\n%commit\n%echo done");
 
     createAndWriteToFile(*fileName, contents);
@@ -259,6 +249,7 @@ void generateGpgKey(char* keyDetailsPath) {
 void importGpgPublicKey(char* filePath) {
     int pid = fork();
     if (pid == 0) {
+        // --no-verbose parameter is used for no output unless something goes wrong
         char* args[] = {"gpg", "--always-trust", "--quiet", "--no-verbose", "--import", filePath, NULL};
         if (execvp(args[0], args) == -1) {
             perror("execvp failed");
@@ -283,6 +274,7 @@ void exportGpgPublicKey(char* outputFilePath, int clientId) {
     printf("Exporting public key of name-real: %s in file with path: %s\n", nameRealS, outputFilePath);
     int pid = fork();
     if (pid == 0) {
+        // --armor parameter is used to export public key in ASCII encoding
         char* args[] = {"gpg", "--always-trust", "--quiet", "--no-verbose", "--armor", "--output", outputFilePath, "--export", nameRealS, NULL};
         if (execvp(args[0], args) == -1) {
             perror("execvp failed");
@@ -307,6 +299,7 @@ void encryptFile(char* filePath, int recipientClientId, char* outputFilePath) {
     // printf("Encrypting file with path: %s for recipient with id: %s and writing in file with path:%s\n", filePath, recipientNameRealS, outputFilePath);
     int pid = fork();
     if (pid == 0) {
+        // --armor parameter is used to encrypt a file and produce output that uses ASCII encoding
         char* args[] = {"gpg", "--always-trust", "--yes", "--quiet", "--no-verbose", "--output", outputFilePath, "--recipient", recipientNameRealS, "--armor", "--encrypt", filePath, NULL};
         if (execvp(args[0], args) == -1) {
             perror("execvp failed");
@@ -328,7 +321,8 @@ void decryptFile(char* filePath, char* outputFilePath, int clientId) {
     // printf("Decrypting file with path: %s and writing in file with path:%s\n", filePath, outputFilePath);
     int pid = fork();
     if (pid == 0) {
-        char* args[] = {"gpg", "--batch", "--always-trust", "--yes", "--quiet", "--no-verbose", "--passphrase", clientIdS, "--output", outputFilePath, "--armor", "--decrypt", filePath, NULL};
+        // --armor parameter is used to decrypt an encrypted file that uses ASCII encoding
+        char* args[] = {"gpg","--pinentry-mode", "loopback", "--batch", "--always-trust", "--yes", "--quiet", "--no-verbose", "--passphrase", clientIdS, "--output", outputFilePath, "--armor", "--decrypt", filePath, NULL};
         if (execvp(args[0], args) == -1) {
             perror("execvp failed");
             exit(1);
@@ -343,19 +337,15 @@ void decryptFile(char* filePath, char* outputFilePath, int clientId) {
     return;
 }
 
-void execReader(int clientIdFrom, int clientIdTo, char* commonDirName, char* mirrorDirName, int bufferSize, char* logFileName, char* tempFileListFileName,
-                unsigned long tempFileListSize, int clientPid) {
-    char clientIdFromS[MAX_STRING_INT_SIZE], clientIdToS[MAX_STRING_INT_SIZE], bufferSizeS[MAX_STRING_INT_SIZE], tempFileListSizeS[MAX_STRING_INT_SIZE],
-        clientPidS[MAX_STRING_INT_SIZE];
+void execReader(int clientIdFrom, int clientIdTo, char* commonDirName, char* mirrorDirName, int bufferSize, char* logFileName) {
+    char clientIdFromS[MAX_STRING_INT_SIZE], clientIdToS[MAX_STRING_INT_SIZE], bufferSizeS[MAX_STRING_INT_SIZE];
 
-    printf("---------------------------------------- %d\n", clientIdFrom);
+    // prepare string arguments
     sprintf(clientIdFromS, "%d", clientIdFrom);
     sprintf(clientIdToS, "%d", clientIdTo);
     sprintf(bufferSizeS, "%d", bufferSize);
-    sprintf(tempFileListSizeS, "%lu", tempFileListSize);
-    sprintf(clientPidS, "%d", clientPid);
 
-    char* args[] = {"exe/reader", tempFileListFileName, tempFileListSizeS, clientIdFromS, clientIdToS, commonDirName, mirrorDirName, bufferSizeS, logFileName, clientPidS, NULL};
+    char* args[] = {"exe/reader", clientIdFromS, clientIdToS, commonDirName, mirrorDirName, bufferSizeS, logFileName, NULL};
     if (execvp(args[0], args) < 0) {
         printf("Exec reader failed\n");
     }
@@ -364,17 +354,16 @@ void execReader(int clientIdFrom, int clientIdTo, char* commonDirName, char* mir
 }
 
 void execWriter(int clientIdFrom, int clientIdTo, char* commonDirName, int bufferSize, char* logFileName, char* tempFileListFileName,
-                unsigned long tempFileListSize, int clientPid) {
-    char clientIdFromS[MAX_STRING_INT_SIZE], clientIdToS[MAX_STRING_INT_SIZE], bufferSizeS[MAX_STRING_INT_SIZE], tempFileListSizeS[MAX_STRING_INT_SIZE],
-        clientPidS[MAX_STRING_INT_SIZE];
+                unsigned long tempFileListSize) {
+    char clientIdFromS[MAX_STRING_INT_SIZE], clientIdToS[MAX_STRING_INT_SIZE], bufferSizeS[MAX_STRING_INT_SIZE], tempFileListSizeS[MAX_STRING_INT_SIZE];
 
+    // prepare string arguments
     sprintf(clientIdFromS, "%d", clientIdFrom);
     sprintf(clientIdToS, "%d", clientIdTo);
     sprintf(bufferSizeS, "%d", bufferSize);
     sprintf(tempFileListSizeS, "%lu", tempFileListSize);
-    sprintf(clientPidS, "%d", clientPid);
 
-    char* args[] = {"exe/writer", tempFileListFileName, tempFileListSizeS, clientIdFromS, clientIdToS, commonDirName, bufferSizeS, logFileName, clientPidS, NULL};
+    char* args[] = {"exe/writer", tempFileListFileName, tempFileListSizeS, clientIdFromS, clientIdToS, commonDirName, bufferSizeS, logFileName, NULL};
     if (execvp(args[0], args) < 0) {
         printf("Exec writer failed\n");
     }
