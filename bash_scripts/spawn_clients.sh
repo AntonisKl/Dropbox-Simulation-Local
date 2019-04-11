@@ -1,11 +1,12 @@
 #!/bin/bash
 
-if [[ "$#" -ne 2 ]]; then
+if [[ "$#" -ne 3 ]]; then
     echo "Illegal number of parameters";  exit 1
 fi
 
 clientsNum=$1
 delay=$2
+bufferSize=$3
 
 pkill -f mirror_client
 
@@ -17,8 +18,8 @@ sleep 2
 
 for ((i=1; i<=$clientsNum; i++));
 do
-    inputDirNum=$(($i%2 + 1))
-    gnome-terminal --window-with-profile=test --working-directory=/home/antonis/Documents/syspro2/ -e "./exe/mirror_client -n $i -c common -i input$inputDirNum -m mirror$i -b 1000 -l log$i.txt"
+    inputDirNum=$((($i - 1)%2 + 1))
+    gnome-terminal --window-with-profile=test --working-directory=/home/antonis/Documents/syspro2/ -e "./exe/mirror_client -n $i -c common -i input$inputDirNum -m mirror$i -b $bufferSize -l log$i.txt"
     sleep $delay
 done
 

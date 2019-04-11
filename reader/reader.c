@@ -1,89 +1,18 @@
 #include "reader.h"
 
-static char *filePath = NULL, *filePathSizeS = NULL, *fileContentsSizeS = NULL, *tempFileContents = NULL;
-
-void handleArgs(int argc, char** argv, FileList** fileList, int* clientIdFrom, int* clientIdTo, char** commonDirName, char** mirrorDirName, int* bufferSize, char** logFileName,
-                int* clientPid) {
+void handleArgs(int argc, char** argv, int* clientIdFrom, int* clientIdTo, char** commonDirName, char** mirrorDirName, int* bufferSize, char** logFileName) {
     // validate argument count
-    if (argc != 10) {
+    if (argc != 7) {
         printErrorLnExit("Invalid arguments. Exiting...");
     }
 
-    printf("handling args reader\n");
-
-    // validate input arguments one by one
-    // if (strcmp(argv[1], "-n") == 0) {
-    // (*clientId) = atoi(argv[2]);
-    // if ((*clientId) <= 0) {
-    //     printError("Invalid arguments\nExiting...\n");
-    //     raiseIntAndExit(1);
-    // }
-    // } else {
-    //     printErrorLnExit("Invalid arguments\nExiting...");
-    // }
-    FILE* fp = fopen(argv[1], "r");
-    char* endptr;
-    unsigned long fileBufferSize = strtol(argv[2], &endptr, 10) + 1;
-    tempFileContents = (char*)malloc(fileBufferSize);
-    fgets(tempFileContents, fileBufferSize, fp);
-    fclose(fp);
-
-    if (!strcmp(tempFileContents, EMPTY_FILE_LIST_STRING)) {
-        (*fileList) = initFileList();
-    } else {
-        (*fileList) = stringToFileList(tempFileContents);
-    }
-    free(tempFileContents);
-    tempFileContents = NULL;
-
-    printf("---->Reader with pid %d got list with size %u: \n\n", getpid(), (*fileList)->size);
-    // File* tempFile = (*fileList)->firstFile;
-    // while (tempFile != NULL) {
-    //     printf("file path: %s\n", tempFile->path);
-
-    //     tempFile = tempFile->nextFile;
-    // }
-
-    (*clientIdFrom) = atoi(argv[3]);
-    (*clientIdTo) = atoi(argv[4]);
-    (*commonDirName) = argv[5];
-    (*mirrorDirName) = argv[6];
-    (*bufferSize) = atoi(argv[7]);
-    (*logFileName) = argv[8];
-    (*clientPid) = atoi(argv[9]);
-
-    // if (strcmp(argv[3], "-c") == 0) {
-    //     (*commonDirName) = argv[4];
-    // } else {
-    //     printErrorLnExit("Invalid arguments\nExiting...");
-    // }
-
-    // if (strcmp(argv[5], "-i") == 0) {
-    //     (*inputDirName) = argv[6];
-    // } else {
-    //     printErrorLnExit("Invalid arguments\nExiting...");
-    // }
-
-    // if (strcmp(argv[7], "-m") == 0) {
-    //     (*mirrorDirName) = argv[8];
-    // } else {
-    //     printErrorLnExit("Invalid arguments\nExiting...");
-    // }
-
-    // if (strcmp(argv[9], "-b") == 0) {
-    //     (*bufferSize) = atoi(argv[10]);
-    //     if ((*bufferSize) <= 0) {
-    //         printErrorLnExit("Invalid arguments\nExiting...");
-    //     }
-    // } else {
-    //     printErrorLnExit("Invalid arguments\nExiting...");
-    // }
-
-    // if (strcmp(argv[11], "-l") == 0) {
-    //     (*logFileName) = argv[12];
-    // } else {
-    //     printErrorLnExit("Invalid arguments\nExiting...");
-    // }
+    // assume that all arguments are valid
+    (*clientIdFrom) = atoi(argv[1]);
+    (*clientIdTo) = atoi(argv[2]);
+    (*commonDirName) = argv[3];
+    (*mirrorDirName) = argv[4];
+    (*bufferSize) = atoi(argv[5]);
+    (*logFileName) = argv[6];
 
     return;
 }
@@ -94,38 +23,34 @@ void handleExit(int exitValue, int parentSignal) {
         filePath = NULL;
     }
 
-    if (filePathSizeS != NULL) {
-        free(filePathSizeS);
-        filePathSizeS = NULL;
-    }
-
-    if (fileContentsSizeS != NULL) {
-        free(fileContentsSizeS);
-        fileContentsSizeS = NULL;
-    }
-
-    if (tempFileContents != NULL) {
-        free(tempFileContents);
-        tempFileContents = NULL;
-    }
-
-    freeFileList(&inputFileList);
-
+    // try to close log file
     if (logFileP != NULL && fclose(logFileP) == EOF) {
         perror("fclose failed");
+        if (parentSignal != 0) {
+            // send signal to parent process which is a subprocess of client
+            kill(getppid(), parentSignal);
+        }
         exit(1);
     }
 
+    // try to close fifo
     if (fifoFd >= 0 && close(fifoFd) == -1) {
         perror("close failed");
-        handleExit(1, SIGUSR2);
+        if (parentSignal != 0) {
+            // send signal to parent process which is a subprocess of client
+            kill(getppid(), parentSignal);
+        }
+        exit(1);
     }
+    // reset fifoFd
+    fifoFd = -1;
 
-    // printf("client pid: %d\n", clientPid);
     if (parentSignal != 0) {
+        // send signal to parent process which is a subprocess of client
         kill(getppid(), parentSignal);
     }
 
+    // exit with exitValue as status
     exit(exitValue);
 }
 
@@ -133,28 +58,7 @@ void handleSigAlarm(int signal) {
     if (signal != SIGALRM) {
         printErrorLn("Reader caught wrong signal instead of SIGALRM");
     }
-    printf("Reader process with id %d caught SIGALRM, waited more than 30 seconds to read from pipe\n", getpid());
-
-    // if (filePath != NULL) {
-    //     free(filePath);
-    //     filePath = NULL;
-    // }
-    // if (filePathSizeS != NULL) {
-    //     free(filePathSizeS);
-    //     filePathSizeS = NULL;
-    // }
-    // if (fileContentsSizeS != NULL) {
-    //     free(fileContentsSizeS);
-    //     fileContentsSizeS = NULL;
-    // }
-
-    // freeFileList(&inputFileList);
-    // if (fclose(logFileP) == EOF) {
-    //     perror("fclose failed");
-    //     exit(1);
-    // }
-
-    // kill(getppid(), SIGUSR1);
+    printf("Reader process with pid %d caught SIGALRM\n", getpid());
 
     handleExit(1, SIGUSR1);
 }
@@ -163,13 +67,13 @@ void handleSigInt(int signal) {
     if (signal != SIGINT) {
         printErrorLn("Reader caught wrong signal instead of SIGINT");
     }
-    printf("Reader process with id %d caught SIGINT\n", getpid());
+    printf("Reader process with pid %d caught SIGINT\n", getpid());
 
     handleExit(1, 0);
 }
 
 void handleSignals(int signal) {
-    // Find out which signal we're handling
+    // find out which signal we're handling
     switch (signal) {
         case SIGALRM:
             handleSigAlarm(signal);
@@ -185,63 +89,65 @@ void handleSignals(int signal) {
 
 void trySelect(int fifoFd) {
     struct timeval timeStruct;
-    timeStruct.tv_sec = 30;
+    timeStruct.tv_sec = 30;  // 30 seconds
     timeStruct.tv_usec = 0;
 
     fd_set readFdSet;
     FD_ZERO(&readFdSet);
-    FD_SET(fifoFd, &readFdSet);
+    FD_SET(fifoFd, &readFdSet);  // add only one file descriptor to the set
 
-    // printErrorLn("BEEEEEEEEEEEEEEEEEEEEEEEEEEEEEFORE SELECT");
+    // block until fifoFd is available for read
     int selectRetValue = select(FD_SETSIZE, &readFdSet, NULL, NULL, &timeStruct);
-    // printErrorLn("AAAAAAAAAAAAAAAAAAAAAAFTER SELECT");
 
-    if (selectRetValue == -1)
+    if (selectRetValue == -1) {
+        // error handling
         perror("select error");
-    else if (selectRetValue == 0) {
-        printErrorLn("No data in fifo after 30 seconds.");
+        handleExit(1, SIGUSR1);
+    } else if (selectRetValue == 0) {  // timeout ended
+        printErrorLn("No data in fifo after 30 seconds");
         raise(SIGALRM);
     }
 
     return;  // reader can now read from fifo
 }
 
-int tryRead(int fd, void* buffer, int bufferSize) {
+void tryRead(int fd, void* buffer, int bufferSize) {
     int returnValue, tempBufferSize = bufferSize, progress = 0;
 
     trySelect(fd);
     returnValue = read(fd, buffer, tempBufferSize);
-    while (returnValue < tempBufferSize && returnValue != 0) {
+    while (returnValue < tempBufferSize && returnValue != 0) {  // rare case
+        // not all desired bytes were read, so read the remaining bytes and add them to buffer
         if (returnValue == -1) {
             perror("read error");
             handleExit(1, SIGUSR1);
         }
 
-        //printf("+++++++++++++++++++++++++++++++++++++++++++++ reader with pid %d read %d bytes from pipe\n", getpid(), returnValue);
         tempBufferSize -= returnValue;
         progress += returnValue;
         trySelect(fd);
         returnValue = read(fd, buffer + progress, tempBufferSize);
     }
-    if (returnValue == 0) {  // EOF which means that writer failed and closed the pipe early
+
+    if (returnValue == 0) {  // 0 = EOF which means that writer failed and closed the pipe early
         handleExit(1, SIGUSR1);
     }
-    //printf("======================================================== reader with pid %d read %d bytes from pipe\n", getpid(), returnValue);
 
-    return returnValue;
+    return;
 }
 
-void readerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* commonDirName, char* mirrorDirName, int bufferSize, char* logFileName) {
-    printf("started readerJob with pid %d\n", getpid());
+int main(int argc, char** argv) {
+    // START OF SIGNAL HANLDING
+
     struct sigaction sigAction;
 
-    // Setup the signal handler
+    // setup the signal handler
     sigAction.sa_handler = &handleSignals;
 
-    // Restart the system call, if at all possible
+    // restart the system call, if at all possible
     sigAction.sa_flags = SA_RESTART;
 
-    // Block every signal during the handler
+    // handle only SIGINT and SIGALRM
     sigemptyset(&sigAction.sa_mask);
     sigaddset(&sigAction.sa_mask, SIGINT);
     sigaddset(&sigAction.sa_mask, SIGALRM);
@@ -254,217 +160,133 @@ void readerJob(FileList* inputFileList, int clientIdFrom, int clientIdTo, char* 
         perror("Error: cannot handle SIGINT");  // Should not happen
     }
 
-    char fifoFileName[MAX_FIFO_FILE_NAME];
-    buildFifoFileName(&fifoFileName, clientIdTo, clientIdFrom);
-    printf("reader with pid %d of client with id %d will use fifo %s\n", getpid(), clientIdFrom, fifoFileName);
+    // END OF SIGNAL HANLDING
 
-    char fifoFilePath[strlen(fifoFileName) + strlen(commonDirName) + 2];
-    strcpy(fifoFilePath, commonDirName);
-    strcat(fifoFilePath, "/");
-    strcat(fifoFilePath, fifoFileName);
+    // see file "utils.h" above the execReader() function for information about each of the following variables
+    int clientIdFrom, clientIdTo, bufferSize;
+    char *commonDirName, *mirrorDirName, *logFileName;
 
-    char* fifo = fifoFilePath;
+    handleArgs(argc, argv, &clientIdFrom, &clientIdTo, &commonDirName, &mirrorDirName, &bufferSize, &logFileName);
+
+    char fifoFileName[MAX_FIFO_FILE_NAME];                       // fifoFileName: name of fifo file
+    buildFifoFileName(&fifoFileName, clientIdTo, clientIdFrom);  // format: [clientIdTo]_to_[clientIdFrom].fifo
+
+    char fifoFilePath[strlen(fifoFileName) + strlen(commonDirName) + 2];  // fifoFilePath: path of fifo file
+    sprintf(fifoFilePath, "%s/%s", commonDirName, fifoFileName);          // format: [commonDir]/[clientIdTo]_to_[clientIdFrom].fifo
 
     if (!fileExists(fifoFilePath)) {
-        printf("pid %d, before fifo\n", getpid());
-        mkfifo(fifo, 0666);
-        printf("pid %d, after fifo\n", getpid());
+        mkfifo(fifoFilePath, 0666);  // create fifo pipe
     }
 
+    // block at open for 30 seconds and if open didn't return, raise SIGALRM
     alarm(30);
-    fifoFd = open(fifo, O_RDONLY);
+    fifoFd = open(fifoFilePath, O_RDONLY);  // fifoFd: declared globally in file "reader.h"
     alarm(0);
 
     if (fifoFd == -1) {
+        // error handling
         perror("open failed");
         handleExit(1, SIGUSR1);
     }
 
-    short int filePathSize = 0;
-    int fileContentsSize = 0;
-
-    if ((logFileP = fopen(logFileName, "a")) == NULL) {
+    // open log file
+    if ((logFileP = fopen(logFileName, "a")) == NULL) {  // logFileP: declared globally in file "reader.h"
+        // error handling
         perror("fopen failed");
         handleExit(1, SIGUSR1);
     }
 
-    // filePathSizeS = malloc(3);
-    // memcpy(filePathSizeS, "\0", 3);
+    char mirrorIdDirPath[strlen(mirrorDirName) + MAX_STRING_INT_SIZE + 1];
+    sprintf(mirrorIdDirPath, "%s/%d", mirrorDirName, clientIdTo);  // format: [mirrorDir]/[id]
 
-    // alarm(30);
-    int readReturnValue = tryRead(fifoFd, &filePathSize, 2);
+    if (!dirExists(mirrorIdDirPath)) {
+        createDir(mirrorIdDirPath);
+    }
+
+    // filePathSize: variable to store the file path's size that will be read from fifo pipe
+    // fileContentsSize: variable to store the file content's size that will be read from fifo pipe
+    short int filePathSize = 0;
+    int fileContentsSize = 0;
+
+    // read file path's size from pipe and write to log file
+    tryRead(fifoFd, &filePathSize, 2);
     fprintf(logFileP, "Reader with pid %d read 2 bytes of metadata from fifo pipe\n", getpid());
-    // alarm(0);
-    // filePathSize = atoi(filePathSizeS);
-    //printf("-------->reader with pid %d read filePathSize: %d\n", getpid(), filePathSize);
+    fflush(logFileP);
 
-    while (readReturnValue > 0 && filePathSize != 0) {
-        filePath = (char*)malloc(filePathSize + 1);
-        memset(filePath, 0, filePathSize + 1);
+    while (filePathSize != 0) {
+        filePath = (char*)malloc(filePathSize + 1);  // filePath: declared globally in file "reader.h"
+        memset(filePath, 0, filePathSize + 1);       // clear file path
 
-        // alarm(30);
-        //printf("-------->reader with pid %d BEFORE read filePath: %s\n", getpid(), filePath);
+        // read file path from pipe and write to log file
         tryRead(fifoFd, filePath, filePathSize);
         fprintf(logFileP, "Reader with pid %d read %d bytes of metadata from fifo pipe\n", getpid(), filePathSize);
-        // printf("-------->reader with pid %d read filePath: %s\n", getpid(), filePath);
-        // alarm(0);
+        fflush(logFileP);
 
-        fileContentsSizeS = malloc(5);
-        memset(fileContentsSizeS, 0, 5);
-        // alarm(30);
+        // read file content's size from pipe and write to log
         tryRead(fifoFd, &fileContentsSize, 4);
         fprintf(logFileP, "Reader with pid %d read 4 bytes of metadata from fifo pipe\n", getpid());
+        fflush(logFileP);
 
-        // alarm(0);
-        // fileContentsSize = atoi(fileContentsSizeS);
-        //printf("-------->reader with pid %d read fileContentsSize: %d\n", getpid(), fileContentsSize);
-
+        // fileContents: buffer in which all of the read contents of the file will be stored in order to eventually write them to a file
+        // bytesRead: the bytes of file contents that are read from fifo pipe (for logging purposes)
         char fileContents[fileContentsSize + 1];
         int bytesRead = 0;
         if (fileContentsSize > 0) {
-            strcpy(fileContents, "");
-            char chunk[bufferSize + 1];
-            // alarm(30);
-            // tryRead(fifoFd, fileContents, fileContentsSize);
-            // printf("-------->reader with pid %d read fileContents: %s\n", getpid(), fileContents);
-            // alarm(0);
+            memset(fileContents, 0, fileContentsSize + 1);  // clear fileContents buffer
+            char chunk[bufferSize + 1];                     // chunk: a part of the file contents
+
+            // remainingContentsSize: the number of bytes that are remaining to be read from the fifo pipe
+            // tempBufferSize: temporary buffer size to read from pipe in each while loop
             int remainingContentsSize = fileContentsSize;
+            int tempBufferSize;
             while (remainingContentsSize > 0) {
-                memset(chunk, 0, bufferSize + 1);
+                memset(chunk, 0, bufferSize + 1);  // clear chunk buffer
 
-                int returnValue, tempBufferSize, inProgress = 0;
-                //printf("remaining contents size: %d\n", remainingContentsSize);
-                if (remainingContentsSize < bufferSize) {
-                    tempBufferSize = remainingContentsSize;
-                } else {
-                    tempBufferSize = bufferSize;
-                }
+                // if the remaining contents of file have size less than the buffer size, read only the remaining contents from fifo pipe
+                tempBufferSize = (remainingContentsSize < bufferSize ? remainingContentsSize : bufferSize);
 
-                tryRead(fifoFd, chunk, tempBufferSize);
+                tryRead(fifoFd, chunk, tempBufferSize);  // read a chunk of size tempBufferSize from pipe
 
-                // trySelect(fifoFd);
-                // returnValue = read(fifoFd, chunk, tempBufferSize);
-                // //printf("RETURN VALUE = %d", returnValue);
-                // while (returnValue < tempBufferSize && returnValue != 0) {
-                //     if (returnValue == -1) {
-                //         perror("read error");
-                //         handleExit(1, SIGUSR1);
-                //     }
-                //     //printf("+++++++++++++++++++++++++++++++++++++++++++++ reader with pid %d read %d bytes from pipe: %s\n", getpid(), returnValue, chunk);
-                //     tempBufferSize -= returnValue;
-                //     inProgress += returnValue;
-                //     trySelect(fifoFd);
-                //     returnValue = read(fifoFd, chunk + inProgress, tempBufferSize);
-                // }
-
-                // if (returnValue == 0) {  // EOF which means that writer failed and closed the pipe early
-                //     handleExit(1, SIGUSR1);
-                // }
-
-                //printf("-------->reader with pid %d read a chunk of file %s: %s\n", getpid(), filePath, chunk);
-
-                bytesRead += tempBufferSize;
-                strcat(fileContents, chunk);
-                remainingContentsSize -= bufferSize;
+                bytesRead += tempBufferSize;              // for logging purposes
+                strcat(fileContents, chunk);              // concatenated the read chunk to the total file content's buffer
+                remainingContentsSize -= tempBufferSize;  // proceed tempBufferSize bytes
             }
         }
 
-        // if (fileContentsSize == -1) {
-        //     fprintf(logFileP, "Reader with pid %d received directory with path %s\n", getpid(), filePath);
-        //     printf("READER WITH PID %d wrote to log!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n", getpid());
-        // } else {
-        //     fprintf(logFileP, "Reader with pid %d received file with path \"%s\" and contents \"%s\"\n", getpid(), filePath, fileContentsSize > 0 ? fileContents : "");
-        //     printf("READER WITH PID %d wrote to log!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n", getpid());
-        // }
-
+        // write to log
         fprintf(logFileP, "Reader with pid %d received file with path \"%s\" and read %d bytes from fifo pipe\n", getpid(), filePath, bytesRead);
-        //printf("READER WITH PID %d wrote to log!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n", getpid());
         fflush(logFileP);
 
-        char clientIdToS[MAX_STRING_INT_SIZE];
-        sprintf(clientIdToS, "%d", clientIdTo);
-        char mirrorFilePath[strlen(filePath) + strlen(mirrorDirName) + strlen(clientIdToS) + 2], mirrorIdDirPath[strlen(mirrorDirName) + strlen(clientIdToS) + 1];
-        strcpy(mirrorFilePath, mirrorDirName);
-        strcat(mirrorFilePath, "/");
-        strcat(mirrorFilePath, clientIdToS);
-        strcpy(mirrorIdDirPath, mirrorFilePath);
-        strcat(mirrorFilePath, "/");
-        strcat(mirrorFilePath, filePath);
-        // printf("reader read filepath: %s\n", filePath);
-        // char dirOfFilePath[strlen(filePath) + strlen(mirrorDirName) + strlen(clientIdFromS) + 2];
-        // strcpy(dirOfFilePath, mirrorFilePath);
-        // char* tempS = dirOfFilePath;
+        char mirrorFilePath[strlen(mirrorIdDirPath) + strlen(filePath) + 1];  // mirrorFilePath: the path of the mirrored file
+        sprintf(mirrorFilePath, "%s%s", mirrorIdDirPath, filePath);           // format: [mirrorDir]/[id]/[filePath]
 
-        // while ((tempS = strchr(tempS, '/')) != NULL) {
-        //     printf("in while\n");
-        //     tempS = tempS + 1;
-        //     if (strchr(tempS, '/') == NULL) {
-        //         *(tempS-1) = '\0';
-        //         break;
-        //     }
-        //     // tempS = strchr(tempS, '/');
-
-        // }
-        //printf("_________________mirrorFilePathCopy = %s\n", mirrorIdDirPath);
-
-        if (!dirExists(mirrorIdDirPath)) {
-            createDir(mirrorIdDirPath);
-        }
-        if (fileContentsSize > 0) {
+        if (fileContentsSize > 0) {  // is a regular file
             createAndWriteToFile(mirrorFilePath, fileContents);
-        } else if (fileContentsSize == 0) {
-            createAndWriteToFile(mirrorFilePath, "");
-        } else if (fileContentsSize == -1) {
-            createDir(mirrorFilePath);
+
+            if (GPG_ENCRYPTION_ON) {
+                char tempPath[strlen(mirrorFilePath) + 5];
+                sprintf(tempPath, "%stemp", mirrorFilePath);
+                decryptFile(mirrorFilePath, tempPath, clientIdFrom);  // decrypt the encrypted read file and put the output in a temp file
+                removeFileOrDir(mirrorFilePath);                      // remove the old encrypted file
+                renameFile(tempPath, mirrorFilePath);                 // rename the new decrypted file to have the correct path
+            }
+        } else if (fileContentsSize == 0) {            // is an empty file
+            createAndWriteToFile(mirrorFilePath, "");  // create and write an empty string to the file
+        } else if (fileContentsSize == -1) {           // is a directory
+            createDir(mirrorFilePath);                 // create a directory
         }
 
+        // free filePath
         if (filePath != NULL) {
             free(filePath);
             filePath = NULL;
         }
-        if (filePathSizeS != NULL) {
-            free(filePathSizeS);
-            filePathSizeS = NULL;
-        }
-        if (fileContentsSizeS != NULL) {
-            free(fileContentsSizeS);
-            fileContentsSizeS = NULL;
-        }
 
-        // filePathSizeS = malloc(3);
-        // memcpy(filePathSizeS, "\0", 3);
-        // alarm(30);
-        readReturnValue = tryRead(fifoFd, &filePathSize, 2);
+        // read file path's size from pipe and write to log file
+        tryRead(fifoFd, &filePathSize, 2);
         fprintf(logFileP, "Reader with pid %d read 2 bytes of metadata from fifo pipe\n", getpid());
-        // alarm(0);
-        // filePathSize = atoi(filePathSizeS);
-        // printf("-------->reader with pid %d read filePathSize: %d\n", getpid(), filePathSize);
+        fflush(logFileP);
     }
 
-    if (fclose(logFileP) == EOF) {
-        perror("fclose failed");
-        exit(1);
-    }
-
-    freeFileList(&inputFileList);
-
-    if (close(fifoFd) == -1) {
-        perror("close failed");
-        handleExit(1, SIGUSR2);
-    }
-    fifoFd = -1;
-
-    return;
-}
-
-int main(int argc, char** argv) {
-    printf("started reader!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
-    int clientIdFrom, clientIdTo, bufferSize;
-    char *commonDirName, *mirrorDirName, *logFileName;
-
-    handleArgs(argc, argv, &inputFileList, &clientIdFrom, &clientIdTo, &commonDirName, &mirrorDirName, &bufferSize, &logFileName, &clientPid);
-
-    readerJob(inputFileList, clientIdFrom, clientIdTo, commonDirName, mirrorDirName, bufferSize, logFileName);
-
-    return 0;
+    handleExit(0, 0);  // handle normal exit
 }
