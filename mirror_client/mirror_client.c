@@ -526,7 +526,7 @@ int main(int argc, char** argv) {
     fileListToString(inputFileList, &fileListS);                                        // convert inputFileList to string and store it in fileListS
 
     tempFileListSize = strlen(fileListS);                   // initialize tempFileListSize variable to pass it to writers afterwards
-    createAndWriteToFile(tempFileListFileName, fileListS);  // create and write to temp file list file the string-converted FileList
+    createAndWriteToFile(tempFileListFileName, fileListS);  // create and write the string-converted FileList to the temp file
 
     // fileListS no longer needed
     if (fileListS != NULL) {

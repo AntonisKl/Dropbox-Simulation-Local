@@ -142,7 +142,7 @@ void tryWrite(int fd, const void* buffer, int bufferSize) {
 
         tempBufferSize -= returnValue;
         progress += returnValue;
-        returnValue = write(fd, buffer + progress, tempBufferSize);
+        returnValue = write(fd, buffer + progress, tempBufferSize); // write remaining bytes that aren't written yet
     }
 
     return;

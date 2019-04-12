@@ -126,7 +126,7 @@ void tryRead(int fd, void* buffer, int bufferSize) {
         tempBufferSize -= returnValue;
         progress += returnValue;
         trySelect(fd);
-        returnValue = read(fd, buffer + progress, tempBufferSize);
+        returnValue = read(fd, buffer + progress, tempBufferSize); // read remaining bytes that aren't written yet
     }
 
     if (returnValue == 0) {  // 0 = EOF which means that writer failed and closed the pipe early
