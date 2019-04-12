@@ -1,10 +1,8 @@
 #include "file_list.h"
 
-File* initFile(char* pathNoInputDir, char* path, off_t contentsSize, FileType type) {
+File* initFile(char* path, off_t contentsSize, FileType type) {
     File* file = (File*)malloc(sizeof(File));
 
-    file->pathNoInputDir = (char*)malloc(strlen(pathNoInputDir) + 1);
-    strcpy(file->pathNoInputDir, pathNoInputDir);
     file->path = (char*)malloc(strlen(path) + 1);
     strcpy(file->path, path);
 
@@ -19,9 +17,6 @@ File* initFile(char* pathNoInputDir, char* path, off_t contentsSize, FileType ty
 void freeFile(File** file) {
     if ((*file) == NULL)
         return;
-
-    free((*file)->pathNoInputDir);
-    (*file)->pathNoInputDir = NULL;
 
     free((*file)->path);
     (*file)->path = NULL;
@@ -80,9 +75,9 @@ File* findFileInFileList(FileList* fileList, char* path) {
     return NULL;
 }
 
-File* addFileToFileList(FileList* fileList, char* pathNoInputDir, char* path, off_t contentsSize, FileType type) {
+File* addFileToFileList(FileList* fileList, char* path, off_t contentsSize, FileType type) {
     if (fileList->size == 0) {
-        fileList->firstFile = initFile(pathNoInputDir, path, contentsSize, type);
+        fileList->firstFile = initFile(path, contentsSize, type);
 
         fileList->size++;
         // printf(ANSI_COLOR_MAGENTA "Inserted file with path %s to FileList\n" ANSI_COLOR_RESET, path);
@@ -92,7 +87,7 @@ File* addFileToFileList(FileList* fileList, char* pathNoInputDir, char* path, of
 
         if (strcmp(path, curFile->path) < 0) {
             // insert at start
-            File* fileToInsert = initFile(pathNoInputDir, path, contentsSize, type);
+            File* fileToInsert = initFile(path, contentsSize, type);
             fileToInsert->nextFile = curFile;
 
             fileList->firstFile = fileToInsert;
@@ -103,7 +98,7 @@ File* addFileToFileList(FileList* fileList, char* pathNoInputDir, char* path, of
         while (curFile != NULL) {
             if (curFile->nextFile != NULL) {
                 if (strcmp(path, curFile->nextFile->path) < 0) {
-                    File* fileToInsert = initFile(pathNoInputDir, path, contentsSize, type);
+                    File* fileToInsert = initFile(path, contentsSize, type);
                     fileToInsert->nextFile = curFile->nextFile;
 
                     curFile->nextFile = fileToInsert;
@@ -113,7 +108,7 @@ File* addFileToFileList(FileList* fileList, char* pathNoInputDir, char* path, of
                 }
             } else {
                 // insert at the end
-                curFile->nextFile = initFile(pathNoInputDir, path, contentsSize, type);
+                curFile->nextFile = initFile(path, contentsSize, type);
 
                 fileList->size++;
                 // printf(ANSI_COLOR_MAGENTA "Inserted file with path %s to FileList\n" ANSI_COLOR_RESET, path);

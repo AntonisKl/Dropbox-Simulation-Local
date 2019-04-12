@@ -87,7 +87,7 @@ void doClientInitialChecks(char* inputDirName, char* mirrorDirName, char* common
     return;
 }
 
-void populateFileList(FileList* fileList, char* inputDirName, char* pathWithoutInputDirName, int indent) {
+void populateFileList(FileList* fileList, char* inputDirName, int indent) {
     DIR* dir;
     struct dirent* entry;
 
@@ -98,22 +98,21 @@ void populateFileList(FileList* fileList, char* inputDirName, char* pathWithoutI
 
     // traverse the whole directory recursively
     while ((entry = readdir(dir)) != NULL) {
-        char path[PATH_MAX], pathNoInputDirName[PATH_MAX];
+        char path[PATH_MAX];
 
         if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
             continue;
 
-        snprintf(path, PATH_MAX, "%s/%s", inputDirName, entry->d_name);                           // append to inputDirName the current file's name
-        snprintf(pathNoInputDirName, PATH_MAX, "%s/%s", pathWithoutInputDirName, entry->d_name);  // append to pathWithoutInputDirName the current file's name
+        snprintf(path, PATH_MAX, "%s/%s", inputDirName, entry->d_name);  // append to inputDirName the current file's name
         struct stat curStat;
         stat(path, &curStat);
 
-        if (!S_ISREG(curStat.st_mode)) {                                           // is a directory
-            addFileToFileList(fileList, pathNoInputDirName, path, -1, DIRECTORY);  // add a DIRECTORY node to FileList
+        if (!S_ISREG(curStat.st_mode)) {                       // is a directory
+            addFileToFileList(fileList, path, -1, DIRECTORY);  // add a DIRECTORY node to FileList
 
-            populateFileList(fileList, path, pathNoInputDirName, indent + 2);                      // continue traversing directory
-        } else {                                                                                   // is a file
-            addFileToFileList(fileList, pathNoInputDirName, path, curStat.st_size, REGULAR_FILE);  // add a REGULAR_FILE node to FileList
+            populateFileList(fileList, path, indent + 2);                      // continue traversing directory
+        } else {                                                               // is a file
+            addFileToFileList(fileList, path, curStat.st_size, REGULAR_FILE);  // add a REGULAR_FILE node to FileList
         }
     }
 
@@ -156,6 +155,11 @@ void handleExit(int exitValue, char removeIdFile, char removeMirrorDir, char wri
             free(tempFileListFileName);
             tempFileListFileName = NULL;
         }
+    }
+
+    if (fileListS != NULL) {
+        free(fileListS);
+        fileListS = NULL;
     }
 
     exit(exitValue);
@@ -221,9 +225,9 @@ void createReaderAndWriter() {
         } else if (writerPid == 0) {
             execWriter(clientIdFrom, clientIdTo, commonDirName, bufferSize, logFileName, tempFileListFileName, tempFileListSize);
         } else {
-            while (1) {  // wait until both children (reader and writer) have exited successfully
+            while (1) {  // subprocess of client will wait until both children (reader and writer) have exited successfully
                 int readerStatus, writerStatus;
-                printf("Child of client with id %d is waiting for reader and writer to exit\n", clientIdFrom);
+                printf("Child with pid %d of client with id %d is waiting for reader and writer to exit\n", getpid(), clientIdFrom);
                 while (readerPid == -1) {  // while there is not a child reader process running (rare case)
                     sleep(1);
                 }
@@ -237,7 +241,7 @@ void createReaderAndWriter() {
                 int readerExitStatus = WEXITSTATUS(readerStatus), writerExitStatus = WEXITSTATUS(writerStatus);
                 if (readerExitStatus == 0 && writerExitStatus == 0) {
                     // sync with the current client completed successfully
-                    printf(ANSI_COLOR_GREEN "Transfer completed successfully and both children (reader and writer) with pids %d and %d have exited succesfully\n" ANSI_COLOR_RESET, readerPid, writerPid);
+                    printf(ANSI_COLOR_GREEN "Transfer from client with id %d to client with id %d completed successfully and both children (reader and writer) with pids %d and %d have exited succesfully\n" ANSI_COLOR_RESET, clientIdFrom, clientIdTo, readerPid, writerPid);
                     handleExit(0, 0, 0, 0, 0);  // exit normally
                 } else {
                     if (readerExitStatus == 1) {
@@ -267,14 +271,14 @@ void handleSigUsr1(int signal) {
     if (signal != SIGUSR1) {
         printErrorLn("Client caught wrong signal instead of SIGUSR1\n");
     }
-    printf(ANSI_COLOR_BLUE "Client process with id %d caught SIGUSR1" ANSI_COLOR_RESET "\n", getpid());
+    printf(ANSI_COLOR_BLUE "Client subprocess with id %d caught SIGUSR1" ANSI_COLOR_RESET "\n", getpid());
 
     if (attemptsNum < 3) {
         createReader();  // create new reader child process since the previous failed
 
         attemptsNum++;
     } else {
-        printf(ANSI_COLOR_RED "Client with id %d exceeded the maximum restart attemts number, so it will exit" ANSI_COLOR_RESET "\n", getpid());
+        printf(ANSI_COLOR_RED "Client subprocess of client with id %d exceeded the maximum restart attemts number, so it will exit" ANSI_COLOR_RESET "\n", getpid());
         // printf("sigusr1 writer pid: %d\n", writerPid);
 
         if (writerPid > 0 && !kill(writerPid, 0)) {
@@ -287,16 +291,16 @@ void handleSigUsr1(int signal) {
 
 void handleSigUsr2(int signal) {
     if (signal != SIGUSR2) {
-        printErrorLn("Client caught wrong signal instead of SIGUSR2\n");
+        printErrorLn("Client subprocess caught wrong signal instead of SIGUSR2\n");
     }
-    printf(ANSI_COLOR_BLUE "Client process with id %d caught SIGUSR2" ANSI_COLOR_RESET "\n", getpid());
+    printf(ANSI_COLOR_BLUE "Client subprocess of client with id %d caught SIGUSR2" ANSI_COLOR_RESET "\n", getpid());
 
     if (attemptsNum < 3) {
         createWriter();  // create new writer child process since the previous failed
 
         attemptsNum++;
     } else {
-        printf(ANSI_COLOR_RED "Client with id %d exceeded the maximum restart attemts number, so it will exit" ANSI_COLOR_RESET "\n", getpid());
+        printf(ANSI_COLOR_RED "Client subprocess of client with id %d exceeded the maximum restart attemts number, so it will exit" ANSI_COLOR_RESET "\n", getpid());
 
         if (readerPid > 0 && !kill(readerPid, 0)) {
             kill(readerPid, SIGINT);  // kill reader child process
@@ -307,9 +311,9 @@ void handleSigUsr2(int signal) {
 
 void handleSigInt(int signal) {
     if (signal != SIGINT) {
-        printErrorLn("Child of client caught wrong signal instead of SIGINT\n");
+        printErrorLn("Client subprocess caught wrong signal instead of SIGINT\n");
     }
-    printf("Child of client process with id %d caught SIGINT\n", getpid());
+    printf("Client subprocess of client with id %d caught SIGINT\n", getpid());
 
     kill(getppid(), SIGINT);  // send SIGINT signal to main/parent client process
 
@@ -513,16 +517,22 @@ int main(int argc, char** argv) {
 
     // create input directory's file list
     inputFileList = initFileList();
-    populateFileList(inputFileList, inputDirName, "", 0);
+    populateFileList(inputFileList, inputDirName, 0);
 
     tempFileListFileName = (char*)malloc(MAX_TEMP_FILELIST_FILE_NAME_SIZE);
     sprintf(tempFileListFileName, "tmp/TempFileList%d", clientId);  // create temp FileList file's path
 
-    char fileListS[inputFileList->size * (MAX_FILE_LIST_NODE_STRING_SIZE)];  // fileListS: string in which the converted inputFileList will be stored
-    fileListToString(inputFileList, &fileListS);                             // convert inputFileList to string and store it in fileListS
+    fileListS = (char*)malloc(inputFileList->size * (MAX_FILE_LIST_NODE_STRING_SIZE));  // fileListS: string in which the converted inputFileList will be stored
+    fileListToString(inputFileList, &fileListS);                                        // convert inputFileList to string and store it in fileListS
 
     tempFileListSize = strlen(fileListS);                   // initialize tempFileListSize variable to pass it to writers afterwards
     createAndWriteToFile(tempFileListFileName, fileListS);  // create and write to temp file list file the string-converted FileList
+
+    // fileListS no longer needed
+    if (fileListS != NULL) {
+        free(fileListS);
+        fileListS = NULL;
+    }
 
     initialSync(commonDirName, mirrorDirName, bufferSize, inputFileList, clientId, logFileName);                   // do initial sync
     startWatchingCommonDirectory(commonDirName, mirrorDirName, bufferSize, inputFileList, clientId, logFileName);  // start listening for inotify events on common directory

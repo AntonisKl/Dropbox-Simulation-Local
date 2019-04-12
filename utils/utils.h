@@ -88,7 +88,7 @@ char isSameIdFile(char* fileName, int clientId);
 void buildFifoFileName(char (*fifoFileName)[], int clientIdFrom, int clientIdTo);
 
 // converts a FileList to a single string and puts it in the preallocated (*fileListS)[] variable
-void fileListToString(FileList* fileList, char (*fileListS)[]);
+void fileListToString(FileList* fileList, char **fileListS);
 
 // converts a string to a FileList and returns it
 FileList* stringToFileList(char* fileListS);

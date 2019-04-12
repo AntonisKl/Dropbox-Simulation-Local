@@ -9,7 +9,7 @@ typedef enum FileType {
 } FileType;
 
 typedef struct File {
-    char* pathNoInputDir, *path;
+    char *path;
     off_t contentsSize;
     FileType type;
     struct File* nextFile;
@@ -23,7 +23,7 @@ typedef struct FileList {
 
 // File
 
-File* initFile(char* pathNoInputDir, char* path, off_t contentsSize, FileType type);
+File* initFile(char* path, off_t contentsSize, FileType type);
 
 void freeFile(File** file);
 
@@ -41,6 +41,6 @@ void freeFileList(FileList** fileList);
 File* findFileInFileList(FileList* fileList, char* fileId);
 
 // add file to file list by maintaining the sorting order
-File* addFileToFileList(FileList* fileList, char* pathNoInputDir, char* path, off_t contentsSize, FileType type);
+File* addFileToFileList(FileList* fileList, char* path, off_t contentsSize, FileType type);
 
 #endif

@@ -257,8 +257,8 @@ int main(int argc, char** argv) {
         fprintf(logFileP, "Reader with pid %d received file with path \"%s\" and read %d bytes from fifo pipe\n", getpid(), filePath, bytesRead);
         fflush(logFileP);
 
-        char mirrorFilePath[strlen(mirrorIdDirPath) + strlen(filePath) + 1];  // mirrorFilePath: the path of the mirrored file
-        sprintf(mirrorFilePath, "%s%s", mirrorIdDirPath, filePath);           // format: [mirrorDir]/[id]/[filePath]
+        char mirrorFilePath[strlen(mirrorIdDirPath) + strlen(filePath) + 2];  // mirrorFilePath: the path of the mirrored file
+        sprintf(mirrorFilePath, "%s/%s", mirrorIdDirPath, filePath);           // format: [mirrorDir]/[id]/[filePath]
 
         if (fileContentsSize > 0) {  // is a regular file
             createAndWriteToFile(mirrorFilePath, fileContents);

@@ -221,18 +221,21 @@ int main(int argc, char** argv) {
     // start traversing the FileList and send write each file to fifo pipe
     File* curFile = inputFileList->firstFile;
     while (curFile != NULL) {
-        short int filePathSize = strlen(curFile->pathNoInputDir);
+        char curFilePathCopy[strlen(curFile->path) + 1];
+        strcpy(curFilePathCopy, curFile->path);  // temporarily store current file's path in order to manipulate it and get cut the input directory's name from it
+        // pathNoInputDirName: current file's path without the input directory's name
+        char* pathNoInputDirName = strtok(curFilePathCopy, "/");  // cut the input directory's name
+        pathNoInputDirName = strtok(NULL, "\n");                  // until end of path
+
+        short int filePathSize = strlen(pathNoInputDirName);
 
         // write file path's size to fifo pipe and write to log
         tryWrite(fifoFd, &filePathSize, 2);
         fprintf(logFileP, "Writer with pid %d wrote 2 bytes of metadata to fifo pipe\n", getpid());
         fflush(logFileP);
 
-        // char temp[PATH_MAX]; // variable to temporarily store the path of
-        // memcpy(temp, curFile->pathNoInputDir, filePathSize + 1);
-
         // write file's path to fifo pipe and write to log
-        tryWrite(fifoFd, curFile->pathNoInputDir, filePathSize);
+        tryWrite(fifoFd, pathNoInputDirName, filePathSize);
         fprintf(logFileP, "Writer with pid %d wrote %d bytes of metadata to fifo pipe\n", getpid(), filePathSize);
         fflush(logFileP);
 
@@ -306,7 +309,7 @@ int main(int argc, char** argv) {
             }
 
             // write to log
-            fprintf(logFileP, "Writer with pid %d sent file with path \"%s\" and wrote %d bytes to fifo pipe\n", getpid(), curFile->pathNoInputDir, bytesWritten);
+            fprintf(logFileP, "Writer with pid %d sent file with path \"%s\" and wrote %d bytes to fifo pipe\n", getpid(), pathNoInputDirName, bytesWritten);
             fflush(logFileP);
 
             // try to close current file
@@ -321,7 +324,7 @@ int main(int argc, char** argv) {
             fflush(logFileP);
 
             // write to log
-            fprintf(logFileP, "Writer with pid %d sent file with path \"%s\" and wrote %d bytes to fifo pipe\n", getpid(), curFile->pathNoInputDir, 0);
+            fprintf(logFileP, "Writer with pid %d sent file with path \"%s\" and wrote %d bytes to fifo pipe\n", getpid(), pathNoInputDirName, 0);
             fflush(logFileP);
         }
         curFile = curFile->nextFile;

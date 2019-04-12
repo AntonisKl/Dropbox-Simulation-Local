@@ -165,13 +165,13 @@ void buildFifoFileName(char (*fifoFileName)[], int clientIdFrom, int clientIdTo)
     return;
 }
 
-void fileListToString(FileList* fileList, char (*fileListS)[]) {
+void fileListToString(FileList* fileList, char **fileListS) {
     strcpy(*fileListS, "");
 
     File* curFile = fileList->firstFile;
     while (curFile != NULL) {
         // convert fileList's node to string and concatenate it to fileListS
-        sprintf(*fileListS, "%s%s$%s$%ld$%d&", *fileListS, curFile->pathNoInputDir, curFile->path, curFile->contentsSize, curFile->type);
+        sprintf(*fileListS, "%s%s$%ld$%d&", *fileListS, curFile->path, curFile->contentsSize, curFile->type);
 
         curFile = curFile->nextFile;
     }
@@ -189,16 +189,13 @@ FileList* stringToFileList(char* fileListS) {
 
     char* fileToken = strtok_r(fileListS, "&", &fileListS);
     while (fileToken != NULL) {
-        char fileS[MAX_FILE_LIST_NODE_STRING_SIZE], *fieldToken, pathNoInputDir[PATH_MAX], path[PATH_MAX], *endPtr;
+        char fileS[MAX_FILE_LIST_NODE_STRING_SIZE], *fieldToken, path[PATH_MAX], *endPtr;
         off_t contentsSize;
         FileType type;
 
         strcpy(fileS, fileToken);
 
         fieldToken = strtok(fileS, "$");
-        strcpy(pathNoInputDir, fieldToken);
-
-        fieldToken = strtok(NULL, "$");
         strcpy(path, fieldToken);
 
         fieldToken = strtok(NULL, "$");
@@ -207,7 +204,7 @@ FileList* stringToFileList(char* fileListS) {
         fieldToken = strtok(NULL, "$");
         type = (FileType)atoi(fieldToken);
 
-        addFileToFileList(fileList, pathNoInputDir, path, contentsSize, type);
+        addFileToFileList(fileList, path, contentsSize, type);
 
         fileToken = strtok_r(fileListS, "&", &fileListS);
     }

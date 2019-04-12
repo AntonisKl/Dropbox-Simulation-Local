@@ -13,12 +13,15 @@ typedef struct FileList FileList;  // forward declaration
 // bufferSize: the size of the buffer that was specified by the user
 // logFileName: the name of the log file that was specified by the user
 // tempFileListFileName: the path of the temporary file that contains the string-converted input FileList
+// fileListS: variable to temporarily store the string-converted inputFileList
 // tempFileListSize: the size of the temporary file that contains the string-converted input FileList
 // inputFileList: the FileList that contains entries for all the regular files and directories of the input directory of the current client
 // sigAction: struct for signal handling
 // readerPid: the pid of the current reader process
 // writerPid: the pid of the current writer process
-static char *commonDirName, *mirrorDirName, *logFileName, *tempFileListFileName;
+// clientPid: client's process id
+// attemptsNum: current number of attemps that were made so far by the client subprocess to restart the sync procedure
+static char *commonDirName, *mirrorDirName, *logFileName, *tempFileListFileName, *fileListS = NULL;
 static int bufferSize, clientIdFrom, clientIdTo, clientPid, attemptsNum = 0;
 static unsigned long tempFileListSize;
 static FileList* inputFileList;
@@ -35,8 +38,8 @@ void doClientInitialChecks(char* inputDirName, char* mirrorDirName, char* common
 // recursively traverses the directory with name inputDirName and all of its subdirectories and
 // adds to fileList all entries of the regular files and directories of the directory with name inputDirName
 // indent: it is used only for printing purposes
-// pathWithoutInputDirName: it is used to be stored in FileList separately from the whole path of each file
-void populateFileList(FileList* fileList, char* inputDirName, char* pathWithoutInputDirName, int indent);
+// inputDirName: in each recursive call of the function it represents the path until the current file
+void populateFileList(FileList* fileList, char* inputDirName, int indent);
 
 // handles exit (frees memory, closes file descriptors etc.)
 // exitValue: the integer value with which the process will exit

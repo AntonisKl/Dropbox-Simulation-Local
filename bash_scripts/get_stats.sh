@@ -1,78 +1,57 @@
 #!/bin/bash
 
-arrayContains() {
-    element=$1
-    shift
-    array=("$@")
-    for i in "${array[@]}"
-    do
-        # echo pids $element $i
-        if [ "$i" == "$element" ] ; then
-            # echo 1
-            return 0
-        fi
-    done
-    # echo 0
-    return 1
-}
-
-pids=()
-pidsIndex=0
-dataBytesWritten=0
-dataBytesRead=0
-metadataBytesWritten=0
-metadataBytesRead=0
-filesWritten=0
-filesRead=0
-clientsExited=0
+ids=() # array of the client ids that will be found in the log files
+idsIndex=0 # next index of the ids array in each while loop
+dataBytesWritten=0 # total number of bytes of file contents written
+dataBytesRead=0 # total number of bytes of file contents read
+metadataBytesWritten=0 # total number of bytes of metadata written (e.g. file path's size, ending symbol)
+metadataBytesRead=0 # total number of bytes of metadata read (e.g. file path's size, ending symbol)
+filesWritten=0 # total number of files written
+filesRead=0 # total number of files read
+clientsExited=0 # clients that exited successfully
 
 while read -a line ;
 do
-    # echo "${line[3]}";
-    # echo $(arrayContains "${pids[@]}" "${line[3]}")
-    
-    # echo ${line[4]}
-    if [[ ${line[4]} == "sent" ]] ; then
-        # echo $pidsIndex
-        ((dataBytesWritten += ${line[11]}))
-        ((filesWritten ++))
+    if [[ ${line[4]} == "sent" ]] ; then    
+        ((dataBytesWritten += ${line[11]})) # add to written data
+        ((filesWritten ++))                 # add to written files
     elif [[ ${line[4]} == "received" ]] ; then
-        # echo $pidsIndex
-        ((dataBytesRead += ${line[11]}))
-        ((filesRead ++))
+        ((dataBytesRead += ${line[11]}))    # add to read data
+        ((filesRead ++))                    # add to read files
     elif [[ ${line[4]} == "read" ]] ; then
-        ((metadataBytesRead += ${line[5]}))
+        ((metadataBytesRead += ${line[5]}))    # add to read metadata
     elif [[ ${line[4]} == "wrote" ]] ; then
-        ((metadataBytesWritten += ${line[5]}))
+        ((metadataBytesWritten += ${line[5]})) # add to written metadata
     fi
 
     if [[ ${line[0]} == "Client" ]] ; then
         if [[ ${line[7]} == "exited" ]] ; then
-           ((clientsExited ++))
-        elif [[ ${line[7]} == "logged" ]] && ! arrayContains "${line[6]}" "${pids[@]}" ; then
-            # echo $pidsIndex
-            pids[pidsIndex]=${line[6]}
-            # echo Added pid ${line[3]} to pid array
-            ((pidsIndex ++))
+           ((clientsExited ++))                 # add to exited clients
+        elif [[ ${line[7]} == "logged" ]] ; then
+            ids[idsIndex]=${line[6]}            # add to current client's id to ids array
+            ((idsIndex ++))                     # proceed index of ids array
         fi
     fi
 done
 
-# print stats
-echo
-echo Client pids:
-printf '\t%s\n' "${pids[@]}"
-
+# sort ids array and store it to idsSorted array
 IFS=$'\n'
-pidsSorted=($(sort -n <<< "${pids[*]}"))
+idsSorted=($(sort -n <<< "${ids[*]}"))
 unset IFS
 
-echo
-echo Total number of client pids: ${#pidsSorted[@]}
-echo Max client pid: ${pidsSorted[${#pidsSorted[@]}-1]}
-echo Min client pid: ${pidsSorted[0]}
-echo
+# print stats
+echo    # newline
+echo Client ids:
+printf '\t%s\n' "${idsSorted[@]}"
+
+echo    # newline
+echo Total number of client ids: ${#idsSorted[@]}
+echo Max client id: ${idsSorted[${#idsSorted[@]}-1]}
+echo Min client id: ${idsSorted[0]}
+echo    # newline
 echo Metadata bytes written: $metadataBytesWritten, Metadata bytes read: $metadataBytesRead
 echo Data bytes written: $dataBytesWritten, Data bytes read: $dataBytesRead
+echo Total bytes written: $(($metadataBytesWritten + $dataBytesWritten)), Total bytes read: $(($metadataBytesRead + $dataBytesRead))
 echo Files written: $filesWritten, Files read: $filesRead
+echo Clients entered: ${#idsSorted[@]}
 echo Clients exited: $clientsExited
